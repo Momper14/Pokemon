@@ -12,7 +12,7 @@ typedef struct Attacke{
 	const int precision;
 	const int AP;
 	const char priority;	
-	const int klasse
+	const int klasse;
 }Attacke;
 // SP = Schadenspunkte
 // TQ = Trefferquote
