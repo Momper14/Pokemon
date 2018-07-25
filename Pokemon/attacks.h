@@ -1,7 +1,7 @@
 #pragma once
 #include "types.h"
 
-typedef struct {
+typedef struct attacke{
 	const char *name;
 	const int typ;
 	const int DMG;
