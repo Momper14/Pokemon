@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Pokemon.cpp" />
+    <ClCompile Include="Pokemon.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h" />

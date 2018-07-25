@@ -8,7 +8,7 @@ struct pokemonClass{
 	uint stats[6];
 	byte iv[6];
 	byte dv[6];
-	Attacke *moves[4];
+	//Attacke *moves[4];
 	int status;
 	int item;
 };
