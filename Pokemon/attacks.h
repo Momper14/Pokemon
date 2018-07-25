@@ -5,7 +5,7 @@
 #define spezial  1
 #define status   2
 
-typedef struct {
+typedef struct Attacke{
 	const char *name;
 	const int typ;
 	const int DMG;
@@ -13,7 +13,6 @@ typedef struct {
 	const int AP;
 	const char priority;	
 	const int klasse
-
 }Attacke;
 // SP = Schadenspunkte
 // TQ = Trefferquote
