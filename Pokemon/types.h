@@ -52,8 +52,8 @@ double matrix[18][18] = {
 };
 
 // Multiplikator ausrechnen
-double getMultiplikator(int attackType,int defenseType1,int defenseType2) {
+int getMultiplikator(int attackType,int defenseType1,int defenseType2) {
 
-	return (matrix[attackType][defenseType1])*(matrix[attackType][defenseType2]);
+	return 100*(matrix[attackType][defenseType1])*(matrix[attackType][defenseType2]);
 
 }

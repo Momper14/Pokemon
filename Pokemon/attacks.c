@@ -1,4 +1,3 @@
-#include "Pokemon.h"
 #include "Pokemon.c"
 #include "stdlib.h"
 #include "attacks.h"
@@ -9,7 +8,21 @@ uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attac
 
 	uint A = 0;
 	uint D = verteidiger->stats[verteidigung];
-	int random = 100 - (rand() % 16 + 1)
+	uint damage = 1;
+	uint random = 100 - (rand() % 16 + 1);
+	uint crit   = 100;
+	uint temp   = rand()%100+1;
+	uint stab   = 100;
+	//int attackType, int defenseType1, int defenseType2
+	uint type = getMultiplikator(attacke->typ,verteidiger->base->typ1, verteidiger->base->typ2);
+	uint correct = crit * stab * 100*100;
+	uint modifier = 1;
+
+
+	if (temp > 0 && temp <= 5) {
+		crit = 200;
+	}
+
 	// ermitteln ob Angriff oder Spezialangriff
 	if (attacke->klasse == physisch) {
 		A = angreifer->stats[angriff];
@@ -20,6 +33,34 @@ uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attac
 	else {
 		A = 0;
 	}
+	// Crit ermitteln
+	unsigned char ranCrit = rand() % 256;
+	unsigned char P = angreifer->base->stats[initiative] / 512;
+	if (ranCrit >= P ) {
+		crit = 100;
+	}
+	else {
+		crit = 200;
+	}
+
+	// STAB berechnen
+	if (angreifer->base->typ1 == attacke->typ || angreifer->base->typ2 == attacke->typ) {
+		stab = 150;
+	}
+	else {
+		stab = 100;
+	}
+
+	modifier = (crit * random * stab * type)/correct;
+
+	damage = (2*angreifer->level/5) + 2;
+	damage = damage * attacke->AP;
+	damage = damage * (A / D);
+	damage = (damage / 50) + 2;
+	damage = damage * modifier;
+//	damage = (((((((2*angreifer->level)/5)+2) * attacke->DMG  * (A/D))/(5))/(50))+2)*modifier;
+
+
 	/*
 	         ( (2*angreiferlevel )              (       A        )     )
 		     (------------------ )+ 2 * Power * (----------------)     )
@@ -29,5 +70,7 @@ uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attac
 
 	modifier = critical * random * STAB * type * burn * other
 	*/
+
+	return damage;
 
 }
