@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Util.h"
+#include "attacks.h"
 
 #define stoneThunder 101
 #define stoneMoon 102
@@ -36,6 +37,8 @@ struct pokemonBase{
 	const byte expTier;
 	const byte numEvolutions;
 	const struct evolution *evolutions;
+	const byte numLearnable;
+	const struct learnable *learnables;
 };
 
 struct evolution{
@@ -45,7 +48,7 @@ struct evolution{
 
 struct learnable{
 	const byte lvl;
-	const struct attacke *attacke;
+	const struct Attacke *attacke;
 };
 
 //									    dex   name         typ1     typ2      cr  exp   hp  atk  def  sat  sdf  spd  evo
@@ -405,21 +408,89 @@ const struct pokemonBase Schillok   = {   8, "Schillok",   wasser,  keinTyp,  45
 const struct evolution SchiggyEvo[]   = { 16, &Schillok };
 const struct pokemonBase Schiggy    = {   7, "Schiggy",    wasser,  keinTyp,  45,  66,  44,  48,  65,  50,  64,  43, expT4, 1, SchiggyEvo };
 
-const struct pokemonBase Glurak     = {   6, "Glurak",     feuer,   flug,     45, 209,  78,  84,  78, 109,  85, 100, expT4, 0, NULL };
+const struct learnable GlurakLearn[] = {
+											{ 1, &kratzer },
+											{ 1, &heuler },
+											{ 1, &glut },
+											{ 1, &silberblick },
+											{ 9, &glut },
+											{ 15, &silberblick },
+											{ 24, &raserei },
+											{ 36, &schlitzer },
+											{ 46, &flammenwurf },
+											{ 55, &feuerwirbel }
+										};
+const struct pokemonBase Glurak     = {   6, "Glurak",     feuer,   flug,     45, 209,  78,  84,  78, 109,  85, 100, expT4, 0, NULL, 10, GlurakLearn };
 
+const struct learnable GlutexoLearn[] = {
+											{  1, &kratzer },
+											{  1, &heuler },
+											{  1, &glut },
+											{  9, &glut },
+											{ 15, &silberblick },
+											{ 24, &raserei },
+											{ 33, &schlitzer },
+											{ 42, &flammenwurf },
+											{ 56, &feuerwirbel }
+										};
 const struct evolution GlutexoEvo[]   = { 32, &Glurak };
-const struct pokemonBase Glutexo    = {   5, "Glutexo",    feuer,   keinTyp,  45, 142,  58,  64,  58,  80,  65,  80, expT4, 1, GlutexoEvo };
+const struct pokemonBase Glutexo    = {   5, "Glutexo",    feuer,   keinTyp,  45, 142,  58,  64,  58,  80,  65,  80, expT4, 1, GlutexoEvo, 9, GlutexoLearn };
 
+const struct learnable GlumandaLearn[] = {
+											{  1, &kratzer },
+											{  1, &heuler },
+											{  9, &glut },
+											{ 15, &silberblick },
+											{ 22, &raserei },
+											{ 30, &schlitzer },
+											{ 38, &flammenwurf },
+											{ 46, &feuerwirbel }
+										};
 const struct evolution GlumandaEvo[]  = { 16, &Glutexo };
-const struct pokemonBase Glumanda   = {   4, "Glumanda",   feuer,   keinTyp,  45,  70,  39,  52,  43,  60,  50,  65, expT4, 1, GlumandaEvo };
+const struct pokemonBase Glumanda   = {   4, "Glumanda",   feuer,   keinTyp,  45,  70,  39,  52,  43,  60,  50,  65, expT4, 1, GlumandaEvo, 8, GlumandaLearn };
 
-const struct pokemonBase Bisaflor   = {   3, "Bisaflor",   pflanze, gift,     45, 208,  80,  82,  83, 100, 100,  80, expT4, 0, NULL };
+const struct learnable BisaflorLearn[] = {
+											{  1, &tackle },
+											{  1, &heuler },
+											{  1, &egelsamen },
+											{  1, &rankenhieb },
+											{  7, &egelsamen },
+											{ 13, &rankenhieb },
+											{ 22, &giftpuder },
+											{ 30, &rasierblatt },
+											{ 43, &wachstum },
+											{ 55, &schlafpuder },
+											{ 65, &solarstrahl } 
+										};
+const struct pokemonBase Bisaflor   = {   3, "Bisaflor",   pflanze, gift,     45, 208,  80,  82,  83, 100, 100,  80, expT4, 0, NULL, 11, BisaflorLearn };
 
+const struct learnable BisaknospLearn[] = { 
+											{  1, &tackle },
+											{  1, &heuler },
+											{  1, &egelsamen },
+											{ 13, &rankenhieb },
+											{ 22, &giftpuder },
+											{ 30, &rasierblatt },
+											{ 38, &wachstum },
+											{ 46, &schlafpuder },
+											{ 54, &solarstrahl } 
+										};
 const struct evolution BisaknospEvo[] = { 32, &Bisaflor };
-const struct pokemonBase Bisaknosp  = {   2, "Bisaknosp",  pflanze, gift,     45, 141,  60,  62,  63,  80,  80,  60, expT4, 1, BisaknospEvo };
+const struct pokemonBase Bisaknosp  = {   2, "Bisaknosp",  pflanze, gift,     45, 141,  60,  62,  63,  80,  80,  60, expT4, 1, BisaknospEvo, 9, BisaknospLearn };
 
-const struct evolution BisasamEvo[]   = { 16, &Bisaknosp };
-const struct pokemonBase Bisasam    = {   1, "Bisasam",    pflanze, gift,     45,  64,  45,  49,  49,  65,  65,  45, expT4, 1, BisasamEvo };
+const struct learnable BisasamLearn[] = { 
+											{  1, &tackle },
+											{  1, &heuler },
+											{  7, &egelsamen },
+											{ 13, &rankenhieb },
+											{ 20, &giftpuder },
+											{ 27, &rasierblatt },
+											{ 34, &wachstum },
+											{ 41, &schlafpuder },
+											{ 48, &solarstrahl } 
+										};
+const struct evolution BisasamEvo[] = { 16, &Bisaknosp };
+const struct pokemonBase Bisasam    = {   1, "Bisasam",    pflanze, gift,     45,  64,  45,  49,  49,  65,  65,  45, expT4, 1, BisasamEvo, 9, BisasamLearn };
 
 
 const struct pokemonBase *pokemons[152] = {
