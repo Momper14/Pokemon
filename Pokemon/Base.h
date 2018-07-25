@@ -28,7 +28,7 @@ struct pokemonBase{
 	const uint exp;
 	const uint stats[6];
 	const byte numEvolutions;
-	const struct evolution *evolutions;
+	const struct evolution *evolutions[];
 };
 
 struct evolution{
@@ -77,10 +77,10 @@ const struct pokemonBase Blitza      = { 135, "Blitza",    elektro, keinTyp,  45
 
 const struct pokemonBase Aquana      = { 134, "Aquana",    wasser,  keinTyp,  45, 196, 130,  65,  60, 110,  95,  65, 0, NULL };
 
-const struct evolution  EvoliEvo3      = { stoneFire, &Flamara };
-const struct evolution  EvoliEvo2      = { stoneThunder, &Blitza };
-const struct evolution  EvoliEvo1      = { stoneWater, &Aquana };
-const struct pokemonBase Evoli       = { 133, "Evoli",     normal,  keinTyp,  45,  92,  55,  55,  50,  45,  65,  55, 3, (&EvoliEvo1, &EvoliEvo2, &EvoliEvo3) };
+const struct evolution EvoliEvo3       = { stoneFire, &Flamara };
+const struct evolution EvoliEvo2       = { stoneThunder, &Blitza };
+const struct evolution EvoliEvo1       = { stoneWater, &Aquana };
+const struct pokemonBase Evoli       = { 133, "Evoli",     normal,  keinTyp,  45,  92,  55,  55,  50,  45,  65,  55, 3, &EvoliEvo1, &EvoliEvo2, &EvoliEvo3 };
 
 const struct pokemonBase Ditto       = { 132, "Ditto",     normal,  keinTyp,  35,  61,  48,  48,  48,  48,  48,  48, 0, NULL };
 

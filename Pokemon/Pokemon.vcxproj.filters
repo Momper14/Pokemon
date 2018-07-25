@@ -24,6 +24,9 @@
     <ClInclude Include="Pokemon.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="attacks.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pokemon.c">

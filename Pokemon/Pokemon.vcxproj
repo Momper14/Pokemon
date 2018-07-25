@@ -150,6 +150,7 @@
     <ClCompile Include="Pokemon.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attacks.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="types.h" />

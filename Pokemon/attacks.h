@@ -1,7 +1,5 @@
 #pragma once
 #include "types.h"
-#include "Base.h"
-#include "pokemon.h"
 
 typedef struct {
 	const char *name;
