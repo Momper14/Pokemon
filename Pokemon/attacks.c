@@ -18,11 +18,6 @@ uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attac
 	uint correct = crit * stab * 100*100;
 	uint modifier = 1;
 
-
-	if (temp > 0 && temp <= 5) {
-		crit = 200;
-	}
-
 	// ermitteln ob Angriff oder Spezialangriff
 	if (attacke->klasse == physisch) {
 		A = angreifer->stats[angriff];
