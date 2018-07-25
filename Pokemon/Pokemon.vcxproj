@@ -154,6 +154,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

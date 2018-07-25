@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include <stddef.h>
+#include "Util.h"
 
 #define stoneThunder 101
 #define stoneMoon 102
@@ -15,9 +15,6 @@
 #define spezialangriff 3
 #define spezielverteidigung 4
 #define initiative 5
-
-typedef unsigned char byte;
-typedef unsigned int uint;
 
 struct pokemonBase{
 	const uint natDex;
