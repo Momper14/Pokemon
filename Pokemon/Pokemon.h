@@ -3,7 +3,7 @@
 #include "Base.h"
 #include "attacks.h"
 
-struct pokemonClass{
+typedef struct pokemonClass{
 	char *spitzname;
 	byte level;
 	uint expNext;
