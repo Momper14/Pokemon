@@ -20,33 +20,34 @@
 #define unlicht  16
 #define keinTyp  17
 
-// Effektivit√§t
+// Effektivit‰t
 #define sehr   2
-#define normal 1
+#define effekt 1
 #define nicht  0.5
 #define immun  0
 
+// { normal  ,normal  ,normal  ,normal ,normal  ,normal  ,normal  ,normal  ,normal   ,normal  ,normal   ,normal    ,normal    ,normal   ,normal,normal   , normal },
 double matrix[18][18] = {
-//             Normal || Kampf || Flug  || Gift || Boden || Stein || K√§fer || Geist || Stahl || Feuer || Wasser || Pflanze || Elektro || Psycho || Eis || Drache || Unlicht||	Kein Typ
-/* Normal*/	 { normal  ,normal  ,normal  ,normal ,normal  ,nicht   ,normal  ,immun   ,nicht    ,normal  ,normal   ,normal    ,normal    ,normal   ,normal,normal   , normal,	normal },
-/* Kampf*/   { sehr    ,normal  ,nicht   ,nicht  ,normal  ,sehr    ,nicht   ,immun   ,sehr     ,normal  ,normal   ,normal    ,normal    ,nicht    ,sehr  ,normal   , sehr  ,	normal },
-/* Flug*/    { normal  ,sehr    ,normal  ,normal ,normal  ,nicht   ,sehr    ,normal  ,nicht    ,normal  ,normal   ,sehr      ,nicht     ,normal   ,normal,normal   , normal,	normal },
-/* Gift*/    { normal  ,normal  ,normal  ,nicht  ,nicht   ,nicht   ,normal  ,nicht   ,immun    ,normal  ,normal   ,sehr      ,normal    ,normal   ,normal,normal   , normal,	normal },
-/* Boden*/   { normal  ,normal  ,immun   ,sehr   ,normal  ,sehr    ,nicht   ,normal  ,sehr     ,sehr    ,normal   ,nicht     ,sehr      ,normal   ,normal,normal   , normal,	normal },
-/* Gestein*/ { normal  ,nicht   ,sehr    ,normal ,nicht   ,normal  ,sehr    ,normal  ,nicht    ,sehr    ,normal   ,normal    ,normal    ,normal   ,sehr  ,normal   , normal,	normal },
-/* K√§fer*/   { normal  ,nicht   ,nicht   ,nicht  ,normal  ,normal  ,normal  ,nicht   ,nicht    ,nicht   ,normal   ,sehr      ,normal    ,sehr     ,normal,normal   , sehr  ,	normal },
-/* Geist*/   { immun   ,normal  ,normal  ,normal ,normal  ,normal  ,normal  ,sehr    ,nicht    ,normal  ,normal   ,normal    ,normal    ,sehr     ,normal,normal   , nicht ,	normal },
-/* Stahl*/   { normal  ,normal  ,normal  ,normal ,normal  ,sehr    ,normal  ,normal  ,nicht    ,nicht   ,nicht    ,normal    ,nicht     ,normal   ,sehr  ,normal   , normal,	normal },
-/* Feuer*/   { normal  ,normal  ,normal  ,normal ,normal  ,nicht   ,sehr    ,normal  ,sehr     ,nicht   ,nicht    ,sehr      ,normal    ,normal   ,sehr  ,nicht    , normal,	normal },
-/* Wasser*/  { normal  ,normal  ,normal  ,normal ,sehr    ,sehr    ,normal  ,normal  ,normal   ,sehr    ,nicht    ,nicht     ,normal    ,normal   ,normal,nicht    , normal,	normal },
-/* Pflanze*/ { normal  ,normal  ,nicht   ,nicht  ,sehr    ,sehr    ,nicht   ,normal  ,nicht    ,nicht   ,sehr     ,nicht     ,normal    ,normal   ,normal,nicht    , normal,	normal },
-/* Elektro*/ { normal  ,normal  ,sehr    ,normal ,immun   ,normal  ,normal  ,normal  ,normal   ,normal  ,normal   ,nicht     ,nicht     ,normal   ,normal,nicht    , normal,	normal },
-/* Psycho*/  { normal  ,sehr    ,normal  ,sehr   ,normal  ,normal  ,normal  ,normal  ,nicht    ,normal  ,normal   ,normal    ,normal    ,nicht    ,normal,normal   , immun ,	normal },
-/* Eis*/     { normal  ,normal  ,sehr    ,normal ,sehr    ,normal  ,normal  ,normal  ,nicht    ,nicht   ,nicht    ,sehr      ,normal    ,normal   ,nicht ,sehr     , normal,	normal },
-/* Drache*/  { normal  ,normal  ,normal  ,normal ,normal  ,normal  ,normal  ,normal  ,nicht    ,normal  ,normal   ,normal    ,normal    ,normal   ,normal,sehr     , normal,	normal },
-/* Unlicht*/ { normal  ,normal  ,normal  ,normal ,normal  ,normal  ,normal  ,sehr    ,nicht    ,normal  ,normal   ,normal    ,normal    ,sehr     ,normal,normal   , nicht ,	normal },
+//             Normal || Kampf || Flug  || Gift || Boden || Stein || K‰fer || Geist || Stahl || Feuer || Wasser || Pflanze || Elektro || Psycho || Eis || Drache || Unlicht||	Kein Typ
+/* Normal*/	 { effekt  ,effekt  ,effekt  ,effekt ,effekt  ,nicht   ,effekt  ,immun   ,nicht    ,effekt  ,effekt   ,effekt    ,effekt    ,effekt   ,effekt,effekt   , effekt,	effekt },
+/* Kampf*/   { sehr    ,effekt  ,nicht   ,nicht  ,effekt  ,sehr    ,nicht   ,immun   ,sehr     ,effekt  ,effekt   ,effekt    ,effekt    ,nicht    ,sehr  ,effekt   , sehr  ,	effekt },
+/* Flug*/    { effekt  ,sehr    ,effekt  ,effekt ,effekt  ,nicht   ,sehr    ,effekt  ,nicht    ,effekt  ,effekt   ,sehr      ,nicht     ,effekt   ,effekt,effekt   , effekt,	effekt },
+/* Gift*/    { effekt  ,effekt  ,effekt  ,nicht  ,nicht   ,nicht   ,effekt  ,nicht   ,immun    ,effekt  ,effekt   ,sehr      ,effekt    ,effekt   ,effekt,effekt   , effekt,	effekt },
+/* Boden*/   { effekt  ,effekt  ,immun   ,sehr   ,effekt  ,sehr    ,nicht   ,effekt  ,sehr     ,sehr    ,effekt   ,nicht     ,sehr      ,effekt   ,effekt,effekt   , effekt,	effekt },
+/* Gestein*/ { effekt  ,nicht   ,sehr    ,effekt ,nicht   ,effekt  ,sehr    ,effekt  ,nicht    ,sehr    ,effekt   ,effekt    ,effekt    ,effekt   ,sehr  ,effekt   , effekt,	effekt },
+/* K‰fer*/   { effekt  ,nicht   ,nicht   ,nicht  ,effekt  ,effekt  ,effekt  ,nicht   ,nicht    ,nicht   ,effekt   ,sehr      ,effekt    ,sehr     ,effekt,effekt   , sehr  ,	effekt },
+/* Geist*/   { immun   ,effekt  ,effekt  ,effekt ,effekt  ,effekt  ,effekt  ,sehr    ,nicht    ,effekt  ,effekt   ,effekt    ,effekt    ,sehr     ,effekt,effekt   , nicht ,	effekt },
+/* Stahl*/   { effekt  ,effekt  ,effekt  ,effekt ,effekt  ,sehr    ,effekt  ,effekt  ,nicht    ,nicht   ,nicht    ,effekt    ,nicht     ,effekt   ,sehr  ,effekt   , effekt,	effekt },
+/* Feuer*/   { effekt  ,effekt  ,effekt  ,effekt ,effekt  ,nicht   ,sehr    ,effekt  ,sehr     ,nicht   ,nicht    ,sehr      ,effekt    ,effekt   ,sehr  ,nicht    , effekt,	effekt },
+/* Wasser*/  { effekt  ,effekt  ,effekt  ,effekt ,sehr    ,sehr    ,effekt  ,effekt  ,effekt   ,sehr    ,nicht    ,nicht     ,effekt    ,effekt   ,effekt,nicht    , effekt,	effekt },
+/* Pflanze*/ { effekt  ,effekt  ,nicht   ,nicht  ,sehr    ,sehr    ,nicht   ,effekt  ,nicht    ,nicht   ,sehr     ,nicht     ,effekt    ,effekt   ,effekt,nicht    , effekt,	effekt },
+/* Elektro*/ { effekt  ,effekt  ,sehr    ,effekt ,immun   ,effekt  ,effekt  ,effekt  ,effekt   ,effekt  ,effekt   ,nicht     ,nicht     ,effekt   ,effekt,nicht    , effekt,	effekt },
+/* Psycho*/  { effekt  ,sehr    ,effekt  ,sehr   ,effekt  ,effekt  ,effekt  ,effekt  ,nicht    ,effekt  ,effekt   ,effekt    ,effekt    ,nicht    ,effekt,effekt   , immun ,	effekt },
+/* Eis*/     { effekt  ,effekt  ,sehr    ,effekt ,sehr    ,effekt  ,effekt  ,effekt  ,nicht    ,nicht   ,nicht    ,sehr      ,effekt    ,effekt   ,nicht ,sehr     , effekt,	effekt },
+/* Drache*/  { effekt  ,effekt  ,effekt  ,effekt ,effekt  ,effekt  ,effekt  ,effekt  ,nicht    ,effekt  ,effekt   ,effekt    ,effekt    ,effekt   ,effekt,sehr     , effekt,	effekt },
+/* Unlicht*/ { effekt  ,effekt  ,effekt  ,effekt ,effekt  ,effekt  ,effekt  ,sehr    ,nicht    ,effekt  ,effekt   ,effekt    ,effekt    ,sehr     ,effekt,effekt   , nicht ,	effekt },
 
-/* Kein Typ*/{ normal  ,normal  ,normal  ,normal ,normal  ,normal  ,normal  ,normal  ,normal   ,normal  ,normal   ,normal    ,normal    ,normal   ,normal,normal   , normal,  normal }
+/* Kein Typ*/{ effekt  ,effekt  ,effekt  ,effekt ,effekt  ,effekt  ,effekt  ,effekt  ,effekt   ,effekt  ,effekt   ,effekt    ,effekt    ,effekt   ,effekt,effekt   , effekt,  effekt }
 
 };
 
