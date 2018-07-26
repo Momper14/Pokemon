@@ -34,8 +34,7 @@ struct PokemonBase{
 	const byte expTier;
 	const byte countEvolutions;
 	const struct Evolution *evolutions;
-	const byte countLearnable;
-	const struct Learnable *learnables;
+	const struct Learnables *learnables;
 };
 
 struct Evolution{
@@ -43,9 +42,19 @@ struct Evolution{
 	const struct PokemonBase *evol;
 };
 
+struct Evolutions{
+	const byte count;
+	const struct Evolution *evolutions;
+};
+
 struct Learnable{
 	const byte lvl;
 	const struct Attacke *attacke;
+};
+
+struct Learnables{
+	const byte count;
+	const struct Learnable *learnables;
 };
 
 extern const struct PokemonBase Mew;
