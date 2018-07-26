@@ -27,8 +27,6 @@
 #define EFFEKT_IMMUN 0
 
 // Multiplikator ausrechnen
-int getMultiplikator(int attackType,int defenseType1,int defenseType2) {
-
-	return (matrix[attackType][defenseType1])*(matrix[attackType][defenseType2]);
+double getMultiplikator(int attackType, int defenseType1, int defenseType2) {
 
 }
