@@ -2,16 +2,17 @@
 
 #include "Base.h"
 #include "attacks.h"
+#include "Util.h"
 
-typedef struct pokemonClass{
+typedef struct PokemonClass{
 	char *spitzname;
 	byte level;
 	uint expNext;
-	struct pokemonBase *base;
+	struct PokemonBase *base;
 	uint stats[6];
 	byte iv[6];
 	byte dv[6];
-	Attacke *moves[4];
-	int statusAenderung;
+	struct Attacke *moves[4];
+	int status;
 	int item;
-}pokemonClass;
+}PokemonClass;

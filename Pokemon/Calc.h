@@ -4,4 +4,4 @@
 #include "Util.h"
 #include "attacks.h"
 
-uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attacke);
+uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, Attacke *attacke);

@@ -2,31 +2,28 @@
 
 #include "types.h"
 #include "Util.h"
-#include "attacks.h"
 
-#define stoneThunder 101
-#define stoneMoon 102
-#define stoneFire 103
-#define stoneLeaf 104
-#define stoneWater 105
-#define trade 110
+#define STONE_THUNDER	101
+#define STONE_MOON		102
+#define STONE_FIRE		103
+#define STONE_LEAF		104
+#define STONE_WATER		105
+#define EVO_TRADE		110
 
-#define kp 0
-#define angriff 1
-#define verteidigung 2
-#define spezialangriff 3
-#define spezielverteidigung 4
-#define initiative 5
+#define STAT_KP						0
+#define STAT_ANGRIFF				1
+#define STAT_VERTEIDIGUNG			2
+#define STAT_SPEZIALANGRIFF			3
+#define STAT_SPEZIELVERTEIDIGUNG	4
+#define STAT_INITIATIVE				5
 
-#define expT1 1
-#define expT2 2
-#define expT3 3
-#define expT4 4
-#define expT5 5
-#define expT6 6
+#define EXP_T2 2
+#define EXP_T3 3
+#define EXP_T4 4
+#define EXP_T5 5
 
 
-struct pokemonBase{
+struct PokemonBase{
 	const uint natDex;
 	const char *name;
 	const byte typ1;
@@ -35,172 +32,172 @@ struct pokemonBase{
 	const uint exp;
 	const uint stats[6];
 	const byte expTier;
-	const byte numEvolutions;
-	const struct evolution *evolutions;
-	const byte numLearnable;
-	const struct learnable *learnables;
+	const byte countEvolutions;
+	const struct Evolution *evolutions;
+	const byte countLearnable;
+	const struct Learnable *learnables;
 };
 
-struct evolution{
+struct Evolution{
 	const byte evolCon;
-	const struct pokemonBase *evol;
+	const struct PokemonBase *evol;
 };
 
-struct learnable{
+struct Learnable{
 	const byte lvl;
 	const struct Attacke *attacke;
 };
 
-extern const struct pokemonBase Mew;
-extern const struct pokemonBase Mewtu;
-extern const struct pokemonBase Dragoran;
-extern const struct pokemonBase Dragonir;
-extern const struct pokemonBase Dratini;
-extern const struct pokemonBase Lavados;
-extern const struct pokemonBase Zapdos;
-extern const struct pokemonBase Arktos;
-extern const struct pokemonBase Relaxo;
-extern const struct pokemonBase Aerodactyl;
-extern const struct pokemonBase Kabutops;
-extern const struct pokemonBase Kabuto;
-extern const struct pokemonBase Amoroso;
-extern const struct pokemonBase Amonitas;
-extern const struct pokemonBase Porygon;
-extern const struct pokemonBase Flamara;
-extern const struct pokemonBase Blitza;
-extern const struct pokemonBase Aquana;
-extern const struct pokemonBase Evoli;
-extern const struct pokemonBase Ditto;
-extern const struct pokemonBase Lapras;
-extern const struct pokemonBase Garados;
-extern const struct pokemonBase Karpador;
-extern const struct pokemonBase Tauros;
-extern const struct pokemonBase Pinsir;
-extern const struct pokemonBase Magmar;
-extern const struct pokemonBase Elektek;
-extern const struct pokemonBase Rossana;
-extern const struct pokemonBase Sichlor;
-extern const struct pokemonBase Pantimos;
-extern const struct pokemonBase Starmie;
-extern const struct pokemonBase Sterndu;
-extern const struct pokemonBase Golking;
-extern const struct pokemonBase Goldini;
-extern const struct pokemonBase Seemon;
-extern const struct pokemonBase Seeper;
-extern const struct pokemonBase Kangama;
-extern const struct pokemonBase Tangela;
-extern const struct pokemonBase Chaneira;
-extern const struct pokemonBase Rizeros;
-extern const struct pokemonBase Rihorn;
-extern const struct pokemonBase Smogmog;
-extern const struct pokemonBase Smogon;
-extern const struct pokemonBase Schlurp;
-extern const struct pokemonBase Nockchan;
-extern const struct pokemonBase Kicklee;
-extern const struct pokemonBase Knogga;
-extern const struct pokemonBase Tragosso;
-extern const struct pokemonBase Kokowei;
-extern const struct pokemonBase Owei;
-extern const struct pokemonBase Lektrobal;
-extern const struct pokemonBase Voltobal;
-extern const struct pokemonBase Kingler;
-extern const struct pokemonBase Krabby;
-extern const struct pokemonBase Hypno;
-extern const struct pokemonBase Traumato;
-extern const struct pokemonBase Onix;
-extern const struct pokemonBase Gengar;
-extern const struct pokemonBase Alpollo;
-extern const struct pokemonBase Nebulak;
-extern const struct pokemonBase Austos;
-extern const struct pokemonBase Muschas;
-extern const struct pokemonBase Sleimok;
-extern const struct pokemonBase Sleima;
-extern const struct pokemonBase Jugong;
-extern const struct pokemonBase Jurob;
-extern const struct pokemonBase Dodri;
-extern const struct pokemonBase Dodu;
-extern const struct pokemonBase Porenta;
-extern const struct pokemonBase Magneton;
-extern const struct pokemonBase Magnetilo;
-extern const struct pokemonBase Lahmus;
-extern const struct pokemonBase Flegmon;
-extern const struct pokemonBase Gallopa;
-extern const struct pokemonBase Ponita;
-extern const struct pokemonBase Geowaz;
-extern const struct pokemonBase Georok;
-extern const struct pokemonBase Kleinstein;
-extern const struct pokemonBase Tentoxa;
-extern const struct pokemonBase Tentacha;
-extern const struct pokemonBase Sarzenia;
-extern const struct pokemonBase Ultrigaria;
-extern const struct pokemonBase Knofensa;
-extern const struct pokemonBase Machomei;
-extern const struct pokemonBase Maschock;
-extern const struct pokemonBase Machollo;
-extern const struct pokemonBase Simsala;
-extern const struct pokemonBase Kadabra;
-extern const struct pokemonBase Abra;
-extern const struct pokemonBase Quappo;
-extern const struct pokemonBase Quaputzi;
-extern const struct pokemonBase Quapsel;
-extern const struct pokemonBase Arkani;
-extern const struct pokemonBase Fukano;
-extern const struct pokemonBase Rasaff;
-extern const struct pokemonBase Menki;
-extern const struct pokemonBase Entoron;
-extern const struct pokemonBase Enton;
-extern const struct pokemonBase Snobilikat;
-extern const struct pokemonBase Mauzi;
-extern const struct pokemonBase Digdri;
-extern const struct pokemonBase Digda;
-extern const struct pokemonBase Omot;
-extern const struct pokemonBase Bluzuk;
-extern const struct pokemonBase Parasek;
-extern const struct pokemonBase Paras;
-extern const struct pokemonBase Giflor;
-extern const struct pokemonBase Duflor;
-extern const struct pokemonBase Myrapla;
-extern const struct pokemonBase Golbat;
-extern const struct pokemonBase Zubat;
-extern const struct pokemonBase Knuddeluff;
-extern const struct pokemonBase Pummeluff;
-extern const struct pokemonBase Vulnona;
-extern const struct pokemonBase Vulpix;
-extern const struct pokemonBase Pixi;
-extern const struct pokemonBase Piepi;
-extern const struct pokemonBase Nidoking;
-extern const struct pokemonBase Nidorino;
-extern const struct pokemonBase NidoranM;
-extern const struct pokemonBase Nidoqueen;
-extern const struct pokemonBase Nidorina;
-extern const struct pokemonBase NidoranW;
-extern const struct pokemonBase Sandamer;
-extern const struct pokemonBase Sandan;
-extern const struct pokemonBase Raichu;
-extern const struct pokemonBase Pikachu;
-extern const struct pokemonBase Arbok;
-extern const struct pokemonBase Rettan;
-extern const struct pokemonBase Ibitak;
-extern const struct pokemonBase Habitak;
-extern const struct pokemonBase Rattikarl;
-extern const struct pokemonBase Rattfratz;
-extern const struct pokemonBase Tauboss;
-extern const struct pokemonBase Tauboga;
-extern const struct pokemonBase Taubsi;
-extern const struct pokemonBase Bibor;
-extern const struct pokemonBase Kokuna;
-extern const struct pokemonBase Hornliu;
-extern const struct pokemonBase Smettbo;
-extern const struct pokemonBase Safcon;
-extern const struct pokemonBase Raupy;
-extern const struct pokemonBase Turtok;
-extern const struct pokemonBase Schillok;
-extern const struct pokemonBase Schiggy;
-extern const struct pokemonBase Glurak;
-extern const struct pokemonBase Glutexo;
-extern const struct pokemonBase Glumanda;
-extern const struct pokemonBase Bisaflor;
-extern const struct pokemonBase Bisaknosp;
-extern const struct pokemonBase Bisasam;
+extern const struct PokemonBase Mew;
+extern const struct PokemonBase Mewtu;
+extern const struct PokemonBase Dragoran;
+extern const struct PokemonBase Dragonir;
+extern const struct PokemonBase Dratini;
+extern const struct PokemonBase Lavados;
+extern const struct PokemonBase Zapdos;
+extern const struct PokemonBase Arktos;
+extern const struct PokemonBase Relaxo;
+extern const struct PokemonBase Aerodactyl;
+extern const struct PokemonBase Kabutops;
+extern const struct PokemonBase Kabuto;
+extern const struct PokemonBase Amoroso;
+extern const struct PokemonBase Amonitas;
+extern const struct PokemonBase Porygon;
+extern const struct PokemonBase Flamara;
+extern const struct PokemonBase Blitza;
+extern const struct PokemonBase Aquana;
+extern const struct PokemonBase Evoli;
+extern const struct PokemonBase Ditto;
+extern const struct PokemonBase Lapras;
+extern const struct PokemonBase Garados;
+extern const struct PokemonBase Karpador;
+extern const struct PokemonBase Tauros;
+extern const struct PokemonBase Pinsir;
+extern const struct PokemonBase Magmar;
+extern const struct PokemonBase Elektek;
+extern const struct PokemonBase Rossana;
+extern const struct PokemonBase Sichlor;
+extern const struct PokemonBase Pantimos;
+extern const struct PokemonBase Starmie;
+extern const struct PokemonBase Sterndu;
+extern const struct PokemonBase Golking;
+extern const struct PokemonBase Goldini;
+extern const struct PokemonBase Seemon;
+extern const struct PokemonBase Seeper;
+extern const struct PokemonBase Kangama;
+extern const struct PokemonBase Tangela;
+extern const struct PokemonBase Chaneira;
+extern const struct PokemonBase Rizeros;
+extern const struct PokemonBase Rihorn;
+extern const struct PokemonBase Smogmog;
+extern const struct PokemonBase Smogon;
+extern const struct PokemonBase Schlurp;
+extern const struct PokemonBase Nockchan;
+extern const struct PokemonBase Kicklee;
+extern const struct PokemonBase Knogga;
+extern const struct PokemonBase Tragosso;
+extern const struct PokemonBase Kokowei;
+extern const struct PokemonBase Owei;
+extern const struct PokemonBase Lektrobal;
+extern const struct PokemonBase Voltobal;
+extern const struct PokemonBase Kingler;
+extern const struct PokemonBase Krabby;
+extern const struct PokemonBase Hypno;
+extern const struct PokemonBase Traumato;
+extern const struct PokemonBase Onix;
+extern const struct PokemonBase Gengar;
+extern const struct PokemonBase Alpollo;
+extern const struct PokemonBase Nebulak;
+extern const struct PokemonBase Austos;
+extern const struct PokemonBase Muschas;
+extern const struct PokemonBase Sleimok;
+extern const struct PokemonBase Sleima;
+extern const struct PokemonBase Jugong;
+extern const struct PokemonBase Jurob;
+extern const struct PokemonBase Dodri;
+extern const struct PokemonBase Dodu;
+extern const struct PokemonBase Porenta;
+extern const struct PokemonBase Magneton;
+extern const struct PokemonBase Magnetilo;
+extern const struct PokemonBase Lahmus;
+extern const struct PokemonBase Flegmon;
+extern const struct PokemonBase Gallopa;
+extern const struct PokemonBase Ponita;
+extern const struct PokemonBase Geowaz;
+extern const struct PokemonBase Georok;
+extern const struct PokemonBase Kleinstein;
+extern const struct PokemonBase Tentoxa;
+extern const struct PokemonBase Tentacha;
+extern const struct PokemonBase Sarzenia;
+extern const struct PokemonBase Ultrigaria;
+extern const struct PokemonBase Knofensa;
+extern const struct PokemonBase Machomei;
+extern const struct PokemonBase Maschock;
+extern const struct PokemonBase Machollo;
+extern const struct PokemonBase Simsala;
+extern const struct PokemonBase Kadabra;
+extern const struct PokemonBase Abra;
+extern const struct PokemonBase Quappo;
+extern const struct PokemonBase Quaputzi;
+extern const struct PokemonBase Quapsel;
+extern const struct PokemonBase Arkani;
+extern const struct PokemonBase Fukano;
+extern const struct PokemonBase Rasaff;
+extern const struct PokemonBase Menki;
+extern const struct PokemonBase Entoron;
+extern const struct PokemonBase Enton;
+extern const struct PokemonBase Snobilikat;
+extern const struct PokemonBase Mauzi;
+extern const struct PokemonBase Digdri;
+extern const struct PokemonBase Digda;
+extern const struct PokemonBase Omot;
+extern const struct PokemonBase Bluzuk;
+extern const struct PokemonBase Parasek;
+extern const struct PokemonBase Paras;
+extern const struct PokemonBase Giflor;
+extern const struct PokemonBase Duflor;
+extern const struct PokemonBase Myrapla;
+extern const struct PokemonBase Golbat;
+extern const struct PokemonBase Zubat;
+extern const struct PokemonBase Knuddeluff;
+extern const struct PokemonBase Pummeluff;
+extern const struct PokemonBase Vulnona;
+extern const struct PokemonBase Vulpix;
+extern const struct PokemonBase Pixi;
+extern const struct PokemonBase Piepi;
+extern const struct PokemonBase Nidoking;
+extern const struct PokemonBase Nidorino;
+extern const struct PokemonBase NidoranM;
+extern const struct PokemonBase Nidoqueen;
+extern const struct PokemonBase Nidorina;
+extern const struct PokemonBase NidoranW;
+extern const struct PokemonBase Sandamer;
+extern const struct PokemonBase Sandan;
+extern const struct PokemonBase Raichu;
+extern const struct PokemonBase Pikachu;
+extern const struct PokemonBase Arbok;
+extern const struct PokemonBase Rettan;
+extern const struct PokemonBase Ibitak;
+extern const struct PokemonBase Habitak;
+extern const struct PokemonBase Rattikarl;
+extern const struct PokemonBase Rattfratz;
+extern const struct PokemonBase Tauboss;
+extern const struct PokemonBase Tauboga;
+extern const struct PokemonBase Taubsi;
+extern const struct PokemonBase Bibor;
+extern const struct PokemonBase Kokuna;
+extern const struct PokemonBase Hornliu;
+extern const struct PokemonBase Smettbo;
+extern const struct PokemonBase Safcon;
+extern const struct PokemonBase Raupy;
+extern const struct PokemonBase Turtok;
+extern const struct PokemonBase Schillok;
+extern const struct PokemonBase Schiggy;
+extern const struct PokemonBase Glurak;
+extern const struct PokemonBase Glutexo;
+extern const struct PokemonBase Glumanda;
+extern const struct PokemonBase Bisaflor;
+extern const struct PokemonBase Bisaknosp;
+extern const struct PokemonBase Bisasam;
 
-extern const struct pokemonBase *pokemons[152];
+extern const struct PokemonBase *PokemonBaseNatDex[152];

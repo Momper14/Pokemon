@@ -3,10 +3,10 @@
 
 
 
-uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attacke) {
+uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, Attacke *attacke) {
 
 	uint A = 0;
-	uint D = verteidiger->stats[verteidigung];
+	uint D = verteidiger->stats[STAT_VERTEIDIGUNG];
 	uint damage = 1;
 	uint random = 100 - (rand() % 16 + 1);
 	uint crit   = 100;
@@ -18,18 +18,18 @@ uint applyDMG(pokemonClass *angreifer, pokemonClass *verteidiger, Attacke *attac
 	uint modifier = 1;
 
 	// ermitteln ob Angriff oder Spezialangriff
-	if (attacke->klasse == physisch) {
-		A = angreifer->stats[angriff];
+	if (attacke->klasse == PHYSISCH) {
+		A = angreifer->stats[STAT_ANGRIFF];
 	}
-	else if (attacke->klasse == spezial) {
-		A = angreifer->stats[spezialangriff];
+	else if (attacke->klasse == SPEZIAL) {
+		A = angreifer->stats[STAT_SPEZIALANGRIFF];
 	}
 	else {
 		A = 0;
 	}
 	// Crit ermitteln
 	unsigned char ranCrit = rand() % 256;
-	unsigned char P = angreifer->base->stats[initiative] / 512;
+	unsigned char P = angreifer->base->stats[STAT_INITIATIVE] / 512;
 	if (ranCrit >= P ) {
 		crit = 100;
 	}

@@ -1,448 +1,453 @@
 #include "Base.h"
+#include "attacks.h"
 
 //									    dex   name         typ1     typ2      cr  exp   hp  atk  def  sat  sdf  spd  evo
-extern const struct pokemonBase Mew = { 151, "Mew",     psycho,  keinTyp,   45, 64, 100, 100,  100, 100, 100, 100, expT4, 0, NULL };
+extern const struct PokemonBase Mew			= { 151, "Mew",			PSYCHO,		KEINTYP,	 45,  64, 100, 100, 100, 100, 100, 100, EXP_T4, 0, NULL };
 
-extern const struct pokemonBase Mewtu = { 150, "Mewtu",     psycho,  keinTyp,   3, 220, 106, 110,  90, 154,  90, 130, expT5, 0, NULL };
+extern const struct PokemonBase Mewtu		= { 150, "Mewtu",		PSYCHO,		KEINTYP,	  3, 220, 106, 110,  90, 154,  90, 130, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Dragoran = { 149, "Dragoran",  drache,  flug,     45, 218,  91, 134,  95, 100, 100,  80, expT5, 0, NULL };
+extern const struct PokemonBase Dragoran	= { 149, "Dragoran",	DRACHE,		FLUG,		 45, 218,  91, 134,  95, 100, 100,  80, EXP_T5, 0, NULL };
 
-const struct evolution  DragonirEvo[] = { 55, &Dragoran };
-extern const struct pokemonBase Dragonir = { 148, "Dragonir",  drache,  keinTyp,  45, 144,  61,  84,  65,  70,  70,  70, expT5, 1, DragonirEvo };
+const struct Evolution  DragonirEvo[]	= { 55, &Dragoran };
+extern const struct PokemonBase Dragonir	= { 148, "Dragonir",	DRACHE,		KEINTYP,	 45, 144,  61,  84,  65,  70,  70,  70, EXP_T5, 1, DragonirEvo };
 
-const struct evolution  DratiniEvo[] = { 30, &Dragonir };
-extern const struct pokemonBase Dratini = { 147, "Dratini",   drache,  keinTyp,  45,  67,  41,  64,  45,  50,  50,  50, expT5, 1, DratiniEvo };
+const struct Evolution  DratiniEvo[]	= { 30, &Dragonir };
+extern const struct PokemonBase Dratini		= { 147, "Dratini",		DRACHE,		KEINTYP,	 45,  67,  41,  64,  45,  50,  50,  50, EXP_T5, 1, DratiniEvo };
 
-extern const struct pokemonBase Lavados = { 146, "Lavados",   feuer,   flug,      3, 217,  90, 100,  90, 125,  85,  90, expT5, 0, NULL };
+extern const struct PokemonBase Lavados		= { 146, "Lavados",		FEUER,		FLUG,		  3, 217,  90, 100,  90, 125,  85,  90, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Zapdos = { 145, "Zapdos",    elektro, flug,      3, 216,  90,  90,  85, 125,  90, 100, expT5, 0, NULL };
+extern const struct PokemonBase Zapdos		= { 145, "Zapdos",		ELEKTRO,	FLUG,		  3, 216,  90,  90,  85, 125,  90, 100, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Arktos = { 144, "Arktos",    eis,     flug,      3, 215,  90,  85, 100,  95, 125,  85, expT5, 0, NULL };
+extern const struct PokemonBase Arktos		= { 144, "Arktos",		EIS,		FLUG,		  3, 215,  90,  85, 100,  95, 125,  85, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Relaxo = { 143, "Relaxo",    normal,  keinTyp,  25, 154, 160, 110,  65,  65, 110,  30, expT5, 0, NULL };
+extern const struct PokemonBase Relaxo		= { 143, "Relaxo",		NORMAL,		KEINTYP,	 25, 154, 160, 110,  65,  65, 110,  30, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Aerodactyl = { 142, "Aerodactyl",stein,   flug,     45, 202,  80, 105,  65,  60,  75, 130, expT5, 0, NULL };
+extern const struct PokemonBase Aerodactyl	= { 142, "Aerodactyl",	STEIN,		FLUG,		 45, 202,  80, 105,  65,  60,  75, 130, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Kabutops = { 141, "Kabutops",  stein,   wasser,   45, 199,  60, 115, 105,  65,  70,  80, expT3, 0, NULL };
+extern const struct PokemonBase Kabutops	= { 141, "Kabutops",	STEIN,		WASSER,		 45, 199,  60, 115, 105,  65,  70,  80, EXP_T3, 0, NULL };
 
-const struct evolution  KabutoEvo[] = { 40, &Kabutops };
-extern const struct pokemonBase Kabuto = { 140, "Kabuto",    stein,   wasser,   45,  99,  30,  80,  90,  55,  45,  55, expT3, 1, KabutoEvo };
+const struct Evolution  KabutoEvo[]		= { 40, &Kabutops };
+extern const struct PokemonBase Kabuto		= { 140, "Kabuto",		STEIN,		WASSER,		 45,  99,  30,  80,  90,  55,  45,  55, EXP_T3, 1, KabutoEvo };
 
-extern const struct pokemonBase Amoroso = { 139, "Amoroso",   stein,   wasser,   45, 199,  70,  60, 125, 115,  70,  55, expT3, 0, NULL };
+extern const struct PokemonBase Amoroso		= { 139, "Amoroso",		STEIN,		WASSER,		 45, 199,  70,  60, 125, 115,  70,  55, EXP_T3, 0, NULL };
 
-const struct evolution  AmonitasEvo[] = { 40, &Amoroso };
-extern const struct pokemonBase Amonitas = { 138, "Amonitas",  stein,   wasser,   45,  99,  35,  40, 100,  90,  55,  35, expT3, 1, AmonitasEvo };
+const struct Evolution  AmonitasEvo[]	= { 40, &Amoroso };
+extern const struct PokemonBase Amonitas	= { 138, "Amonitas",	STEIN,		WASSER,		 45,  99,  35,  40, 100,  90,  55,  35, EXP_T3, 1, AmonitasEvo };
 
-extern const struct pokemonBase Porygon = { 137, "Porygon",   normal,  keinTyp,  45, 130,  65,  60,  70,  85,  75,  40, expT3, 0, NULL };
+extern const struct PokemonBase Porygon		= { 137, "Porygon",		NORMAL,		KEINTYP,	 45, 130,  65,  60,  70,  85,  75,  40, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Flamara = { 136, "Flamara",   feuer,   keinTyp,  45, 198,  65, 130,  60,  95, 110,  65, expT3, 0, NULL };
+extern const struct PokemonBase Flamara		= { 136, "Flamara",		FEUER,		KEINTYP,	 45, 198,  65, 130,  60,  95, 110,  65, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Blitza = { 135, "Blitza",    elektro, keinTyp,  45, 197,  65,  65,  60, 110,  95, 130, expT3, 0, NULL };
+extern const struct PokemonBase Blitza		= { 135, "Blitza",		ELEKTRO,	KEINTYP,	 45, 197,  65,  65,  60, 110,  95, 130, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Aquana = { 134, "Aquana",    wasser,  keinTyp,  45, 196, 130,  65,  60, 110,  95,  65, expT3, 0, NULL };
+extern const struct PokemonBase Aquana		= { 134, "Aquana",		WASSER,		KEINTYP,	 45, 196, 130,  65,  60, 110,  95,  65, EXP_T3, 0, NULL };
 
-const struct evolution EvoliEvo[] = { { stoneFire, &Flamara },{ stoneThunder, &Blitza },{ stoneWater, &Aquana } };
-extern const struct pokemonBase Evoli = { 133, "Evoli",     normal,  keinTyp,  45,  92,  55,  55,  50,  45,  65,  55, expT3, 3, EvoliEvo };
+const struct Evolution EvoliEvo[]		= { 
+											{ STONE_FIRE, &Flamara },
+											{ STONE_THUNDER, &Blitza },
+											{ STONE_WATER, &Aquana } 
+										};
+extern const struct PokemonBase Evoli		= { 133, "Evoli",		NORMAL,		KEINTYP,	 45,  92,  55,  55,  50,  45,  65,  55, EXP_T3, 3, EvoliEvo };
 
-extern const struct pokemonBase Ditto = { 132, "Ditto",     normal,  keinTyp,  35,  61,  48,  48,  48,  48,  48,  48, expT3, 0, NULL };
+extern const struct PokemonBase Ditto		= { 132, "Ditto",		NORMAL,		KEINTYP,	 35,  61,  48,  48,  48,  48,  48,  48, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Lapras = { 131, "Lapras",    wasser,  eis,      45, 219, 130,  85,  80,  85,  95,  60, expT5, 0, NULL };
+extern const struct PokemonBase Lapras		= { 131, "Lapras",		WASSER,		EIS,		 45, 219, 130,  85,  80,  85,  95,  60, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Garados = { 130, "Garados",   wasser,  flug,     45, 214,  95, 125,  79,  60, 100,  81, expT5, 0, NULL };
+extern const struct PokemonBase Garados		= { 130, "Garados",		WASSER,		FLUG,		 45, 214,  95, 125,  79,  60, 100,  81, EXP_T5, 0, NULL };
 
-const struct evolution  KarpadorEvo[] = { 20, &Garados };
-extern const struct pokemonBase Karpador = { 129, "Karpador",  wasser,  keinTyp, 255,  20,  20,  10,  55,  15,  20,  80, expT5, 1, KarpadorEvo };
+const struct Evolution  KarpadorEvo[]	= { 20, &Garados };
+extern const struct PokemonBase Karpador	= { 129, "Karpador",	WASSER,		KEINTYP,	255,  20,  20,  10,  55,  15,  20,  80, EXP_T5, 1, KarpadorEvo };
 
-extern const struct pokemonBase Tauros = { 128, "Tauros",    normal,  keinTyp,  45, 211,  75, 100,  95,  40,  70, 110, expT5, 0, NULL };
+extern const struct PokemonBase Tauros		= { 128, "Tauros",		NORMAL,		KEINTYP,	 45, 211,  75, 100,  95,  40,  70, 110, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Pinsir = { 127, "Pinsir",    kaefer,  keinTyp,  45, 200,  65, 125, 100,  55,  70,  85, expT5, 0, NULL };
+extern const struct PokemonBase Pinsir		= { 127, "Pinsir",		KAEFER,		KEINTYP,	 45, 200,  65, 125, 100,  55,  70,  85, EXP_T5, 0, NULL };
 
-extern const struct pokemonBase Magmar = { 126, "Magmar",    feuer,   keinTyp,  45, 167,  65,  95,  57, 100,  85,  93, expT3, 0, NULL };
+extern const struct PokemonBase Magmar		= { 126, "Magmar",		FEUER,		KEINTYP,	 45, 167,  65,  95,  57, 100,  85,  93, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Elektek = { 125, "Elektek",   elektro, keinTyp,  45, 156,  65,  83,  57,  95,  85, 105, expT3, 0, NULL };
+extern const struct PokemonBase Elektek		= { 125, "Elektek",		ELEKTRO,	KEINTYP,	 45, 156,  65,  83,  57,  95,  85, 105, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Rossana = { 124, "Rossana",   eis,     psycho,   45, 137,  65,  50,  35, 115,  95,  95, expT3, 0, NULL };
+extern const struct PokemonBase Rossana		= { 124, "Rossana",		EIS,		PSYCHO,		 45, 137,  65,  50,  35, 115,  95,  95, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Sichlor = { 123, "Sichlor",   kaefer,  flug,     45, 187,  70, 110,  80,  55,  80, 105, expT3, 0, NULL };
+extern const struct PokemonBase Sichlor		= { 123, "Sichlor",		KAEFER,		FLUG,		 45, 187,  70, 110,  80,  55,  80, 105, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Pantimos = { 122, "Pantimos",  psycho,  keinTyp,  45, 136,  40,  45,  65, 100, 120,  90, expT3, 0, NULL };
+extern const struct PokemonBase Pantimos	= { 122, "Pantimos",	PSYCHO,		KEINTYP,	 45, 136,  40,  45,  65, 100, 120,  90, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Starmie = { 121, "Starmie",   wasser,  psycho,   60, 207,  60,  75,  85, 100,  85, 115, expT5, 0, NULL };
+extern const struct PokemonBase Starmie		= { 121, "Starmie",		WASSER,		PSYCHO,		 60, 207,  60,  75,  85, 100,  85, 115, EXP_T5, 0, NULL };
 
-const struct evolution  SternduEvo[] = { stoneWater, &Starmie };
-extern const struct pokemonBase Sterndu = { 120, "Sterndu",   wasser,  keinTyp, 225, 106,  30,  45,  55,  70,  55,  85, expT5, 1, SternduEvo };
+const struct Evolution  SternduEvo[]	= { STONE_WATER, &Starmie };
+extern const struct PokemonBase Sterndu		= { 120, "Sterndu",		WASSER,		KEINTYP,	225, 106,  30,  45,  55,  70,  55,  85, EXP_T5, 1, SternduEvo };
 
-extern const struct pokemonBase Golking = { 119, "Golking",   wasser,  keinTyp,  60, 170,  80,  92,  65,  65,  80,  68, expT3, 0, NULL };
+extern const struct PokemonBase Golking		= { 119, "Golking",		WASSER,		KEINTYP,	 60, 170,  80,  92,  65,  65,  80,  68, EXP_T3, 0, NULL };
 
-const struct evolution  GoldiniEvo[] = { 33, &Golking };
-extern const struct pokemonBase Goldini = { 118, "Goldini",    wasser,  keinTyp, 225, 111,  45,  67,  60,  35,  50,  63, expT3, 1, GoldiniEvo };
+const struct Evolution  GoldiniEvo[]	= { 33, &Golking };
+extern const struct PokemonBase Goldini		= { 118, "Goldini",		WASSER,		KEINTYP,	225, 111,  45,  67,  60,  35,  50,  63, EXP_T3, 1, GoldiniEvo };
 
-extern const struct pokemonBase Seemon = { 117, "Seemon",     wasser,  keinTyp,  75, 155,  55,  65,  95,  95,  45,  85, expT3, 0, NULL };
+extern const struct PokemonBase Seemon		= { 117, "Seemon",		WASSER,		KEINTYP,	 75, 155,  55,  65,  95,  95,  45,  85, EXP_T3, 0, NULL };
 
-const struct evolution  SeeperEvo[] = { 32, &Seemon };
-extern const struct pokemonBase Seeper = { 116, "Seeper",     wasser,  keinTyp, 225,  83,  30,  40,  70,  70,  25,  60, expT3, 1, SeeperEvo };
+const struct Evolution  SeeperEvo[]		= { 32, &Seemon };
+extern const struct PokemonBase Seeper		= { 116, "Seeper",		WASSER,		KEINTYP,	225,  83,  30,  40,  70,  70,  25,  60, EXP_T3, 1, SeeperEvo };
 
-extern const struct pokemonBase Kangama = { 115, "Kangama",    normal,  keinTyp,  45, 175, 105,  95,  80,  40,  80,  90, expT3, 0, NULL };
+extern const struct PokemonBase Kangama		= { 115, "Kangama",		NORMAL,		KEINTYP,	 45, 175, 105,  95,  80,  40,  80,  90, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Tangela = { 114, "Tangela",    pflanze, keinTyp,  45, 166,  65,  55, 115, 100,  40,  60, expT3, 0, NULL };
+extern const struct PokemonBase Tangela		= { 114, "Tangela",		PFLANZE,	KEINTYP,	 45, 166,  65,  55, 115, 100,  40,  60, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Chaneira = { 113, "Chaneira",   normal,  keinTyp,  30, 255, 250,   5,   5,  35, 105,  50, expT2, 0, NULL };
+extern const struct PokemonBase Chaneira	= { 113, "Chaneira",	NORMAL,		KEINTYP,	 30, 255, 250,   5,   5,  35, 105,  50, EXP_T2, 0, NULL };
 
-extern const struct pokemonBase Rizeros = { 112, "Rizeros",    boden,   stein,    60, 204, 105, 130, 120,  45,  45,  40, expT5, 0, NULL };
+extern const struct PokemonBase Rizeros		= { 112, "Rizeros",		BODEN,		STEIN,		 60, 204, 105, 130, 120,  45,  45,  40, EXP_T5, 0, NULL };
 
-const struct evolution  RihornEvo[] = { 42, &Rizeros };
-extern const struct pokemonBase Rihorn = { 111, "Rihorn",     boden,   stein,   120, 135,  80,  85,  95,  30,  30,  25, expT5, 1, RihornEvo };
+const struct Evolution  RihornEvo[]		= { 42, &Rizeros };
+extern const struct PokemonBase Rihorn		= { 111, "Rihorn",		BODEN,		STEIN,		120, 135,  80,  85,  95,  30,  30,  25, EXP_T5, 1, RihornEvo };
 
-extern const struct pokemonBase Smogmog = { 110, "Smogmog",    gift,    keinTyp,  60, 173,  65,  90, 120,  85,  70,  60, expT3, 0, NULL };
+extern const struct PokemonBase Smogmog		= { 110, "Smogmog",		GIFT,		KEINTYP,	 60, 173,  65,  90, 120,  85,  70,  60, EXP_T3, 0, NULL };
 
-const struct evolution  SmogonEvo[] = { 35, &Smogmog };
-extern const struct pokemonBase Smogon = { 109, "Smogon",     gift,    keinTyp, 190, 114,  40,  65,  95,  60,  45,  35, expT3, 1, SmogonEvo };
+const struct Evolution  SmogonEvo[]		= { 35, &Smogmog };
+extern const struct PokemonBase Smogon		= { 109, "Smogon",		GIFT,		KEINTYP,	190, 114,  40,  65,  95,  60,  45,  35, EXP_T3, 1, SmogonEvo };
 
-extern const struct pokemonBase Schlurp = { 108, "Schlurp",    normal,  keinTyp,  45, 127,  90,  55,  75,  60,  75,  30, expT3, 0, NULL };
+extern const struct PokemonBase Schlurp		= { 108, "Schlurp",		NORMAL,		KEINTYP,	 45, 127,  90,  55,  75,  60,  75,  30, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Nockchan = { 107, "Nockchan",   kampf,   keinTyp,  45, 140,  50, 105,  79,  35, 110,  76, expT3, 0, NULL };
+extern const struct PokemonBase Nockchan	= { 107, "Nockchan",	KAMPF,		KEINTYP,	 45, 140,  50, 105,  79,  35, 110,  76, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Kicklee = { 106, "Kicklee",    kampf,   keinTyp,  45, 139,  50, 120,  53,  35, 110,  87, expT3, 0, NULL };
+extern const struct PokemonBase Kicklee		= { 106, "Kicklee",		KAMPF,		KEINTYP,	 45, 139,  50, 120,  53,  35, 110,  87, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Knogga = { 105, "Knogga",     boden,   keinTyp,  75, 124,  60,  80, 110,  50,  80,  45, expT3, 0, NULL };
+extern const struct PokemonBase Knogga		= { 105, "Knogga",		BODEN,		KEINTYP,	 75, 124,  60,  80, 110,  50,  80,  45, EXP_T3, 0, NULL };
 
-const struct evolution  TragossoEvo[] = { 28, &Knogga };
-extern const struct pokemonBase Tragosso = { 104, "Tragosso",   boden,   keinTyp, 190,  87,  50,  50,  95,  40,  50,  35, expT3, 1, TragossoEvo };
+const struct Evolution  TragossoEvo[]	= { 28, &Knogga };
+extern const struct PokemonBase Tragosso	= { 104, "Tragosso",	BODEN,		KEINTYP,	190,  87,  50,  50,  95,  40,  50,  35, EXP_T3, 1, TragossoEvo };
 
-extern const struct pokemonBase Kokowei = { 103, "Kokowei",    pflanze, psycho,   45, 212,  95,  95,  85, 125,  75,  55, expT5, 0, NULL };
+extern const struct PokemonBase Kokowei		= { 103, "Kokowei",		PFLANZE,	PSYCHO,		 45, 212,  95,  95,  85, 125,  75,  55, EXP_T5, 0, NULL };
 
-const struct evolution  OweiEvo[] = { stoneLeaf, &Kokowei };
-extern const struct pokemonBase Owei = { 102, "Owei",       pflanze, psycho,   90,  98,  60,  40,  80,  60,  45,  40, expT5, 1, OweiEvo };
+const struct Evolution  OweiEvo[]		= { STONE_LEAF, &Kokowei };
+extern const struct PokemonBase Owei		= { 102, "Owei",		PFLANZE,	PSYCHO,		 90,  98,  60,  40,  80,  60,  45,  40, EXP_T5, 1, OweiEvo };
 
-extern const struct pokemonBase Lektrobal = { 101, "Lektrobal",  elektro, keinTyp,  70, 150,  60,  50,  70,  80,  80, 150, expT3, 0, NULL };
+extern const struct PokemonBase Lektrobal	= { 101, "Lektrobal",	ELEKTRO,	KEINTYP,	 70, 150,  60,  50,  70,  80,  80, 150, EXP_T3, 0, NULL };
 
-const struct evolution  VoltobalEvo[] = { 30, &Lektrobal };
-extern const struct pokemonBase Voltobal = { 100, "Voltobal",   elektro, keinTyp, 190, 103,  40,  30,  50,  55,  55, 100, expT3, 1, VoltobalEvo };
+const struct Evolution  VoltobalEvo[]	= { 30, &Lektrobal };
+extern const struct PokemonBase Voltobal	= { 100, "Voltobal",	ELEKTRO,	KEINTYP,	 190, 103,  40,  30,  50,  55,  55, 100, EXP_T3, 1, VoltobalEvo };
 
-extern const struct pokemonBase Kingler = { 99, "Kingler",    wasser,  keinTyp,  60, 206,  55, 130, 115,  50,  50,  75, expT3, 0, NULL };
+extern const struct PokemonBase Kingler		= {  99, "Kingler",		WASSER,		KEINTYP,	 60, 206,  55, 130, 115,  50,  50,  75, EXP_T3, 0, NULL };
 
-const struct evolution  KrabbyEvo[] = { 28, &Kingler };
-extern const struct pokemonBase Krabby = { 98, "Krabby",     wasser,  keinTyp, 225, 115,  30, 105,  90,  25,  25,  50, expT3, 1, KrabbyEvo };
+const struct Evolution  KrabbyEvo[]		= { 28, &Kingler };
+extern const struct PokemonBase Krabby		= {  98, "Krabby",		WASSER,		KEINTYP,	225, 115,  30, 105,  90,  25,  25,  50, EXP_T3, 1, KrabbyEvo };
 
-extern const struct pokemonBase Hypno = { 97, "Hypno",      psycho,  keinTyp,  75, 165,  85,  73,  70,  73, 115,  67, expT3, 0, NULL };
+extern const struct PokemonBase Hypno		= {  97, "Hypno",		PSYCHO,		KEINTYP,	 75, 165,  85,  73,  70,  73, 115,  67, EXP_T3, 0, NULL };
 
-const struct evolution  TraumatoEvo[] = { 26, &Hypno };
-extern const struct pokemonBase Traumato = { 96, "Traumato",   psycho,  keinTyp, 190, 102,  60,  48,  45,  43,  90,  42, expT3, 1, TraumatoEvo };
+const struct Evolution  TraumatoEvo[]	= { 26, &Hypno };
+extern const struct PokemonBase Traumato	= {  96, "Traumato",	PSYCHO,		KEINTYP,	190, 102,  60,  48,  45,  43,  90,  42, EXP_T3, 1, TraumatoEvo };
 
-extern const struct pokemonBase Onix = { 95, "Onix",       stein,   boden,    45, 108,  35,  45, 160,  30,  45,  70, expT3, 0, NULL };
+extern const struct PokemonBase Onix		= {  95, "Onix",		STEIN,		BODEN,		 45, 108,  35,  45, 160,  30,  45,  70, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Gengar = { 94, "Gengar",     geist,   gift,     45, 190,  60,  65,  60, 130,  75, 110, expT4, 0, NULL };
+extern const struct PokemonBase Gengar		= {  94, "Gengar",		GEIST,		GIFT,		 45, 190,  60,  65,  60, 130,  75, 110, EXP_T4, 0, NULL };
 
-const struct evolution  AlpolloEvo[] = { trade, &Gengar };
-extern const struct pokemonBase Alpollo = { 93, "Alpollo",    geist,   gift,     90, 126,  45,  50,  45, 115,  55,  95, expT4, 1, AlpolloEvo };
+const struct Evolution  AlpolloEvo[]	= { EVO_TRADE, &Gengar };
+extern const struct PokemonBase Alpollo		= {  93, "Alpollo",		GEIST,		GIFT,		 90, 126,  45,  50,  45, 115,  55,  95, EXP_T4, 1, AlpolloEvo };
 
-const struct evolution  NebulakEvo[] = { 25, &Alpollo };
-extern const struct pokemonBase Nebulak = { 92, "Nebulak",    geist,   gift,    190,  95,  30,  35,  30, 100,  35,  80, expT4, 1, NebulakEvo };
+const struct Evolution  NebulakEvo[]	= { 25, &Alpollo };
+extern const struct PokemonBase Nebulak		= {  92, "Nebulak",		GEIST,		GIFT,		190,  95,  30,  35,  30, 100,  35,  80, EXP_T4, 1, NebulakEvo };
 
-extern const struct pokemonBase Austos = { 91, "Austos",     wasser,  eis,      60, 203,  50,  95, 180,  85,  45,  70, expT5, 0, NULL };
+extern const struct PokemonBase Austos		= {  91, "Austos",		WASSER,		EIS,		 60, 203,  50,  95, 180,  85,  45,  70, EXP_T5, 0, NULL };
 
-const struct evolution  MuschasEvo[] = { stoneWater, &Austos };
-extern const struct pokemonBase Muschas = { 90, "Muschas",    wasser,  keinTyp, 190,  97,  30,  65, 100,  45,  25,  40, expT5, 1, MuschasEvo };
+const struct Evolution  MuschasEvo[]	= { STONE_WATER, &Austos };
+extern const struct PokemonBase Muschas		= {  90, "Muschas",		WASSER,		KEINTYP,	190,  97,  30,  65, 100,  45,  25,  40, EXP_T5, 1, MuschasEvo };
 
-extern const struct pokemonBase Sleimok = { 89, "Sleimok",    gift,    keinTyp,  75, 157, 105, 105,  75,  65, 100,  50, expT3, 0, NULL };
+extern const struct PokemonBase Sleimok		= {  89, "Sleimok",		GIFT,		KEINTYP,	 75, 157, 105, 105,  75,  65, 100,  50, EXP_T3, 0, NULL };
 
-const struct evolution  SleimaEvo[] = { 38, &Sleimok };
-extern const struct pokemonBase Sleima = { 88, "Sleima",     gift,    keinTyp, 190,  90,  80,  80,  50,  40,  50,  25, expT3, 1, SleimaEvo };
+const struct Evolution  SleimaEvo[]		= { 38, &Sleimok };
+extern const struct PokemonBase Sleima		= {  88, "Sleima",		GIFT,		KEINTYP,	190,  90,  80,  80,  50,  40,  50,  25, EXP_T3, 1, SleimaEvo };
 
-extern const struct pokemonBase Jugong = { 87, "Jugong",     wasser,  eis,      75, 176,  90,  70,  80,  70,  95,  70, expT3, 0, NULL };
+extern const struct PokemonBase Jugong		= {  87, "Jugong",		WASSER,		EIS,		 75, 176,  90,  70,  80,  70,  95,  70, EXP_T3, 0, NULL };
 
-const struct evolution  JurobEvo[] = { 34, &Jugong };
-extern const struct pokemonBase Jurob = { 86, "Jurob",      wasser,  keinTyp, 190, 100,  65,  45,  55,  45,  70,  45, expT3, 1, JurobEvo };
+const struct Evolution  JurobEvo[]		= { 34, &Jugong };
+extern const struct PokemonBase Jurob		= {  86, "Jurob",		WASSER,		KEINTYP,	190, 100,  65,  45,  55,  45,  70,  45, EXP_T3, 1, JurobEvo };
 
-extern const struct pokemonBase Dodri = { 85, "Dodri",      normal,  flug,     45, 158,  60, 110,  70,  60,  60, 110, expT3, 0, NULL };
+extern const struct PokemonBase Dodri		= {  85, "Dodri",		NORMAL,		FLUG,		 45, 158,  60, 110,  70,  60,  60, 110, EXP_T3, 0, NULL };
 
-const struct evolution  DoduEvo[] = { 31, &Dodri };
-extern const struct pokemonBase Dodu = { 84, "Dodu",       normal,  flug,    190,  96,  35,  85,  45,  35,  35,  75, expT3, 1, DoduEvo };
+const struct Evolution  DoduEvo[]		= { 31, &Dodri };
+extern const struct PokemonBase Dodu		= {  84, "Dodu",		NORMAL,		FLUG,		190,  96,  35,  85,  45,  35,  35,  75, EXP_T3, 1, DoduEvo };
 
-extern const struct pokemonBase Porenta = { 83, "Porenta",    normal,  flug,     45,  94,  52,  90,  55,  58,  62,  60, expT3, 0, NULL };
+extern const struct PokemonBase Porenta		= {  83, "Porenta",		NORMAL,		FLUG,		 45,  94,  52,  90,  55,  58,  62,  60, EXP_T3, 0, NULL };
 
-extern const struct pokemonBase Magneton = { 82, "Magneton",   elektro, stahl,    60, 161,  50,  60,  95, 120,  70,  70, expT3, 0, NULL };
+extern const struct PokemonBase Magneton	= {  82, "Magneton",	ELEKTRO,	STAHL,		 60, 161,  50,  60,  95, 120,  70,  70, EXP_T3, 0, NULL };
 
-const struct evolution  MagnetiloEvo[] = { 30, &Magneton };
-extern const struct pokemonBase Magnetilo = { 81, "Magnetilo",  elektro, stahl,   190,  89,  25,  35,  70,  95,  55,  45, expT3, 1, MagnetiloEvo };
+const struct Evolution  MagnetiloEvo[]	= { 30, &Magneton };
+extern const struct PokemonBase Magnetilo	= {  81, "Magnetilo",	ELEKTRO,	STAHL,		190,  89,  25,  35,  70,  95,  55,  45, EXP_T3, 1, MagnetiloEvo };
 
-extern const struct pokemonBase Lahmus = { 80, "Lahmus",     wasser,  psycho,   75, 164,  95,  75, 110, 100,  80,  30, expT3, 0, NULL };
+extern const struct PokemonBase Lahmus		= {  80, "Lahmus",		WASSER,		PSYCHO,		 75, 164,  95,  75, 110, 100,  80,  30, EXP_T3, 0, NULL };
 
-const struct evolution FlegmonEvo[] = { 37, &Lahmus };
-extern const struct pokemonBase Flegmon = { 79, "Flegmon",    wasser,  psycho,  190,  99,  90,  65,  65,  40,  40,  15, expT3, 1, FlegmonEvo };
+const struct Evolution FlegmonEvo[]		= { 37, &Lahmus };
+extern const struct PokemonBase Flegmon		= {  79, "Flegmon",		WASSER,		PSYCHO,		190,  99,  90,  65,  65,  40,  40,  15, EXP_T3, 1, FlegmonEvo };
 
-extern const struct pokemonBase Gallopa = { 78, "Gallopa",    feuer,   keinTyp,  60, 192,  65, 100,  70,  80,  80, 105, expT3, 0, NULL };
+extern const struct PokemonBase Gallopa		= {  78, "Gallopa",		FEUER,		KEINTYP,	 60, 192,  65, 100,  70,  80,  80, 105, EXP_T3, 0, NULL };
 
-const struct evolution PonitaEvo[] = { 40, &Gallopa };
-extern const struct pokemonBase Ponita = { 77, "Ponita",     feuer,   keinTyp, 190, 152,  50,  85,  55,  65,  65,  90, expT3, 1, PonitaEvo };
+const struct Evolution PonitaEvo[]		= { 40, &Gallopa };
+extern const struct PokemonBase Ponita		= {  77, "Ponita",		FEUER,		KEINTYP,	190, 152,  50,  85,  55,  65,  65,  90, EXP_T3, 1, PonitaEvo };
 
-extern const struct pokemonBase Geowaz = { 76, "Geowaz",     stein,   boden,    45, 177,  80, 120, 130,  55,  65,  45, expT4, 0, NULL };
+extern const struct PokemonBase Geowaz		= {  76, "Geowaz",		STEIN,		BODEN,		 45, 177,  80, 120, 130,  55,  65,  45, EXP_T4, 0, NULL };
 
-const struct evolution GeorokEvo[] = { trade, &Geowaz };
-extern const struct pokemonBase Georok = { 75, "Georok",     stein,   boden,   120, 134,  55,  95, 115,  45,  45,  35, expT4, 1, GeorokEvo };
+const struct Evolution GeorokEvo[]		= { EVO_TRADE, &Geowaz };
+extern const struct PokemonBase Georok		= {  75, "Georok",		STEIN,		BODEN,		120, 134,  55,  95, 115,  45,  45,  35, EXP_T4, 1, GeorokEvo };
 
-const struct evolution KleinsteinEvo[] = { 25, &Georok };
-extern const struct pokemonBase Kleinstein = { 74, "Kleinstein", stein,   boden,   255,  73,  40,  80, 100,  30,  30,  20, expT4, 1, KleinsteinEvo };
+const struct Evolution KleinsteinEvo[]	= { 25, &Georok };
+extern const struct PokemonBase Kleinstein	= {  74, "Kleinstein",	STEIN,		BODEN,		255,  73,  40,  80, 100,  30,  30,  20, EXP_T4, 1, KleinsteinEvo };
 
-extern const struct pokemonBase Tentoxa = { 73, "Tentoxa",    wasser,  gift,     60, 205,  80,  70,  65,  80, 120, 100, expT5, 0, NULL };
+extern const struct PokemonBase Tentoxa		= {  73, "Tentoxa",		WASSER,		GIFT,		 60, 205,  80,  70,  65,  80, 120, 100, EXP_T5, 0, NULL };
 
-const struct evolution TentachaEvo[] = { 30, &Tentoxa };
-extern const struct pokemonBase Tentacha = { 72, "Tentacha",   wasser,  gift,    190, 105,  40,  40,  35,  50, 100,  70, expT5, 1, TentachaEvo };
+const struct Evolution TentachaEvo[]	= { 30, &Tentoxa };
+extern const struct PokemonBase Tentacha	= {  72, "Tentacha",	WASSER,		GIFT,		190, 105,  40,  40,  35,  50, 100,  70, EXP_T5, 1, TentachaEvo };
 
-extern const struct pokemonBase Sarzenia = { 71, "Sarzenia",   pflanze, gift,     45, 191,  80, 105,  65, 100,  70,  70, expT4, 0, NULL };
+extern const struct PokemonBase Sarzenia	= {  71, "Sarzenia",	PFLANZE,	GIFT,		 45, 191,  80, 105,  65, 100,  70,  70, EXP_T4, 0, NULL };
 
-const struct evolution UltrigariaEvo[] = { stoneLeaf, &Sarzenia };
-extern const struct pokemonBase Ultrigaria = { 70, "Ultrigaria", pflanze, gift,    120, 151,  65,  90,  50,  85,  45,  55, expT4, 1, UltrigariaEvo };
+const struct Evolution UltrigariaEvo[]	= { STONE_LEAF, &Sarzenia };
+extern const struct PokemonBase Ultrigaria	= {  70, "Ultrigaria",	PFLANZE,	GIFT,		120, 151,  65,  90,  50,  85,  45,  55, EXP_T4, 1, UltrigariaEvo };
 
-const struct evolution KnofensaEvo[] = { 21, &Ultrigaria };
-extern const struct pokemonBase Knofensa = { 69, "Knofensa",   pflanze, gift,    255,  84,  50,  75,  35,  70,  30,  40, expT4, 1, KnofensaEvo };
+const struct Evolution KnofensaEvo[]	= { 21, &Ultrigaria };
+extern const struct PokemonBase Knofensa	= {  69, "Knofensa",	PFLANZE,	GIFT,		255,  84,  50,  75,  35,  70,  30,  40, EXP_T4, 1, KnofensaEvo };
 
-extern const struct pokemonBase Machomei = { 68, "Machomei",   kampf,   keinTyp,  45, 193,  90, 130,  80,  65,  85,  55, expT4, 0, NULL };
+extern const struct PokemonBase Machomei	= {  68, "Machomei",	KAMPF,		KEINTYP,	 45, 193,  90, 130,  80,  65,  85,  55, EXP_T4, 0, NULL };
 
-const struct evolution MaschockEvo[] = { trade, &Machomei };
-extern const struct pokemonBase Maschock = { 67, "Maschock",   kampf,   keinTyp,  90, 146,  80, 100,  70,  50,  60,  45, expT4, 1, MaschockEvo };
+const struct Evolution MaschockEvo[]	= { EVO_TRADE, &Machomei };
+extern const struct PokemonBase Maschock	= {  67, "Maschock",	KAMPF,		KEINTYP,	 90, 146,  80, 100,  70,  50,  60,  45, EXP_T4, 1, MaschockEvo };
 
-const struct evolution MacholloEvo[] = { 28, &Maschock };
-extern const struct pokemonBase Machollo = { 66, "Machollo",   kampf,   keinTyp, 180,  75,  70,  80,  50,  35,  35,  35, expT4, 1, MacholloEvo };
+const struct Evolution MacholloEvo[]	= { 28, &Maschock };
+extern const struct PokemonBase Machollo	= {  66, "Machollo",	KAMPF,		KEINTYP,	180,  75,  70,  80,  50,  35,  35,  35, EXP_T4, 1, MacholloEvo };
 
-extern const struct pokemonBase Simsala = { 65, "Simsala",    psycho,  keinTyp,  50, 186,  55,  50,  45, 135,  95, 120, expT4, 0, NULL };
+extern const struct PokemonBase Simsala		= {  65, "Simsala",		PSYCHO,		KEINTYP,	 50, 186,  55,  50,  45, 135,  95, 120, EXP_T4, 0, NULL };
 
-const struct evolution KadabraEvo[] = { trade, &Simsala };
-extern const struct pokemonBase Kadabra = { 64, "Kadabra",    psycho,  keinTyp, 100, 145,  40,  35,  30, 120,  70, 105, expT4, 1, KadabraEvo };
+const struct Evolution KadabraEvo[]		= { EVO_TRADE, &Simsala };
+extern const struct PokemonBase Kadabra		= {  64, "Kadabra",		PSYCHO,		KEINTYP,	100, 145,  40,  35,  30, 120,  70, 105, EXP_T4, 1, KadabraEvo };
 
-const struct evolution AbraEvo[] = { 16, &Kadabra };
-extern const struct pokemonBase Abra = { 63, "Abra",       psycho,  keinTyp, 200,  75,  25,  20,  15, 105,  55,  90, expT4, 1, AbraEvo };
+const struct Evolution AbraEvo[]		= { 16, &Kadabra };
+extern const struct PokemonBase Abra		= {  63, "Abra",		PSYCHO,		KEINTYP,	200,  75,  25,  20,  15, 105,  55,  90, EXP_T4, 1, AbraEvo };
 
-extern const struct pokemonBase Quappo = { 62, "Quappo",     wasser,  kampf,    45, 185,  90,  95,  95,  70,  90,  70, expT4, 0, NULL };
+extern const struct PokemonBase Quappo		= {  62, "Quappo",		WASSER,		KAMPF,		 45, 185,  90,  95,  95,  70,  90,  70, EXP_T4, 0, NULL };
 
-const struct evolution QuaputziEvo[] = { stoneWater, &Quappo };
-extern const struct pokemonBase Quaputzi = { 61, "Quaputzi",   wasser,  keinTyp, 120, 131,  65,  65,  65,  50,  50,  90, expT4, 1, QuaputziEvo };
+const struct Evolution QuaputziEvo[]	= { STONE_WATER, &Quappo };
+extern const struct PokemonBase Quaputzi	= {  61, "Quaputzi",	WASSER,		KEINTYP,	120, 131,  65,  65,  65,  50,  50,  90, EXP_T4, 1, QuaputziEvo };
 
-const struct evolution QuapselEvo[] = { 25, &Quaputzi };
-extern const struct pokemonBase Quapsel = { 60, "Quapsel",    wasser,  keinTyp, 255,  77,  40,  50,  40,  40,  40,  90, expT4, 1, QuapselEvo };
+const struct Evolution QuapselEvo[]		= { 25, &Quaputzi };
+extern const struct PokemonBase Quapsel		= {  60, "Quapsel",		WASSER,		KEINTYP,	255,  77,  40,  50,  40,  40,  40,  90, EXP_T4, 1, QuapselEvo };
 
-extern const struct pokemonBase Arkani = { 59, "Arkani",     feuer,   keinTyp,  75, 213,  90, 110,  80, 100,  80,  95, expT5, 0, NULL };
+extern const struct PokemonBase Arkani		= {  59, "Arkani",		FEUER,		KEINTYP,	 75, 213,  90, 110,  80, 100,  80,  95, EXP_T5, 0, NULL };
 
-const struct evolution FukanoEvo[] = { stoneFire, &Arkani };
-extern const struct pokemonBase Fukano = { 58, "Fukano",     feuer,   keinTyp, 190,  91,  55,  70,  45,  70,  50,  60, expT5, 1, FukanoEvo };
+const struct Evolution FukanoEvo[]		= { STONE_FIRE, &Arkani };
+extern const struct PokemonBase Fukano		= {  58, "Fukano",		FEUER,		KEINTYP,	190,  91,  55,  70,  45,  70,  50,  60, EXP_T5, 1, FukanoEvo };
 
-extern const struct pokemonBase Rasaff = { 57, "Rasaff",     kampf,   keinTyp,  75, 149,  65, 105,  60,  60,  70,  95, expT3, 0, NULL };
+extern const struct PokemonBase Rasaff		= {  57, "Rasaff",		KAMPF,		KEINTYP,	 75, 149,  65, 105,  60,  60,  70,  95, EXP_T3, 0, NULL };
 
-const struct evolution MenkiEvo[] = { 28, &Rasaff };
-extern const struct pokemonBase Menki = { 56, "Menki",      kampf,   keinTyp, 190,  74,  40,  80,  35,  35,  45,  70, expT3, 1, MenkiEvo };
+const struct Evolution MenkiEvo[]		= { 28, &Rasaff };
+extern const struct PokemonBase Menki		= {  56, "Menki",		KAMPF,		KEINTYP,	190,  74,  40,  80,  35,  35,  45,  70, EXP_T3, 1, MenkiEvo };
 
-extern const struct pokemonBase Entoron = { 55, "Entoron",    wasser,  keinTyp,  75, 174,  80,  82,  75,  95,  80,  85, expT3, 0, NULL };
+extern const struct PokemonBase Entoron		= {  55, "Entoron",		WASSER,		KEINTYP,	 75, 174,  80,  82,  75,  95,  80,  85, EXP_T3, 0, NULL };
 
-const struct evolution EntonEvo[] = { 33, &Entoron };
-extern const struct pokemonBase Enton = { 54, "Enton",      wasser,  keinTyp, 190,  80,  50,  52,  48,  65,  50,  55, expT3, 1, EntonEvo };
+const struct Evolution EntonEvo[]		= { 33, &Entoron };
+extern const struct PokemonBase Enton		= {  54, "Enton",		WASSER,		KEINTYP,	190,  80,  50,  52,  48,  65,  50,  55, EXP_T3, 1, EntonEvo };
 
-extern const struct pokemonBase Snobilikat = { 53, "Snobilikat", normal,  keinTyp,  90, 148,  65,  70,  60,  65,  65, 115, expT3, 0, NULL };
+extern const struct PokemonBase Snobilikat	= {  53, "Snobilikat",	NORMAL,		KEINTYP,	 90, 148,  65,  70,  60,  65,  65, 115, EXP_T3, 0, NULL };
 
-const struct evolution MauziEvo[] = { 28, &Snobilikat };
-extern const struct pokemonBase Mauzi = { 52, "Mauzi",      normal,  keinTyp, 255,  69,  40,  45,  35,  40,  40,  90, expT3, 1, MauziEvo };
+const struct Evolution MauziEvo[]		= { 28, &Snobilikat };
+extern const struct PokemonBase Mauzi		= {  52, "Mauzi",		NORMAL,		KEINTYP,	255,  69,  40,  45,  35,  40,  40,  90, EXP_T3, 1, MauziEvo };
 
-extern const struct pokemonBase Digdri = { 51, "Digdri",     boden,   keinTyp,  50, 153,  35, 100,  50,  50,  70, 120, expT3, 0, NULL };
+extern const struct PokemonBase Digdri		= {  51, "Digdri",		BODEN,		KEINTYP,	 50, 153,  35, 100,  50,  50,  70, 120, EXP_T3, 0, NULL };
 
-const struct evolution DigdaEvo[] = { 26, &Digdri };
-extern const struct pokemonBase Digda = { 50, "Digda",      boden,   keinTyp, 255,  81,  10,  55,  25,  35,  45,  95, expT3, 1, DigdaEvo };
+const struct Evolution DigdaEvo[]		= { 26, &Digdri };
+extern const struct PokemonBase Digda		= {  50, "Digda",		BODEN,		KEINTYP,	255,  81,  10,  55,  25,  35,  45,  95, EXP_T3, 1, DigdaEvo };
 
-extern const struct pokemonBase Omot = { 49, "Omot",       kaefer,  gift,     75, 138,  70,  65,  60,  90,  75,  90, expT3, 0, NULL };
+extern const struct PokemonBase Omot		= {  49, "Omot",		KAEFER,		GIFT,		 75, 138,  70,  65,  60,  90,  75,  90, EXP_T3, 0, NULL };
 
-const struct evolution BluzukEvo[] = { 31, &Omot };
-extern const struct pokemonBase Bluzuk = { 48, "Bluzuk",     kaefer,  gift,    190,  75,  60,  55,  50,  40,  55,  45, expT3, 1, BluzukEvo };
+const struct Evolution BluzukEvo[]		= { 31, &Omot };
+extern const struct PokemonBase Bluzuk		= {  48, "Bluzuk",		KAEFER,		GIFT,		190,  75,  60,  55,  50,  40,  55,  45, EXP_T3, 1, BluzukEvo };
 
-extern const struct pokemonBase Parasek = { 47, "Parasek",    kaefer,  pflanze,  75, 128,  60,  95,  80,  60,  80,  30, expT3, 0, NULL };
+extern const struct PokemonBase Parasek		= {  47, "Parasek",		KAEFER,		PFLANZE,	 75, 128,  60,  95,  80,  60,  80,  30, EXP_T3, 0, NULL };
 
-const struct evolution ParasEvo[] = { 24, &Parasek };
-extern const struct pokemonBase Paras = { 46, "Paras",      kaefer,  pflanze, 190,  70,  35,  70,  55,  45,  55,  25, expT3, 1, ParasEvo };
+const struct Evolution ParasEvo[]		= { 24, &Parasek };
+extern const struct PokemonBase Paras		= {  46, "Paras",		KAEFER,		PFLANZE,	190,  70,  35,  70,  55,  45,  55,  25, EXP_T3, 1, ParasEvo };
 
-extern const struct pokemonBase Giflor = { 45, "Giflor",     pflanze, gift,     45, 184,  75,  80,  85, 110,  90,  50, expT4, 0, NULL };
+extern const struct PokemonBase Giflor		= {  45, "Giflor",		PFLANZE,	GIFT,		 45, 184,  75,  80,  85, 110,  90,  50, EXP_T4, 0, NULL };
 
-const struct evolution DuflorEvo[] = { stoneLeaf, &Giflor };
-extern const struct pokemonBase Duflor = { 44, "Duflor",     pflanze, gift,    120, 132,  60,  65,  70,  85,  75,  40, expT4, 1, DuflorEvo };
+const struct Evolution DuflorEvo[]		= { STONE_LEAF, &Giflor };
+extern const struct PokemonBase Duflor		= {  44, "Duflor",		PFLANZE,	GIFT,		120, 132,  60,  65,  70,  85,  75,  40, EXP_T4, 1, DuflorEvo };
 
-const struct evolution MyraplaEvo[] = { 21, &Duflor };
-extern const struct pokemonBase Myrapla = { 43, "Myrapla",    pflanze, gift,    255,  78,  45,  50,  55,  75,  65,  30, expT4, 1, MyraplaEvo };
+const struct Evolution MyraplaEvo[]		= { 21, &Duflor };
+extern const struct PokemonBase Myrapla		= {  43, "Myrapla",		PFLANZE,	GIFT,		255,  78,  45,  50,  55,  75,  65,  30, EXP_T4, 1, MyraplaEvo };
 
-extern const struct pokemonBase Golbat = { 42, "Golbat",     gift,    flug,     90, 171,  71,  80,  70,  65,  75,  90, expT3, 0, NULL };
+extern const struct PokemonBase Golbat		= {  42, "Golbat",		GIFT,		FLUG,		 90, 171,  71,  80,  70,  65,  75,  90, EXP_T3, 0, NULL };
 
-const struct evolution ZubatEvo[] = { 22, &Golbat };
-extern const struct pokemonBase Zubat = { 41, "Zubat",      gift,    flug,    255,  54,  40,  45,  35,  30,  40,  55, expT3, 1, ZubatEvo };
+const struct Evolution ZubatEvo[]		= { 22, &Golbat };
+extern const struct PokemonBase Zubat		= {  41, "Zubat",		GIFT,		FLUG,		255,  54,  40,  45,  35,  30,  40,  55, EXP_T3, 1, ZubatEvo };
 
-extern const struct pokemonBase Knuddeluff = { 40, "Knuddeluff", normal,  keinTyp,  50, 109, 140,  70,  45,  85,  50,  45, expT2, 0, NULL };
+extern const struct PokemonBase Knuddeluff	= {  40, "Knuddeluff",	NORMAL,		KEINTYP,	 50, 109, 140,  70,  45,  85,  50,  45, EXP_T2, 0, NULL };
 
-const struct evolution PummeluffEvo[] = { stoneMoon, &Knuddeluff };
-extern const struct pokemonBase Pummeluff = { 39, "Pummeluff",  normal,  keinTyp, 170,  76, 115,  45,  20,  45,  25,  20, expT2, 1, PummeluffEvo };
+const struct Evolution PummeluffEvo[]	= { STONE_MOON, &Knuddeluff };
+extern const struct PokemonBase Pummeluff	= {  39, "Pummeluff",	NORMAL,		KEINTYP,	170,  76, 115,  45,  20,  45,  25,  20, EXP_T2, 1, PummeluffEvo };
 
-extern const struct pokemonBase Vulnona = { 38, "Vulnona",    feuer,   keinTyp,  75, 178,  73,  76,  75,  81, 100, 100, expT3, 0, NULL };
+extern const struct PokemonBase Vulnona		= {  38, "Vulnona",		FEUER,		KEINTYP,	 75, 178,  73,  76,  75,  81, 100, 100, EXP_T3, 0, NULL };
 
-const struct evolution VulpixEvo[] = { stoneFire, &Vulnona };
-extern const struct pokemonBase Vulpix = { 37, "Vulpix",     feuer,   keinTyp, 190,  63,  38,  41,  40,  50,  65,  65, expT3, 1, VulpixEvo };
+const struct Evolution VulpixEvo[]		= { STONE_FIRE, &Vulnona };
+extern const struct PokemonBase Vulpix		= {  37, "Vulpix",		FEUER,		KEINTYP,	190,  63,  38,  41,  40,  50,  65,  65, EXP_T3, 1, VulpixEvo };
 
-extern const struct pokemonBase Pixi = { 36, "Pixi",       normal,  keinTyp,  25, 129,  95,  70,  73,  95,  90,  60, expT2, 0, NULL };
+extern const struct PokemonBase Pixi		= {  36, "Pixi",		NORMAL,		KEINTYP,	 25, 129,  95,  70,  73,  95,  90,  60, EXP_T2, 0, NULL };
 
-const struct evolution PiepiEvo[] = { stoneMoon, &Pixi };
-extern const struct pokemonBase Piepi = { 35, "Piepi",      normal,  keinTyp, 150,  68,  70,  45,  48,  60,  65,  35, expT2, 1, PiepiEvo };
+const struct Evolution PiepiEvo[]		= { STONE_MOON, &Pixi };
+extern const struct PokemonBase Piepi		= {  35, "Piepi",		NORMAL,		KEINTYP,	150,  68,  70,  45,  48,  60,  65,  35, EXP_T2, 1, PiepiEvo };
 
-extern const struct pokemonBase Nidoking = { 34, "Nidoking",   gift,    boden,    45, 195,  81, 102,  77,  85,  75,  85, expT4, 0, NULL };
+extern const struct PokemonBase Nidoking	= {  34, "Nidoking",	GIFT,		BODEN,		 45, 195,  81, 102,  77,  85,  75,  85, EXP_T4, 0, NULL };
 
-const struct evolution NidorinoEvo[] = { stoneMoon, &Nidoking };
-extern const struct pokemonBase Nidorino = { 33, "Nidorino",   gift,    keinTyp, 120, 118,  61,  72,  57,  55,  55,  65, expT4, 1, NidorinoEvo };
+const struct Evolution NidorinoEvo[]	= { STONE_MOON, &Nidoking };
+extern const struct PokemonBase Nidorino	= {  33, "Nidorino",	GIFT,		KEINTYP,	120, 118,  61,  72,  57,  55,  55,  65, EXP_T4, 1, NidorinoEvo };
 
-const struct evolution NidoranMEvo[] = { 16, &Nidorino };
-extern const struct pokemonBase NidoranM = { 32, "NidoranM",   gift,    keinTyp, 235,  60,  46,  57,  40,  40,  40,  50, expT4, 1, NidoranMEvo };
+const struct Evolution NidoranMEvo[]	= { 16, &Nidorino };
+extern const struct PokemonBase NidoranM	= {  32, "NidoranM",	GIFT,		KEINTYP,	235,  60,  46,  57,  40,  40,  40,  50, EXP_T4, 1, NidoranMEvo };
 
-extern const struct pokemonBase Nidoqueen = { 31, "Nidoqueen",  gift,    boden,    45, 194,  90,  92,  87,  75,  85,  76, expT4, 0, NULL };
+extern const struct PokemonBase Nidoqueen	= {  31, "Nidoqueen",	GIFT,		BODEN,		 45, 194,  90,  92,  87,  75,  85,  76, EXP_T4, 0, NULL };
 
-const struct evolution NidorinaEvo[] = { stoneMoon, &Nidoqueen };
-extern const struct pokemonBase Nidorina = { 30, "Nidorina",   gift,    keinTyp, 120, 117,  70,  62,  67,  55,  55,  56, expT4, 1, NidorinaEvo };
+const struct Evolution NidorinaEvo[]	= { STONE_MOON, &Nidoqueen };
+extern const struct PokemonBase Nidorina	= {  30, "Nidorina",	GIFT,		KEINTYP,	120, 117,  70,  62,  67,  55,  55,  56, EXP_T4, 1, NidorinaEvo };
 
-const struct evolution NidoranWEvo[] = { 16, &Nidorina };
-extern const struct pokemonBase NidoranW = { 29, "NidoranW",   gift,    keinTyp, 235,  59,  55,  47,  52,  40,  40,  41, expT4, 1, NidoranWEvo };
+const struct Evolution NidoranWEvo[]	= { 16, &Nidorina };
+extern const struct PokemonBase NidoranW	= {  29, "NidoranW",	GIFT,		KEINTYP,	235,  59,  55,  47,  52,  40,  40,  41, EXP_T4, 1, NidoranWEvo };
 
-extern const struct pokemonBase Sandamer = { 28, "Sandamer",   boden,   keinTyp,  90, 163,  75, 100, 110,  45,  55,  65, expT3, 0, NULL };
+extern const struct PokemonBase Sandamer	= {  28, "Sandamer",	BODEN,		KEINTYP,	 90, 163,  75, 100, 110,  45,  55,  65, EXP_T3, 0, NULL };
 
-const struct evolution SandanEvo[] = { 22, &Sandamer };
-extern const struct pokemonBase Sandan = { 27, "Sandan",     boden,   keinTyp, 255,  93,  50,  75,  85,  20,  30,  40, expT3, 1, SandanEvo };
+const struct Evolution SandanEvo[]		= { 22, &Sandamer };
+extern const struct PokemonBase Sandan		= {  27, "Sandan",		BODEN,		KEINTYP,	255,  93,  50,  75,  85,  20,  30,  40, EXP_T3, 1, SandanEvo };
 
-extern const struct pokemonBase Raichu = { 26, "Raichu",     elektro, keinTyp,  75, 122,  60,  90,  55,  90,  80, 110, expT3, 0, NULL };
+extern const struct PokemonBase Raichu		= {  26, "Raichu",		ELEKTRO,	KEINTYP,	 75, 122,  60,  90,  55,  90,  80, 110, EXP_T3, 0, NULL };
 
-const struct evolution PikachuEvo[] = { stoneThunder, &Raichu };
-extern const struct pokemonBase Pikachu = { 25, "Pikachu",    elektro, keinTyp, 190,  82,  35,  55,  40,  50,  50,  90, expT3, 1, PikachuEvo };
+const struct Evolution PikachuEvo[]		= { STONE_THUNDER, &Raichu };
+extern const struct PokemonBase Pikachu		= {  25, "Pikachu",		ELEKTRO,	KEINTYP,	190,  82,  35,  55,  40,  50,  50,  90, EXP_T3, 1, PikachuEvo };
 
-extern const struct pokemonBase Arbok = { 24, "Arbok",      gift,    keinTyp,  90, 147,  60,  95,  69,  65,  79,  80, expT3, 0, NULL };
+extern const struct PokemonBase Arbok		= {  24, "Arbok",		GIFT,		KEINTYP,	 90, 147,  60,  95,  69,  65,  79,  80, EXP_T3, 0, NULL };
 
-const struct evolution RettanEvo[] = { 22, &Arbok };
-extern const struct pokemonBase Rettan = { 23, "Rettan",     gift,    keinTyp, 255,  62,  35,  60,  44,  40,  45,  55, expT3, 1, RettanEvo };
+const struct Evolution RettanEvo[]		= { 22, &Arbok };
+extern const struct PokemonBase Rettan		= {  23, "Rettan",		GIFT,		KEINTYP,	255,  62,  35,  60,  44,  40,  45,  55, EXP_T3, 1, RettanEvo };
 
-extern const struct pokemonBase Ibitak = { 22, "Ibitak",     normal,  flug,     90, 162,  65,  90,  65,  61,  61, 100, expT3, 0, NULL };
+extern const struct PokemonBase Ibitak		= {  22, "Ibitak",		NORMAL,		FLUG,		 90, 162,  65,  90,  65,  61,  61, 100, EXP_T3, 0, NULL };
 
-const struct evolution HabitakEvo[] = { 20, &Ibitak };
-extern const struct pokemonBase Habitak = { 21, "Habitak",    normal,  flug,    255,  58,  40,  60,  30,  31,  31,  70, expT3, 1, HabitakEvo };
+const struct Evolution HabitakEvo[]		= { 20, &Ibitak };
+extern const struct PokemonBase Habitak		= {  21, "Habitak",		NORMAL,		FLUG,		255,  58,  40,  60,  30,  31,  31,  70, EXP_T3, 1, HabitakEvo };
 
-extern const struct pokemonBase Rattikarl = { 20, "Rattikarl",  normal,  keinTyp, 127, 116,  55,  81,  60,  50,  70,  97, expT3, 0, NULL };
+extern const struct PokemonBase Rattikarl	= {  20, "Rattikarl",	NORMAL,		KEINTYP,	127, 116,  55,  81,  60,  50,  70,  97, EXP_T3, 0, NULL };
 
-const struct evolution RattfratzEvo[] = { 20, &Rattikarl };
-extern const struct pokemonBase Rattfratz = { 19, "Rattfratz",  normal,  keinTyp, 255,  57,  30,  56,  35,  25,  35,  72, expT3, 1, RattfratzEvo };
+const struct Evolution RattfratzEvo[]	= { 20, &Rattikarl };
+extern const struct PokemonBase Rattfratz	= {  19, "Rattfratz",	NORMAL,		KEINTYP,	255,  57,  30,  56,  35,  25,  35,  72, EXP_T3, 1, RattfratzEvo };
 
-extern const struct pokemonBase Tauboss = { 18, "Tauboss",    normal,  flug,     45, 172,  83,  80,  75,  70,  70, 101, expT4, 0, NULL };
+extern const struct PokemonBase Tauboss		= {  18, "Tauboss",		NORMAL,		FLUG,		 45, 172,  83,  80,  75,  70,  70, 101, EXP_T4, 0, NULL };
 
-const struct evolution TaubogaEvo[] = { 36, &Tauboss };
-extern const struct pokemonBase Tauboga = { 17, "Tauboga",    normal,  flug,    120, 113,  63,  60,  55,  50,  50,  71, expT4, 1, TaubogaEvo };
+const struct Evolution TaubogaEvo[]		= { 36, &Tauboss };
+extern const struct PokemonBase Tauboga		= {  17, "Tauboga",		NORMAL,		FLUG,		120, 113,  63,  60,  55,  50,  50,  71, EXP_T4, 1, TaubogaEvo };
 
-const struct evolution TaubsiEvo[] = { 18, &Tauboga };
-extern const struct pokemonBase Taubsi = { 16, "Taubsi",     normal,  flug,    255,  55,  40,  45,  40,  35,  35,  53, expT4, 1, TaubsiEvo };
+const struct Evolution TaubsiEvo[]		= { 18, &Tauboga };
+extern const struct PokemonBase Taubsi		= {  16, "Taubsi",		NORMAL,		FLUG,		255,  55,  40,  45,  40,  35,  35,  53, EXP_T4, 1, TaubsiEvo };
 
-extern const struct pokemonBase Bibor = { 15, "Bibor",      kaefer,  gift,     45, 159,  65,  90,  40,  45,  80,  75, expT3, 0, NULL };
+extern const struct PokemonBase Bibor		= {  15, "Bibor",		KAEFER,		GIFT,		 45, 159,  65,  90,  40,  45,  80,  75, EXP_T3, 0, NULL };
 
-const struct evolution KokunaEvo[] = { 10, &Bibor };
-extern const struct pokemonBase Kokuna = { 14, "Kokuna",     kaefer,  gift,    120,  71,  45,  25,  50,  25,  25,  35, expT3, 1, KokunaEvo };
+const struct Evolution KokunaEvo[]		= { 10, &Bibor };
+extern const struct PokemonBase Kokuna		= {  14, "Kokuna",		KAEFER,		GIFT,		120,  71,  45,  25,  50,  25,  25,  35, EXP_T3, 1, KokunaEvo };
 
-const struct evolution HornliuEvo[] = { 7, &Kokuna };
-extern const struct pokemonBase Hornliu = { 13, "Hornliu",    kaefer,  gift,    255,  52,  40,  35,  30,  20,  20,  50, expT3, 1, HornliuEvo };
+const struct Evolution HornliuEvo[]		= { 7, &Kokuna };
+extern const struct PokemonBase Hornliu		= {  13, "Hornliu",		KAEFER,		GIFT,		255,  52,  40,  35,  30,  20,  20,  50, EXP_T3, 1, HornliuEvo };
 
-extern const struct pokemonBase Smettbo = { 12, "Smettbo",    kaefer,  flug,     45, 160,  60,  45,  50,  90,  80,  70, expT3, 0, NULL };
+extern const struct PokemonBase Smettbo		= {  12, "Smettbo",		KAEFER,		FLUG,		 45, 160,  60,  45,  50,  90,  80,  70, EXP_T3, 0, NULL };
 
-const struct evolution SafconEvo[] = { 10, &Smettbo };
-extern const struct pokemonBase Safcon = { 11, "Safcon",     kaefer,  keinTyp, 120,  72,  50,  20,  55,  25,  25,  30, expT3, 1, SafconEvo };
+const struct Evolution SafconEvo[]		= { 10, &Smettbo };
+extern const struct PokemonBase Safcon		= {  11, "Safcon",		KAEFER,		KEINTYP,	120,  72,  50,  20,  55,  25,  25,  30, EXP_T3, 1, SafconEvo };
 
-const struct evolution RaupyEvo[] = { 7, &Safcon };
-extern const struct pokemonBase Raupy = { 10, "Raupy",      kaefer,  keinTyp, 255,  53,  45,  30,  35,  20,  20,  45, expT3, 1, RaupyEvo };
+const struct Evolution RaupyEvo[]		= { 7, &Safcon };
+extern const struct PokemonBase Raupy		= {  10, "Raupy",		KAEFER,		KEINTYP,	255,  53,  45,  30,  35,  20,  20,  45, EXP_T3, 1, RaupyEvo };
 
-extern const struct pokemonBase Turtok = { 9, "Turtok",     wasser,  keinTyp,  45, 210,  79,  83, 100,  85, 105,  78, expT4, 0, NULL };
+extern const struct PokemonBase Turtok		= {   9, "Turtok",		WASSER,		KEINTYP,	 45, 210,  79,  83, 100,  85, 105,  78, EXP_T4, 0, NULL };
 
-const struct evolution SchillokEvo[] = { 32, &Turtok };
-extern const struct pokemonBase Schillok = { 8, "Schillok",   wasser,  keinTyp,  45, 143,  59,  63,  80,  65,  80,  58, expT4, 1, SchillokEvo };
+const struct Evolution SchillokEvo[]	= { 32, &Turtok };
+extern const struct PokemonBase Schillok	= {   8, "Schillok",	WASSER,		KEINTYP,	 45, 143,  59,  63,  80,  65,  80,  58, EXP_T4, 1, SchillokEvo };
 
-const struct evolution SchiggyEvo[] = { 16, &Schillok };
-extern const struct pokemonBase Schiggy = { 7, "Schiggy",    wasser,  keinTyp,  45,  66,  44,  48,  65,  50,  64,  43, expT4, 1, SchiggyEvo };
+const struct Evolution SchiggyEvo[]		= { 16, &Schillok };
+extern const struct PokemonBase Schiggy		= {   7, "Schiggy",		WASSER,		KEINTYP,	 45,  66,  44,  48,  65,  50,  64,  43, EXP_T4, 1, SchiggyEvo };
 
-const struct learnable GlurakLearn[] = {
-	{ 1, &kratzer },
-{ 1, &heuler },
-{ 1, &glut },
-{ 1, &silberblick },
-{ 9, &glut },
-{ 15, &silberblick },
-{ 24, &raserei },
-{ 36, &schlitzer },
-{ 46, &flammenwurf },
-{ 55, &feuerwirbel }
-};
-extern const struct pokemonBase Glurak = { 6, "Glurak",     feuer,   flug,     45, 209,  78,  84,  78, 109,  85, 100, expT4, 0, NULL, 10, GlurakLearn };
+const struct Learnable GlurakLearn[]	= {
+											{ 1, &kratzer },
+											{ 1, &heuler },
+											{ 1, &glut },
+											{ 1, &silberblick },
+											{ 9, &glut },
+											{ 15, &silberblick },
+											{ 24, &raserei },
+											{ 36, &schlitzer },
+											{ 46, &flammenwurf },
+											{ 55, &feuerwirbel }
+										};
+extern const struct PokemonBase Glurak		= {   6, "Glurak",		FEUER,		FLUG,		 45, 209,  78,  84,  78, 109,  85, 100, EXP_T4, 0, NULL, 10, GlurakLearn };
 
-const struct learnable GlutexoLearn[] = {
-	{ 1, &kratzer },
-{ 1, &heuler },
-{ 1, &glut },
-{ 9, &glut },
-{ 15, &silberblick },
-{ 24, &raserei },
-{ 33, &schlitzer },
-{ 42, &flammenwurf },
-{ 56, &feuerwirbel }
-};
-const struct evolution GlutexoEvo[] = { 32, &Glurak };
-extern const struct pokemonBase Glutexo = { 5, "Glutexo",    feuer,   keinTyp,  45, 142,  58,  64,  58,  80,  65,  80, expT4, 1, GlutexoEvo, 9, GlutexoLearn };
+const struct Learnable GlutexoLearn[]	= {
+											{ 1, &kratzer },
+											{ 1, &heuler },
+											{ 1, &glut },
+											{ 9, &glut },
+											{ 15, &silberblick },
+											{ 24, &raserei },
+											{ 33, &schlitzer },
+											{ 42, &flammenwurf },
+											{ 56, &feuerwirbel }
+										};
+const struct Evolution GlutexoEvo[]		= { 32, &Glurak };
+extern const struct PokemonBase Glutexo		= {   5, "Glutexo",		FEUER,		KEINTYP,	 45, 142,  58,  64,  58,  80,  65,  80, EXP_T4, 1, GlutexoEvo, 9, GlutexoLearn };
 
-const struct learnable GlumandaLearn[] = {
-	{ 1, &kratzer },
-{ 1, &heuler },
-{ 9, &glut },
-{ 15, &silberblick },
-{ 22, &raserei },
-{ 30, &schlitzer },
-{ 38, &flammenwurf },
-{ 46, &feuerwirbel }
-};
-const struct evolution GlumandaEvo[] = { 16, &Glutexo };
-extern const struct pokemonBase Glumanda = { 4, "Glumanda",   feuer,   keinTyp,  45,  70,  39,  52,  43,  60,  50,  65, expT4, 1, GlumandaEvo, 8, GlumandaLearn };
+const struct Learnable GlumandaLearn[]	= {
+											{ 1, &kratzer },
+											{ 1, &heuler },
+											{ 9, &glut },
+											{ 15, &silberblick },
+											{ 22, &raserei },
+											{ 30, &schlitzer },
+											{ 38, &flammenwurf },
+											{ 46, &feuerwirbel }
+										};
+const struct Evolution GlumandaEvo[]	= { 16, &Glutexo };
+extern const struct PokemonBase Glumanda	= {   4, "Glumanda",	FEUER,		KEINTYP,	 45,  70,  39,  52,  43,  60,  50,  65, EXP_T4, 1, GlumandaEvo, 8, GlumandaLearn };
 
-const struct learnable BisaflorLearn[] = {
-	{ 1, &tackle },
-{ 1, &heuler },
-{ 1, &egelsamen },
-{ 1, &rankenhieb },
-{ 7, &egelsamen },
-{ 13, &rankenhieb },
-{ 22, &giftpuder },
-{ 30, &rasierblatt },
-{ 43, &wachstum },
-{ 55, &schlafpuder },
-{ 65, &solarstrahl }
-};
-extern const struct pokemonBase Bisaflor = { 3, "Bisaflor",   pflanze, gift,     45, 208,  80,  82,  83, 100, 100,  80, expT4, 0, NULL, 11, BisaflorLearn };
+const struct Learnable BisaflorLearn[]	= {
+											{ 1, &tackle },
+											{ 1, &heuler },
+											{ 1, &egelsamen },
+											{ 1, &rankenhieb },
+											{ 7, &egelsamen },
+											{ 13, &rankenhieb },
+											{ 22, &giftpuder },
+											{ 30, &rasierblatt },
+											{ 43, &wachstum },
+											{ 55, &schlafpuder },
+											{ 65, &solarstrahl }
+										};
+extern const struct PokemonBase Bisaflor	= {   3, "Bisaflor",	PFLANZE,	GIFT,		 45, 208,  80,  82,  83, 100, 100,  80, EXP_T4, 0, NULL, 11, BisaflorLearn };
 
-const struct learnable BisaknospLearn[] = {
-	{ 1, &tackle },
-{ 1, &heuler },
-{ 1, &egelsamen },
-{ 13, &rankenhieb },
-{ 22, &giftpuder },
-{ 30, &rasierblatt },
-{ 38, &wachstum },
-{ 46, &schlafpuder },
-{ 54, &solarstrahl }
-};
-const struct evolution BisaknospEvo[] = { 32, &Bisaflor };
-extern const struct pokemonBase Bisaknosp = { 2, "Bisaknosp",  pflanze, gift,     45, 141,  60,  62,  63,  80,  80,  60, expT4, 1, BisaknospEvo, 9, BisaknospLearn };
+const struct Learnable BisaknospLearn[]		= {
+												{ 1, &tackle },
+												{ 1, &heuler },
+												{ 1, &egelsamen },
+												{ 13, &rankenhieb },
+												{ 22, &giftpuder },
+												{ 30, &rasierblatt },
+												{ 38, &wachstum },
+												{ 46, &schlafpuder },
+												{ 54, &solarstrahl }
+											};
+const struct Evolution BisaknospEvo[]	= { 32, &Bisaflor };
+extern const struct PokemonBase Bisaknosp	= {   2, "Bisaknosp",	PFLANZE,	GIFT,		 45, 141,  60,  62,  63,  80,  80,  60, EXP_T4, 1, BisaknospEvo, 9, BisaknospLearn };
 
-const struct learnable BisasamLearn[] = {
-	{ 1, &tackle },
-{ 1, &heuler },
-{ 7, &egelsamen },
-{ 13, &rankenhieb },
-{ 20, &giftpuder },
-{ 27, &rasierblatt },
-{ 34, &wachstum },
-{ 41, &schlafpuder },
-{ 48, &solarstrahl }
-};
-const struct evolution BisasamEvo[] = { 16, &Bisaknosp };
-extern const struct pokemonBase Bisasam = { 1, "Bisasam",    pflanze, gift,     45,  64,  45,  49,  49,  65,  65,  45, expT4, 1, BisasamEvo, 9, BisasamLearn };
+const struct Learnable BisasamLearn[]	= {
+											{ 1, &tackle },
+											{ 1, &heuler },
+											{ 7, &egelsamen },
+											{ 13, &rankenhieb },
+											{ 20, &giftpuder },
+											{ 27, &rasierblatt },
+											{ 34, &wachstum },
+											{ 41, &schlafpuder },
+											{ 48, &solarstrahl }
+										};
+const struct Evolution BisasamEvo[]		= { 16, &Bisaknosp };
+extern const struct PokemonBase Bisasam		= {   1, "Bisasam",		PFLANZE,	GIFT,		 45,  64,  45,  49,  49,  65,  65,  45, EXP_T4, 1, BisasamEvo, 9, BisasamLearn };
 
 
-extern const struct pokemonBase *pokemons[152] = {
+extern const struct PokemonBase *PokemonBaseNatDex[152] = {
 	NULL,
 	&Bisasam,		//001
 	&Bisaknosp,		//002
