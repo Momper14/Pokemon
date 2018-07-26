@@ -356,92 +356,113 @@ extern const struct PokemonBase Raupy		= {  10, "Raupy",		KAEFER,		KEINTYP,	255,
 
 extern const struct PokemonBase Turtok		= {   9, "Turtok",		WASSER,		KEINTYP,	 45, 210,  79,  83, 100,  85, 105,  78, EXP_T4, 0, NULL };
 
+const struct Learnable GlurakLearn[]	= {
+											{  1, &Tackle },
+											{  1, &Rutenschlag },
+											{  1, &Blubber },
+											{  8, &Blubber },
+											{ 15, &Aquaknarre },
+											{ 24, &Biss },
+											{ 31, &Panzerschutz },
+											{ 39, &Schaedelwumme },
+											{ 47, &Hydropumpe }
+										};
 const struct Evolution SchillokEvo[]	= { 32, &Turtok };
 extern const struct PokemonBase Schillok	= {   8, "Schillok",	WASSER,		KEINTYP,	 45, 143,  59,  63,  80,  65,  80,  58, EXP_T4, 1, SchillokEvo };
 
+const struct Learnable GlurakLearn[]	= {
+											{  1, &Tackle },
+											{  1, &Rutenschlag },
+											{  8, &Blubber },
+											{ 15, &Aquaknarre },
+											{ 22, &Biss },
+											{ 28, &Panzerschutz },
+											{ 35, &Schaedelwumme },
+											{ 42, &Hydropumpe }
+										};
 const struct Evolution SchiggyEvo[]		= { 16, &Schillok };
 extern const struct PokemonBase Schiggy		= {   7, "Schiggy",		WASSER,		KEINTYP,	 45,  66,  44,  48,  65,  50,  64,  43, EXP_T4, 1, SchiggyEvo };
 
 const struct Learnable GlurakLearn[]	= {
-											{ 1, &kratzer },
-											{ 1, &heuler },
-											{ 1, &glut },
-											{ 1, &silberblick },
-											{ 9, &glut },
-											{ 15, &silberblick },
-											{ 24, &raserei },
-											{ 36, &schlitzer },
-											{ 46, &flammenwurf },
-											{ 55, &feuerwirbel }
+											{  1, &Kratzer },
+											{  1, &Heuler },
+											{  1, &Glut },
+											{  1, &Silberblick },
+											{  9, &Glut },
+											{ 15, &Silberblick },
+											{ 24, &Raserei },
+											{ 36, &Schlitzer },
+											{ 46, &Flammenwurf },
+											{ 55, &Feuerwirbel }
 										};
 extern const struct PokemonBase Glurak		= {   6, "Glurak",		FEUER,		FLUG,		 45, 209,  78,  84,  78, 109,  85, 100, EXP_T4, 0, NULL, 10, GlurakLearn };
 
 const struct Learnable GlutexoLearn[]	= {
-											{ 1, &kratzer },
-											{ 1, &heuler },
-											{ 1, &glut },
-											{ 9, &glut },
-											{ 15, &silberblick },
-											{ 24, &raserei },
-											{ 33, &schlitzer },
-											{ 42, &flammenwurf },
-											{ 56, &feuerwirbel }
+											{  1, &Kratzer },
+											{  1, &Heuler },
+											{  1, &Glut },
+											{  9, &Glut },
+											{ 15, &Silberblick },
+											{ 24, &Raserei },
+											{ 33, &Schlitzer },
+											{ 42, &Flammenwurf },
+											{ 56, &Feuerwirbel }
 										};
 const struct Evolution GlutexoEvo[]		= { 32, &Glurak };
 extern const struct PokemonBase Glutexo		= {   5, "Glutexo",		FEUER,		KEINTYP,	 45, 142,  58,  64,  58,  80,  65,  80, EXP_T4, 1, GlutexoEvo, 9, GlutexoLearn };
 
 const struct Learnable GlumandaLearn[]	= {
-											{ 1, &kratzer },
-											{ 1, &heuler },
-											{ 9, &glut },
-											{ 15, &silberblick },
-											{ 22, &raserei },
-											{ 30, &schlitzer },
-											{ 38, &flammenwurf },
-											{ 46, &feuerwirbel }
+											{  1, &Kratzer },
+											{  1, &Heuler },
+											{  9, &Glut },
+											{ 15, &Silberblick },
+											{ 22, &Raserei },
+											{ 30, &Schlitzer },
+											{ 38, &Flammenwurf },
+											{ 46, &Feuerwirbel }
 										};
 const struct Evolution GlumandaEvo[]	= { 16, &Glutexo };
 extern const struct PokemonBase Glumanda	= {   4, "Glumanda",	FEUER,		KEINTYP,	 45,  70,  39,  52,  43,  60,  50,  65, EXP_T4, 1, GlumandaEvo, 8, GlumandaLearn };
 
 const struct Learnable BisaflorLearn[]	= {
-											{ 1, &tackle },
-											{ 1, &heuler },
-											{ 1, &egelsamen },
-											{ 1, &rankenhieb },
-											{ 7, &egelsamen },
-											{ 13, &rankenhieb },
-											{ 22, &giftpuder },
-											{ 30, &rasierblatt },
-											{ 43, &wachstum },
-											{ 55, &schlafpuder },
-											{ 65, &solarstrahl }
+											{  1, &Tackle },
+											{  1, &Heuler },
+											{  1, &Egelsamen },
+											{  1, &Rankenhieb },
+											{  7, &Egelsamen },
+											{ 13, &Rankenhieb },
+											{ 22, &Giftpuder },
+											{ 30, &Rasierblatt },
+											{ 43, &Wachstum },
+											{ 55, &Schlafpuder },
+											{ 65, &Solarstrahl }
 										};
 extern const struct PokemonBase Bisaflor	= {   3, "Bisaflor",	PFLANZE,	GIFT,		 45, 208,  80,  82,  83, 100, 100,  80, EXP_T4, 0, NULL, 11, BisaflorLearn };
 
-const struct Learnable BisaknospLearn[]		= {
-												{ 1, &tackle },
-												{ 1, &heuler },
-												{ 1, &egelsamen },
-												{ 13, &rankenhieb },
-												{ 22, &giftpuder },
-												{ 30, &rasierblatt },
-												{ 38, &wachstum },
-												{ 46, &schlafpuder },
-												{ 54, &solarstrahl }
-											};
+const struct Learnable BisaknospLearn[]	= {
+											{  1, &Tackle },
+											{  1, &Heuler },
+											{  1, &Egelsamen },
+											{ 13, &Rankenhieb },
+											{ 22, &Giftpuder },
+											{ 30, &Rasierblatt },
+											{ 38, &Wachstum },
+											{ 46, &Schlafpuder },
+											{ 54, &Solarstrahl }
+										};
 const struct Evolution BisaknospEvo[]	= { 32, &Bisaflor };
 extern const struct PokemonBase Bisaknosp	= {   2, "Bisaknosp",	PFLANZE,	GIFT,		 45, 141,  60,  62,  63,  80,  80,  60, EXP_T4, 1, BisaknospEvo, 9, BisaknospLearn };
 
 const struct Learnable BisasamLearn[]	= {
-											{ 1, &tackle },
-											{ 1, &heuler },
-											{ 7, &egelsamen },
-											{ 13, &rankenhieb },
-											{ 20, &giftpuder },
-											{ 27, &rasierblatt },
-											{ 34, &wachstum },
-											{ 41, &schlafpuder },
-											{ 48, &solarstrahl }
+											{  1, &Tackle },
+											{  1, &Heuler },
+											{  7, &Egelsamen },
+											{ 13, &Rankenhieb },
+											{ 20, &Giftpuder },
+											{ 27, &Rasierblatt },
+											{ 34, &Wachstum },
+											{ 41, &Schlafpuder },
+											{ 48, &Solarstrahl }
 										};
 const struct Evolution BisasamEvo[]		= { 16, &Bisaknosp };
 extern const struct PokemonBase Bisasam		= {   1, "Bisasam",		PFLANZE,	GIFT,		 45,  64,  45,  49,  49,  65,  65,  45, EXP_T4, 1, BisasamEvo, 9, BisasamLearn };
