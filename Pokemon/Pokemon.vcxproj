@@ -147,14 +147,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="attacks.c" />
+    <ClCompile Include="Attacks.c" />
+    <ClCompile Include="Base.c" />
+    <ClCompile Include="Calc.c" />
     <ClCompile Include="Pokemon.c" />
+    <ClCompile Include="Types.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="attacks.h" />
+    <ClInclude Include="Attacks.h" />
     <ClInclude Include="Base.h" />
+    <ClInclude Include="Calc.h" />
     <ClInclude Include="Pokemon.h" />
-    <ClInclude Include="types.h" />
+    <ClInclude Include="Types.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
