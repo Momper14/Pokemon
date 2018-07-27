@@ -47,6 +47,9 @@ uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, Attacke *attac
 	uint type = 100;
 	unsigned long modifier = 1;
 	unsigned long korrektur = critical * 100 * stab * type;
+	// modifier = random
+	modifier *= random;
+
 	// Crit ermitteln
 	uint critRange = rand() % 256;
 	uint critChance = angreifer->base->stats[STAT_INITIATIVE] >> 1 ;
@@ -55,14 +58,19 @@ uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, Attacke *attac
 	}else {
 		critical = 200;
 	}
-
+	//modifier = critical * random
+	modifier *= critical;
 	// STAB ermitteln
 	if (angreifer->base->typ1 == attacke->typ || angreifer->base->typ2 == attacke->typ) {
 		stab = stab + stab >> 1;	
 	}else {
 		stab = 100;
 	}
+	// modifier = critical * random * stab
+	modifier *= stab;
+
 	//type ermittlen mit Funtkion aus Types.c
+	// modifier = critical * random * stab * type
 	modifier = getMultiplikator(attacke->typ,verteidiger->base->typ1,verteidiger->base->typ2,modifier);
 
 	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
