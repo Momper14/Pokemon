@@ -2,146 +2,146 @@
 #include "attacks.h"
 
 const struct Learnable SmettboLearn[] = {
-	{  1, &Konfusion },
-	{ 10, &Konfusion },
-	{ 13, &Giftpuder },
-	{ 14, &Stachelspore },
-	{ 15, &Schlafpuder },
-	{ 18, &Superschall },
-	{ 23, &Wirbelwind },
-	{ 28, &Windstoss },
-	{ 34, &Psystrahl },
+	{  1, ATTACKE_KONFUSION },
+	{ 10, ATTACKE_KONFUSION },
+	{ 13, ATTACKE_GIFTPUDER },
+	{ 14, ATTACKE_STACHELSPORE },
+	{ 15, ATTACKE_SCHLAFPUDER },
+	{ 18, ATTACKE_SUPERSCHALL },
+	{ 23, ATTACKE_WIRBELWIND },
+	{ 28, ATTACKE_WINDSTOSS },
+	{ 34, ATTACKE_PSYSTRAHL },
 };
 const struct Learnables SmettboLearns = { 2, SmettboLearn };
 
 const struct Learnable SafconLearn[] = {
-	{  1, &Haertner },
-	{  7, &Haertner },
+	{  1, ATTACKE_HAERTNER },
+	{  7, ATTACKE_HAERTNER },
 };
 const struct Learnables SafconLearns = { 2, SafconLearn };
 
 const struct Learnable RaupyLearn[] = {
-	{  1, &Tackle },
-	{  1, &Fadenschuss },
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_FADENSCHUSS },
 };
 const struct Learnables RaupyLearns = { 2, RaupyLearn };
 
 const struct Learnable TurtokLearn[] = {
-	{  1, &Tackle },
-	{  1, &Rutenschlag },
-	{  1, &Blubber },
-	{  1, &Aquaknarre },
-	{  8, &Blubber },
-	{ 15, &Aquaknarre },
-	{ 24, &Biss },
-	{ 31, &Panzerschutz },
-	{ 42, &Schaedelwumme },
-	{ 52, &Hydropumpe }
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_RUTENSCHLAG },
+	{  1, ATTACKE_BLUBBER },
+	{  1, ATTACKE_AQUAKNARRE },
+	{  8, ATTACKE_BLUBBER },
+	{ 15, ATTACKE_AQUAKNARRE },
+	{ 24, ATTACKE_BISS },
+	{ 31, ATTACKE_PANZERSCHUTZ },
+	{ 42, ATTACKE_SCHAEDELWUMME },
+	{ 52, ATTACKE_HYDROPUMPE }
 };
 const struct Learnables TurtokLearns = { 10, TurtokLearn };
 
 const struct Learnable SchillokLearn[] = {
-	{  1, &Tackle },
-	{  1, &Rutenschlag },
-	{  1, &Blubber },
-	{  8, &Blubber },
-	{ 15, &Aquaknarre },
-	{ 24, &Biss },
-	{ 31, &Panzerschutz },
-	{ 39, &Schaedelwumme },
-	{ 47, &Hydropumpe }
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_RUTENSCHLAG },
+	{  1, ATTACKE_BLUBBER },
+	{  8, ATTACKE_BLUBBER },
+	{ 15, ATTACKE_AQUAKNARRE },
+	{ 24, ATTACKE_BISS },
+	{ 31, ATTACKE_PANZERSCHUTZ },
+	{ 39, ATTACKE_SCHAEDELWUMME },
+	{ 47, ATTACKE_HYDROPUMPE }
 };
 const struct Learnables SchillokLearns = { 9, SchillokLearn };
 
 const struct Learnable SchiggyLearn[] = {
-	{  1, &Tackle },
-	{  1, &Rutenschlag },
-	{  8, &Blubber },
-	{ 15, &Aquaknarre },
-	{ 22, &Biss },
-	{ 28, &Panzerschutz },
-	{ 35, &Schaedelwumme },
-	{ 42, &Hydropumpe }
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_RUTENSCHLAG },
+	{  8, ATTACKE_BLUBBER },
+	{ 15, ATTACKE_AQUAKNARRE },
+	{ 22, ATTACKE_BISS },
+	{ 28, ATTACKE_PANZERSCHUTZ },
+	{ 35, ATTACKE_SCHAEDELWUMME },
+	{ 42, ATTACKE_HYDROPUMPE }
 };
 const struct Learnables SchiggyLearns = { 8, SchiggyLearn };
 
 const struct Learnable GlurakLearn[] = {
-	{  1, &Kratzer },
-	{  1, &Heuler },
-	{  1, &Glut },
-	{  1, &Silberblick },
-	{  9, &Glut },
-	{ 15, &Silberblick },
-	{ 24, &Raserei },
-	{ 36, &Schlitzer },
-	{ 46, &Flammenwurf },
-	{ 55, &Feuerwirbel }
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_GLUT },
+	{  1, ATTACKE_SILBERBLICK },
+	{  9, ATTACKE_GLUT },
+	{ 15, ATTACKE_SILBERBLICK },
+	{ 24, ATTACKE_RASEREI },
+	{ 36, ATTACKE_SCHLITZER },
+	{ 46, ATTACKE_FLAMMENWURF },
+	{ 55, ATTACKE_FEUERWIRBEL }
 };
 const struct Learnables GlurakLearns = { 10, GlurakLearn };
 
 const struct Learnable GlutexoLearn[] = {
-	{  1, &Kratzer },
-	{  1, &Heuler },
-	{  1, &Glut },
-	{  9, &Glut },
-	{ 15, &Silberblick },
-	{ 24, &Raserei },
-	{ 33, &Schlitzer },
-	{ 42, &Flammenwurf },
-	{ 56, &Feuerwirbel }
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_GLUT },
+	{  9, ATTACKE_GLUT },
+	{ 15, ATTACKE_SILBERBLICK },
+	{ 24, ATTACKE_RASEREI },
+	{ 33, ATTACKE_SCHLITZER },
+	{ 42, ATTACKE_FLAMMENWURF },
+	{ 56, ATTACKE_FEUERWIRBEL }
 };
 const struct Learnables GlutexoLearns = { 9, GlutexoLearn };
 
 const struct Learnable GlumandaLearn[] = {
-	{  1, &Kratzer },
-	{  1, &Heuler },
-	{  9, &Glut },
-	{ 15, &Silberblick },
-	{ 22, &Raserei },
-	{ 30, &Schlitzer },
-	{ 38, &Flammenwurf },
-	{ 46, &Feuerwirbel }
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_HEULER },
+	{  9, ATTACKE_GLUT },
+	{ 15, ATTACKE_SILBERBLICK },
+	{ 22, ATTACKE_RASEREI },
+	{ 30, ATTACKE_SCHLITZER },
+	{ 38, ATTACKE_FLAMMENWURF },
+	{ 46, ATTACKE_FEUERWIRBEL }
 };
 const struct Learnables GlumandaLearns = { 8, GlumandaLearn };
 
 const struct Learnable BisaflorLearn[] = {
-	{  1, &Tackle },
-	{  1, &Heuler },
-	{  1, &Egelsamen },
-	{  1, &Rankenhieb },
-	{  7, &Egelsamen },
-	{ 13, &Rankenhieb },
-	{ 22, &Giftpuder },
-	{ 30, &Rasierblatt },
-	{ 43, &Wachstum },
-	{ 55, &Schlafpuder },
-	{ 65, &Solarstrahl }
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_EGELSAMEN },
+	{  1, ATTACKE_RANKENHIEB },
+	{  7, ATTACKE_EGELSAMEN },
+	{ 13, ATTACKE_RANKENHIEB },
+	{ 22, ATTACKE_GIFTPUDER },
+	{ 30, ATTACKE_RASIERBLATT },
+	{ 43, ATTACKE_WACHSTUM },
+	{ 55, ATTACKE_SCHLAFPUDER },
+	{ 65, ATTACKE_SOLARSTRAHL }
 };
 const struct Learnables BisaflorLearns = { 11, BisaflorLearn };
 
 const struct Learnable BisaknospLearn[] = {
-	{  1, &Tackle },
-	{  1, &Heuler },
-	{  1, &Egelsamen },
-	{ 13, &Rankenhieb },
-	{ 22, &Giftpuder },
-	{ 30, &Rasierblatt },
-	{ 38, &Wachstum },
-	{ 46, &Schlafpuder },
-	{ 54, &Solarstrahl }
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_EGELSAMEN },
+	{ 13, ATTACKE_RANKENHIEB },
+	{ 22, ATTACKE_GIFTPUDER },
+	{ 30, ATTACKE_RASIERBLATT },
+	{ 38, ATTACKE_WACHSTUM },
+	{ 46, ATTACKE_SCHLAFPUDER },
+	{ 54, ATTACKE_SOLARSTRAHL }
 };
 const struct Learnables BisaknospLearns = { 9, BisaknospLearn };
 
 const struct Learnable BisasamLearn[] = {
-	{  1, &Tackle },
-	{  1, &Heuler },
-	{  7, &Egelsamen },
-	{ 13, &Rankenhieb },
-	{ 20, &Giftpuder },
-	{ 27, &Rasierblatt },
-	{ 34, &Wachstum },
-	{ 41, &Schlafpuder },
-	{ 48, &Solarstrahl }
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_HEULER },
+	{  7, ATTACKE_EGELSAMEN },
+	{ 13, ATTACKE_RANKENHIEB },
+	{ 20, ATTACKE_GIFTPUDER },
+	{ 27, ATTACKE_RASIERBLATT },
+	{ 34, ATTACKE_WACHSTUM },
+	{ 41, ATTACKE_SCHLAFPUDER },
+	{ 48, ATTACKE_SOLARSTRAHL }
 };
 const struct Learnables BisasamLearns = { 9, BisasamLearn};
 
