@@ -38,7 +38,7 @@ char getMultiplikator(int attackType, int defenseType1, int defenseType2, char d
 
 	if (matrix[attackType][defenseType1]== EFFEKT_IMMUN) {
 		// Direktes Beenden der Methode, weil keine weiteren Rechnungen notwendig sind
-		printf("Es hat keine Wirkung");
+		//printf("Es hat keine Wirkung");
 		return 0;
 	}
 	else if (matrix[attackType][defenseType1] == EFFEKT_NICHT) {
@@ -56,7 +56,7 @@ char getMultiplikator(int attackType, int defenseType1, int defenseType2, char d
 	// Zweiten Typen vergleichen
 	if (matrix[attackType][defenseType2] == EFFEKT_IMMUN) {
 		// Direktes Beenden der Methode, weil keine weiteren Rechnungen notwendig sind
-		printf("Es hat keine Wirkung");
+		//printf("Es hat keine Wirkung");
 		return 0;
 	}
 	else if (matrix[attackType][defenseType2] == EFFEKT_NICHT) {
@@ -89,19 +89,19 @@ char getMultiplikator(int attackType, int defenseType1, int defenseType2, char d
 
 	// Ausgabe für die Effektivität
 	if (effektivitaet == 6) {
-		printf("4-Fach effektivität !");	
+		//printf("4-Fach effektivität !");	
 	}
 	else if (effektivitaet == 5) {
-		printf("Es ist sehr effektiv !");
+		//printf("Es ist sehr effektiv !");
 	}
 	else if (effektivitaet == 4) {
 		
 	}
 	else if (effektivitaet == 3) {
-		printf("Es ist nicht sehr effektiv !");
+		//printf("Es ist nicht sehr effektiv !");
 	}
 	else if(effektivitaet == 2) {
-		printf("4-Fach Resistenz !");
+		//printf("4-Fach Resistenz !");
 	}
 
 	return damage;
