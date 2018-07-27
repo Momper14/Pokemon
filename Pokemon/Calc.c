@@ -5,65 +5,81 @@
 
 uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, Attacke *attacke) {
 
-	uint A = 0;
-	uint D = verteidiger->stats[STAT_VERTEIDIGUNG];
-	uint damage = 1;
-	uint random = 100 - (rand() % 16 + 1);
-	uint crit   = 100;
-	uint temp   = rand()%100+1;
-	uint stab   = 100;
-	//int attackType, int defenseType1, int defenseType2
-	uint type = getMultiplikator(attacke->typ,verteidiger->base->typ1, verteidiger->base->typ2);
-	uint correct = crit * stab * 100*100;
-	uint modifier = 1;
+	uint damage = 0;
+	uint power = attacke->DMG;
+	uint A, D;
 
-	// ermitteln ob Angriff oder Spezialangriff
-	if (attacke->klasse == PHYSISCH) {
+	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
+
+	if (attacke->typ == SPEZIAL) {
 		A = angreifer->stats[STAT_ANGRIFF];
-	}
-	else if (attacke->klasse == SPEZIAL) {
+		D = verteidiger->stats[STAT_VERTEIDIGUNG];
+	}else if(attacke->typ == PHYSISCH) {
 		A = angreifer->stats[STAT_SPEZIALANGRIFF];
+		D = verteidiger->stats[STAT_SPEZIALVERTEIDIGUNG];
+	}else {
+		// Sollte, nach jetztigem Kenntnisstand nicht vorkommen
+		A = D = 1;
 	}
-	else {
-		A = 0;
-	}
-	// Crit ermitteln
-	unsigned char ranCrit = rand() % 256;
-	unsigned char P = angreifer->base->stats[STAT_INITIATIVE] / 512;
-	if (ranCrit >= P ) {
-		crit = 100;
-	}
-	else {
-		crit = 200;
-	}
-
-	// STAB berechnen
-	if (angreifer->base->typ1 == attacke->typ || angreifer->base->typ2 == attacke->typ) {
-		stab = 150;
-	}
-	else {
-		stab = 100;
-	}
-
-	modifier = (crit * random * stab * type)/correct;
-
-	damage = (2*angreifer->level/5) + 2;
-	damage = damage * attacke->AP;
-	damage = damage * (A / D);
-	damage = (damage / 50) + 2;
-	damage = damage * modifier;
-//	damage = (((((((2*angreifer->level)/5)+2) * attacke->DMG  * (A/D))/(5))/(50))+2)*modifier;
-
-
 	/*
 	         ( (2*angreiferlevel )              (       A        )     )
-		     (------------------ )+ 2 * Power * (----------------)     )
+		     (-------------------)+2  * Power * (----------------)     )
 	Damage = (         5         )              (       D        )     )
 	         (----------------------------------------------------- + 2) * modifier  
 			 (                       50                                )
 
-	modifier = critical * random * STAB * type * burn * other
+	Power = effektive power of the used move (e.g. power hyperstrahl = 150)
+	A = effektiver angriffswert/spzialangriffswert des angreifenden Pokemon
+	D = effektiver defensiv/spezialDef Wert des verteidigenden Pokemon
+
+	
 	*/
+	damage = ((2 * angreifer->level) / 5) + 2;
+	damage = damage * power;
+	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen möglich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
+	damage = (damage / 50)+2;
+
+	// Nun werden die Parameter von modifier ermittelt
+	// modifier = critical * random * STAB * type
+	uint critical = 100;
+	uint random = 100 - (rand() % 16);
+	uint stab = 100;
+	uint type = 100;
+	unsigned long modifier = 1;
+	unsigned long korrektur = critical * 100 * stab * type;
+	// modifier = random
+	modifier *= random;
+
+	// Crit ermitteln
+	uint critRange = rand() % 256;
+	uint critChance = angreifer->base->stats[STAT_INITIATIVE] >> 1 ;
+	if (critRange > critChance) {
+		critical = 100;
+	}else {
+		critical = 200;
+	}
+	//modifier = critical * random
+	modifier *= critical;
+	// STAB ermitteln
+	if (angreifer->base->typ1 == attacke->typ || angreifer->base->typ2 == attacke->typ) {
+		stab = stab + stab >> 1;	
+	}else {
+		stab = 100;
+	}
+	// modifier = critical * random * stab
+	modifier *= stab;
+
+	//type ermittlen mit Funtkion aus Types.c
+	// modifier = critical * random * stab * type
+	modifier = getMultiplikator(attacke->typ,verteidiger->base->typ1,verteidiger->base->typ2,modifier);
+
+	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
+
+	modifier = modifier / korrektur;
+
+	// Letzte Rechnung um damage zu ermitteln und zurückgeben
+
+	damage = damage * modifier;
 
 	return damage;
 
