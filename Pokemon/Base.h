@@ -36,26 +36,31 @@ struct PokemonBase{
 	const struct Evolution *evolutions;
 	const struct Learnables *learnables;
 };
+typedef struct PokemonBase PokemonBase;
 
 struct Evolution{
 	const byte evolCon;
 	const struct PokemonBase *evol;
 };
+typedef struct Evolution Evolution;
 
 struct Evolutions{
 	const byte count;
 	const struct Evolution *evolutions;
 };
+typedef struct Evolutions Evolutions;
 
 struct Learnable{
 	const byte lvl;
 	const struct Attacke *attacke;
 };
+typedef struct Learnable Learnable;
 
 struct Learnables{
 	const byte count;
 	const struct Learnable *learnables;
 };
+typedef struct Learnables Learnables;
 
 extern const struct PokemonBase Mew;
 extern const struct PokemonBase Mewtu;

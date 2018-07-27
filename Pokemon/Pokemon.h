@@ -4,7 +4,7 @@
 #include "attacks.h"
 #include "Util.h"
 
-typedef struct PokemonClass{
+struct PokemonClass{
 	char *spitzname;
 	byte level;
 	uint expNext;
@@ -15,4 +15,5 @@ typedef struct PokemonClass{
 	struct Attacke *moves[4];
 	int status;
 	int item;
-} PokemonClass;
+};
+typedef struct PokemonClass PokemonClass;
