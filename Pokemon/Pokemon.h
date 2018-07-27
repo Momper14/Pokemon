@@ -15,4 +15,4 @@ typedef struct PokemonClass{
 	struct Attacke *moves[4];
 	int status;
 	int item;
-}PokemonClass;
+} PokemonClass;
