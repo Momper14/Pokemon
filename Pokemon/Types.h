@@ -28,4 +28,4 @@
 #define EFFEKT_IMMUN 0
 
 // Multiplikator ausrechnen
-char getMultiplikator(int attackType, int defenseType1, int defenseType2, char damage);
+unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType2, unsigned long *damage);

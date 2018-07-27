@@ -24,7 +24,7 @@ const double matrix[18][18] = {
 
 };
 
-char getMultiplikator(int attackType, int defenseType1, int defenseType2, char damage){
+unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType2, unsigned long *damage){
 	/*
 		Bei EFFEKT_SEHR wird << 1 geshiftet
 		Bei EFFEKT_NORM wird <<0 geshiftet
@@ -42,11 +42,11 @@ char getMultiplikator(int attackType, int defenseType1, int defenseType2, char d
 		return 0;
 	}
 	else if (matrix[attackType][defenseType1] == EFFEKT_NICHT) {
-		damage = damage >> 1;
+		damage = *damage >> 1;
 		effektivitaet = EFFEKT_NICHT;
 	}
 	else if (matrix[attackType][defenseType1] == EFFEKT_SEHR) {
-		damage = damage << 1;
+		damage = *damage << 1;
 		effektivitaet = EFFEKT_SEHR;
 	}
 	else {
@@ -60,11 +60,11 @@ char getMultiplikator(int attackType, int defenseType1, int defenseType2, char d
 		return 0;
 	}
 	else if (matrix[attackType][defenseType2] == EFFEKT_NICHT) {
-		damage = damage >> 1;
+		damage = *damage >> 1;
 		effektivitaet += EFFEKT_NICHT;
 	}
 	else if (matrix[attackType][defenseType2] == EFFEKT_SEHR) {
-		damage = damage << 1;
+		damage = *damage << 1;
 		effektivitaet += EFFEKT_SEHR;
 	}
 	else {
@@ -104,7 +104,7 @@ char getMultiplikator(int attackType, int defenseType1, int defenseType2, char d
 		//printf("4-Fach Resistenz !");
 	}
 
-	return damage;
+	return effektivitaet;
 	
 
 
