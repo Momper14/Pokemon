@@ -133,15 +133,15 @@ const struct Learnable BisaknospLearn[] = {
 const struct Learnables BisaknospLearns = { 9, BisaknospLearn };
 
 const struct Learnable BisasamLearn[] = {
-	{  1, &Tackle },
-	{  1, &Heuler },
-	{  7, &Egelsamen },
-	{ 13, &Rankenhieb },
-	{ 20, &Giftpuder },
-	{ 27, &Rasierblatt },
-	{ 34, &Wachstum },
-	{ 41, &Schlafpuder },
-	{ 48, &Solarstrahl }
+	{  1, &AttackDex[ATTACKE_TACKLE] },
+	{  1, &AttackDex[ATTACKE_HEULER] },
+	{  7, &AttackDex[ATTACKE_EGELSAMEN] },
+	{ 13, &AttackDex[ATTACKE_RANKENHIEB] },
+	{ 20, &AttackDex[ATTACKE_GIFTPUDER] },
+	{ 27, &AttackDex[ATTACKE_RASIERBLATT] },
+	{ 34, &AttackDex[ATTACKE_WACHSTUM] },
+	{ 41, &AttackDex[ATTACKE_SCHLAFPUDER] },
+	{ 48, &AttackDex[ATTACKE_SOLARSTRAHL] }
 };
 const struct Learnables BisasamLearns = { 9, BisasamLearn};
 
