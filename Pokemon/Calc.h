@@ -5,3 +5,5 @@
 #include "attacks.h"
 
 uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, Attacke *attacke);
+
+void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger,Attacke *attacke);
