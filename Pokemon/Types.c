@@ -24,8 +24,88 @@ const double matrix[18][18] = {
 
 };
 
-double getMultiplikator(int attackType, int defenseType1, int defenseType2){
+char getMultiplikator(int attackType, int defenseType1, int defenseType2, char damage){
+	/*
+		Bei EFFEKT_SEHR wird << 1 geshiftet
+		Bei EFFEKT_NORM wird <<0 geshiftet
+		Bei EFFEKT_NICHT wird >>1 geshiftet
+		Bei EFFEKT_IMMUN wird damage auf 0 gesetzt und zurückgegeben
+	*/
 
-	return (matrix[attackType][defenseType1])*(matrix[attackType][defenseType2]);
+
+	// Ersten Typen vergleichen
+	char effektivitaet = EFFEKT_NORM;
+
+	if (matrix[attackType][defenseType1]== EFFEKT_IMMUN) {
+		// Direktes Beenden der Methode, weil keine weiteren Rechnungen notwendig sind
+		printf("Es hat keine Wirkung");
+		return 0;
+	}
+	else if (matrix[attackType][defenseType1] == EFFEKT_NICHT) {
+		damage = damage >> 1;
+		effektivitaet = EFFEKT_NICHT;
+	}
+	else if (matrix[attackType][defenseType1] == EFFEKT_SEHR) {
+		damage = damage << 1;
+		effektivitaet = EFFEKT_SEHR;
+	}
+	else {
+		effektivitaet = EFFEKT_NORM;
+	}
+
+	// Zweiten Typen vergleichen
+	if (matrix[attackType][defenseType2] == EFFEKT_IMMUN) {
+		// Direktes Beenden der Methode, weil keine weiteren Rechnungen notwendig sind
+		printf("Es hat keine Wirkung");
+		return 0;
+	}
+	else if (matrix[attackType][defenseType2] == EFFEKT_NICHT) {
+		damage = damage >> 1;
+		effektivitaet += EFFEKT_NICHT;
+	}
+	else if (matrix[attackType][defenseType2] == EFFEKT_SEHR) {
+		damage = damage << 1;
+		effektivitaet += EFFEKT_SEHR;
+	}
+	else {
+		effektivitaet += EFFEKT_NORM;
+	}
+
+	/*
+		EFFEKT_SEHR  = 3
+		EFFEKT_NORM  = 2
+		EFFEKT_NICHT = 1
+		EFFEKT_IMMUN = 0
+	
+		EFFEKT_SEHR  + EFFEKT_SEHR  = 6 ->   4-Fach Schaden
+		EFFEKT_NORM  + EFFEKT_SEHR  = 5 ->   2-Fach Schaden
+		EFFEKT_NORM  + EFFEKT_NORM  = 4 ->   1-Fach Schaden
+		EFFEKT_SEHR  + EFFEKT_NICHT = 4 ->   1-Fach Schaden
+		EFFEKT_NICHT + EFFEKT_NORM  = 3 -> 1/2-Fach Schaden
+		EFFEKT_NICHT + EFFEKT_NICHT = 2 -> 1/4-Fach Schaden
+
+		Dieser Effekt enstehst beim obigem Shiften automatisch und muss nicht weiter beaufsichtigt werden
+	*/
+
+	// Ausgabe für die Effektivität
+	if (effektivitaet == 6) {
+		printf("4-Fach effektivität !");	
+	}
+	else if (effektivitaet == 5) {
+		printf("Es ist sehr effektiv !");
+	}
+	else if (effektivitaet == 4) {
+		
+	}
+	else if (effektivitaet == 3) {
+		printf("Es ist nicht sehr effektiv !");
+	}
+	else if(effektivitaet == 2) {
+		printf("4-Fach Resistenz !");
+	}
+
+	return damage;
+	
+
 
 }

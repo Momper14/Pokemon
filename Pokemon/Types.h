@@ -21,10 +21,11 @@
 #define KEINTYP  17
 
 // Effektivität
-#define EFFEKT_SEHR  2
-#define EFFEKT_NORM  1
-#define EFFEKT_NICHT 0.5
+// Keine Double Werte um Rechen und Parsing Fehler zu umgehen
+#define EFFEKT_SEHR  3
+#define EFFEKT_NORM  2
+#define EFFEKT_NICHT 1
 #define EFFEKT_IMMUN 0
 
 // Multiplikator ausrechnen
-double getMultiplikator(int attackType, int defenseType1, int defenseType2);
+char getMultiplikator(int attackType, int defenseType1, int defenseType2, char damage);
