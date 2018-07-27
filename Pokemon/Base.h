@@ -52,7 +52,7 @@ typedef struct Evolutions Evolutions;
 
 struct Learnable{
 	const byte lvl;
-	const struct Attacke *attacke;
+	const byte attacke;
 };
 typedef struct Learnable Learnable;
 
