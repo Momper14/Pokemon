@@ -9,12 +9,23 @@ struct PokemonClass{
 	byte level;
 	uint expNext;
 	struct PokemonBase *base;
-	uint stats[6];
-	byte iv[6];
+	ushort stats[6];
+	const byte iv[6];
 	byte dv[6];
-	byte stufen[6];
 	struct Attacke *moves[4];
-	int status;
-	int item;
+	byte item;
 };
 typedef struct PokemonClass PokemonClass;
+
+struct PokemonGroup{
+	struct PokemonClass *pokemon;
+	byte status;
+	ushort aktKP;
+};
+typedef struct PokemonGroup PokemonGroup;
+
+struct PokemonFight{
+	struct PokemonGroup *pokemon;
+	byte stufen[6];
+};
+typedef struct PokemonFight PokemonFight;

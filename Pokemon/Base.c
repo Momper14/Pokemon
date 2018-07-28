@@ -11,14 +11,14 @@ const struct Learnable MewLearn[] = {
 const struct Learnables MewLearns = {5 , MewLearn};
 
 const struct Learnable MewtuLearn[] = {
-	{ 1, ATTACKE_AUSSETZER },
-	{ 1,ATTACKE_KONFUSION },
-	{ 1,ATTACKE_STERNSCHAUER },
-	{ 1,ATTACKE_PSYCHOKINESE },
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_KONFUSION },
+	{  1, ATTACKE_STERNSCHAUER },
+	{  1, ATTACKE_PSYCHOKINESE },
 	{ 63, ATTACKE_BARRIERE },
 	{ 66, ATTACKE_PSYCHOKINESE },
-	{ 70,ATTACKE_GENESUNG },
-	{ 75,ATTACKE_WEISSNEBEL },
+	{ 70, ATTACKE_GENESUNG },
+	{ 75, ATTACKE_WEISSNEBEL },
 	{ 81, ATTACKE_AMNESIE }
 };
 const struct Learnables MewtuLearns = {9,MewtuLearn};

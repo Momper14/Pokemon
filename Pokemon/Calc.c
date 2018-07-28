@@ -1,6 +1,8 @@
 #include "Calc.h"
 #include "stdlib.h"
 
+uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID);
+uint applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID);
 
 
 uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID) {
