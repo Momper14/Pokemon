@@ -12,6 +12,7 @@ struct PokemonClass{
 	uint stats[6];
 	byte iv[6];
 	byte dv[6];
+	byte stufen[6];
 	struct Attacke *moves[4];
 	int status;
 	int item;
