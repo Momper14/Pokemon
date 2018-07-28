@@ -10,7 +10,7 @@ const struct Learnable MewLearn[] = {
 };
 const struct Learnables MewLearns = {5 , MewLearn};
 
-const struct Learnable MewtwoLearn[] = {
+const struct Learnable MewtuLearn[] = {
 	{ 1, ATTACKE_AUSSETZER },
 	{ 1,ATTACKE_KONFUSION },
 	{ 1,ATTACKE_STERNSCHAUER },
@@ -21,7 +21,7 @@ const struct Learnable MewtwoLearn[] = {
 	{ 75,ATTACKE_WEISSNEBEL },
 	{ 81, ATTACKE_AMNESIE }
 };
-const struct Learnables MewtwoLearns = {9,MewtwoLearn};
+const struct Learnables MewtuLearns = {9,MewtuLearn};
 
 const struct Learnable DragoranLearn[] = {
 	{1, ATTACKE_AGILITAET},
@@ -962,6 +962,18 @@ const struct Learnable KnofensaLearn[] = {
 };
 const struct Learnables KnofensaLearns = { 9, KnofensaLearn };
 
+const struct Learnable MachomeiLearn[] = {
+	{  1, ATTACKE_FUSSKICK },
+	{  1, ATTACKE_KARATESCHLAG },
+	{  1, ATTACKE_SILBERBLICK },
+	{ 20, ATTACKE_FUSSKICK },
+	{ 25, ATTACKE_SILBERBLICK },
+	{ 36, ATTACKE_ENERGIEFOKUS },
+	{ 44, ATTACKE_GEOWURF },
+	{ 52, ATTACKE_UEBERROLLER }
+};
+const struct Learnables MachomeiLearns = { 8, MachomeiLearn };
+
 const struct Learnable MaschockLearn[] = {
 	{  1, ATTACKE_FUSSKICK },
 	{  1, ATTACKE_KARATESCHLAG },
@@ -1714,132 +1726,132 @@ const struct Learnable BisasamLearn[] = {
 const struct Learnables BisasamLearns = { 9, BisasamLearn};
 
 //												dex  name			typ1		typ2		cr   exp   hp  atk  def  sat  sdf  spd  EXP T   evo
-extern const struct PokemonBase Mew			= { 151, "Mew",			PSYCHO,		KEINTYP,	 45,  64, 100, 100, 100, 100, 100, 100, EXP_T4, 0, NULL };
+extern const struct PokemonBase Mew			= { 151, "Mew",			PSYCHO,		KEINTYP,	 45,  64, 100, 100, 100, 100, 100, 100, EXP_T4, 0, NULL,			&MewLearns };
 
-extern const struct PokemonBase Mewtu		= { 150, "Mewtu",		PSYCHO,		KEINTYP,	  3, 220, 106, 110,  90, 154,  90, 130, EXP_T5, 0, NULL };
+extern const struct PokemonBase Mewtu		= { 150, "Mewtu",		PSYCHO,		KEINTYP,	  3, 220, 106, 110,  90, 154,  90, 130, EXP_T5, 0, NULL,			&MewtuLearns };
 
-extern const struct PokemonBase Dragoran	= { 149, "Dragoran",	DRACHE,		FLUG,		 45, 218,  91, 134,  95, 100, 100,  80, EXP_T5, 0, NULL };
+extern const struct PokemonBase Dragoran	= { 149, "Dragoran",	DRACHE,		FLUG,		 45, 218,  91, 134,  95, 100, 100,  80, EXP_T5, 0, NULL,			&DragoranLearns };
 
 const struct Evolution  DragonirEvo[]	= { 55, &Dragoran };
-extern const struct PokemonBase Dragonir	= { 148, "Dragonir",	DRACHE,		KEINTYP,	 45, 144,  61,  84,  65,  70,  70,  70, EXP_T5, 1, DragonirEvo };
+extern const struct PokemonBase Dragonir	= { 148, "Dragonir",	DRACHE,		KEINTYP,	 45, 144,  61,  84,  65,  70,  70,  70, EXP_T5, 1, DragonirEvo,		&DragonirLearns };
 
 const struct Evolution  DratiniEvo[]	= { 30, &Dragonir };
-extern const struct PokemonBase Dratini		= { 147, "Dratini",		DRACHE,		KEINTYP,	 45,  67,  41,  64,  45,  50,  50,  50, EXP_T5, 1, DratiniEvo };
+extern const struct PokemonBase Dratini		= { 147, "Dratini",		DRACHE,		KEINTYP,	 45,  67,  41,  64,  45,  50,  50,  50, EXP_T5, 1, DratiniEvo,		&DratiniLearns };
 
-extern const struct PokemonBase Lavados		= { 146, "Lavados",		FEUER,		FLUG,		  3, 217,  90, 100,  90, 125,  85,  90, EXP_T5, 0, NULL };
+extern const struct PokemonBase Lavados		= { 146, "Lavados",		FEUER,		FLUG,		  3, 217,  90, 100,  90, 125,  85,  90, EXP_T5, 0, NULL,			&LavadosLearns };
 
-extern const struct PokemonBase Zapdos		= { 145, "Zapdos",		ELEKTRO,	FLUG,		  3, 216,  90,  90,  85, 125,  90, 100, EXP_T5, 0, NULL };
+extern const struct PokemonBase Zapdos		= { 145, "Zapdos",		ELEKTRO,	FLUG,		  3, 216,  90,  90,  85, 125,  90, 100, EXP_T5, 0, NULL,			&ZapdosLearns };
 
-extern const struct PokemonBase Arktos		= { 144, "Arktos",		EIS,		FLUG,		  3, 215,  90,  85, 100,  95, 125,  85, EXP_T5, 0, NULL };
+extern const struct PokemonBase Arktos		= { 144, "Arktos",		EIS,		FLUG,		  3, 215,  90,  85, 100,  95, 125,  85, EXP_T5, 0, NULL,			&ArktosLearns };
 
-extern const struct PokemonBase Relaxo		= { 143, "Relaxo",		NORMAL,		KEINTYP,	 25, 154, 160, 110,  65,  65, 110,  30, EXP_T5, 0, NULL };
+extern const struct PokemonBase Relaxo		= { 143, "Relaxo",		NORMAL,		KEINTYP,	 25, 154, 160, 110,  65,  65, 110,  30, EXP_T5, 0, NULL,			&RelaxoLearns };
 
-extern const struct PokemonBase Aerodactyl	= { 142, "Aerodactyl",	STEIN,		FLUG,		 45, 202,  80, 105,  65,  60,  75, 130, EXP_T5, 0, NULL };
+extern const struct PokemonBase Aerodactyl	= { 142, "Aerodactyl",	STEIN,		FLUG,		 45, 202,  80, 105,  65,  60,  75, 130, EXP_T5, 0, NULL,			&AerodactylLearns };
 
-extern const struct PokemonBase Kabutops	= { 141, "Kabutops",	STEIN,		WASSER,		 45, 199,  60, 115, 105,  65,  70,  80, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kabutops	= { 141, "Kabutops",	STEIN,		WASSER,		 45, 199,  60, 115, 105,  65,  70,  80, EXP_T3, 0, NULL,			&KabutopsLearns };
 
 const struct Evolution  KabutoEvo[]		= { 40, &Kabutops };
-extern const struct PokemonBase Kabuto		= { 140, "Kabuto",		STEIN,		WASSER,		 45,  99,  30,  80,  90,  55,  45,  55, EXP_T3, 1, KabutoEvo };
+extern const struct PokemonBase Kabuto		= { 140, "Kabuto",		STEIN,		WASSER,		 45,  99,  30,  80,  90,  55,  45,  55, EXP_T3, 1, KabutoEvo,		&KabutoLearns };
 
-extern const struct PokemonBase Amoroso		= { 139, "Amoroso",		STEIN,		WASSER,		 45, 199,  70,  60, 125, 115,  70,  55, EXP_T3, 0, NULL };
+extern const struct PokemonBase Amoroso		= { 139, "Amoroso",		STEIN,		WASSER,		 45, 199,  70,  60, 125, 115,  70,  55, EXP_T3, 0, NULL,			&AmorosoLearns };
 
 const struct Evolution  AmonitasEvo[]	= { 40, &Amoroso };
-extern const struct PokemonBase Amonitas	= { 138, "Amonitas",	STEIN,		WASSER,		 45,  99,  35,  40, 100,  90,  55,  35, EXP_T3, 1, AmonitasEvo };
+extern const struct PokemonBase Amonitas	= { 138, "Amonitas",	STEIN,		WASSER,		 45,  99,  35,  40, 100,  90,  55,  35, EXP_T3, 1, AmonitasEvo,		&AmonitasLearns };
 
-extern const struct PokemonBase Porygon		= { 137, "Porygon",		NORMAL,		KEINTYP,	 45, 130,  65,  60,  70,  85,  75,  40, EXP_T3, 0, NULL };
+extern const struct PokemonBase Porygon		= { 137, "Porygon",		NORMAL,		KEINTYP,	 45, 130,  65,  60,  70,  85,  75,  40, EXP_T3, 0, NULL,			&PorygonLearns };
 
-extern const struct PokemonBase Flamara		= { 136, "Flamara",		FEUER,		KEINTYP,	 45, 198,  65, 130,  60,  95, 110,  65, EXP_T3, 0, NULL };
+extern const struct PokemonBase Flamara		= { 136, "Flamara",		FEUER,		KEINTYP,	 45, 198,  65, 130,  60,  95, 110,  65, EXP_T3, 0, NULL,			&FlamaraLearns };
 
-extern const struct PokemonBase Blitza		= { 135, "Blitza",		ELEKTRO,	KEINTYP,	 45, 197,  65,  65,  60, 110,  95, 130, EXP_T3, 0, NULL };
+extern const struct PokemonBase Blitza		= { 135, "Blitza",		ELEKTRO,	KEINTYP,	 45, 197,  65,  65,  60, 110,  95, 130, EXP_T3, 0, NULL,			&BlitzaLearns };
 
-extern const struct PokemonBase Aquana		= { 134, "Aquana",		WASSER,		KEINTYP,	 45, 196, 130,  65,  60, 110,  95,  65, EXP_T3, 0, NULL };
+extern const struct PokemonBase Aquana		= { 134, "Aquana",		WASSER,		KEINTYP,	 45, 196, 130,  65,  60, 110,  95,  65, EXP_T3, 0, NULL,			&AquanaLearns };
 
 const struct Evolution EvoliEvo[]		= { 
 											{ STONE_FIRE, &Flamara },
 											{ STONE_THUNDER, &Blitza },
 											{ STONE_WATER, &Aquana } 
 										};
-extern const struct PokemonBase Evoli		= { 133, "Evoli",		NORMAL,		KEINTYP,	 45,  92,  55,  55,  50,  45,  65,  55, EXP_T3, 3, EvoliEvo };
+extern const struct PokemonBase Evoli		= { 133, "Evoli",		NORMAL,		KEINTYP,	 45,  92,  55,  55,  50,  45,  65,  55, EXP_T3, 3, EvoliEvo,		&EvoliLearns };
 
-extern const struct PokemonBase Ditto		= { 132, "Ditto",		NORMAL,		KEINTYP,	 35,  61,  48,  48,  48,  48,  48,  48, EXP_T3, 0, NULL };
+extern const struct PokemonBase Ditto		= { 132, "Ditto",		NORMAL,		KEINTYP,	 35,  61,  48,  48,  48,  48,  48,  48, EXP_T3, 0, NULL,			&DittoLearns };
 
-extern const struct PokemonBase Lapras		= { 131, "Lapras",		WASSER,		EIS,		 45, 219, 130,  85,  80,  85,  95,  60, EXP_T5, 0, NULL };
+extern const struct PokemonBase Lapras		= { 131, "Lapras",		WASSER,		EIS,		 45, 219, 130,  85,  80,  85,  95,  60, EXP_T5, 0, NULL,			&LaprasLearns };
 
-extern const struct PokemonBase Garados		= { 130, "Garados",		WASSER,		FLUG,		 45, 214,  95, 125,  79,  60, 100,  81, EXP_T5, 0, NULL };
+extern const struct PokemonBase Garados		= { 130, "Garados",		WASSER,		FLUG,		 45, 214,  95, 125,  79,  60, 100,  81, EXP_T5, 0, NULL,			&GaradosLearns };
 
 const struct Evolution  KarpadorEvo[]	= { 20, &Garados };
-extern const struct PokemonBase Karpador	= { 129, "Karpador",	WASSER,		KEINTYP,	255,  20,  20,  10,  55,  15,  20,  80, EXP_T5, 1, KarpadorEvo };
+extern const struct PokemonBase Karpador	= { 129, "Karpador",	WASSER,		KEINTYP,	255,  20,  20,  10,  55,  15,  20,  80, EXP_T5, 1, KarpadorEvo,		&KarpadorLearns };
 
-extern const struct PokemonBase Tauros		= { 128, "Tauros",		NORMAL,		KEINTYP,	 45, 211,  75, 100,  95,  40,  70, 110, EXP_T5, 0, NULL };
+extern const struct PokemonBase Tauros		= { 128, "Tauros",		NORMAL,		KEINTYP,	 45, 211,  75, 100,  95,  40,  70, 110, EXP_T5, 0, NULL,			&TaurosLearns };
 
-extern const struct PokemonBase Pinsir		= { 127, "Pinsir",		KAEFER,		KEINTYP,	 45, 200,  65, 125, 100,  55,  70,  85, EXP_T5, 0, NULL };
+extern const struct PokemonBase Pinsir		= { 127, "Pinsir",		KAEFER,		KEINTYP,	 45, 200,  65, 125, 100,  55,  70,  85, EXP_T5, 0, NULL,			&PinsirLearns };
 
-extern const struct PokemonBase Magmar		= { 126, "Magmar",		FEUER,		KEINTYP,	 45, 167,  65,  95,  57, 100,  85,  93, EXP_T3, 0, NULL };
+extern const struct PokemonBase Magmar		= { 126, "Magmar",		FEUER,		KEINTYP,	 45, 167,  65,  95,  57, 100,  85,  93, EXP_T3, 0, NULL,			&MagmarLearns };
 
-extern const struct PokemonBase Elektek		= { 125, "Elektek",		ELEKTRO,	KEINTYP,	 45, 156,  65,  83,  57,  95,  85, 105, EXP_T3, 0, NULL };
+extern const struct PokemonBase Elektek		= { 125, "Elektek",		ELEKTRO,	KEINTYP,	 45, 156,  65,  83,  57,  95,  85, 105, EXP_T3, 0, NULL,			&ElektekLearns };
 
-extern const struct PokemonBase Rossana		= { 124, "Rossana",		EIS,		PSYCHO,		 45, 137,  65,  50,  35, 115,  95,  95, EXP_T3, 0, NULL };
+extern const struct PokemonBase Rossana		= { 124, "Rossana",		EIS,		PSYCHO,		 45, 137,  65,  50,  35, 115,  95,  95, EXP_T3, 0, NULL,			&RossanaLearns };
 
-extern const struct PokemonBase Sichlor		= { 123, "Sichlor",		KAEFER,		FLUG,		 45, 187,  70, 110,  80,  55,  80, 105, EXP_T3, 0, NULL };
+extern const struct PokemonBase Sichlor		= { 123, "Sichlor",		KAEFER,		FLUG,		 45, 187,  70, 110,  80,  55,  80, 105, EXP_T3, 0, NULL,			&SichlorLearns };
 
-extern const struct PokemonBase Pantimos	= { 122, "Pantimos",	PSYCHO,		KEINTYP,	 45, 136,  40,  45,  65, 100, 120,  90, EXP_T3, 0, NULL };
+extern const struct PokemonBase Pantimos	= { 122, "Pantimos",	PSYCHO,		KEINTYP,	 45, 136,  40,  45,  65, 100, 120,  90, EXP_T3, 0, NULL,			&PantimosLearns };
 
-extern const struct PokemonBase Starmie		= { 121, "Starmie",		WASSER,		PSYCHO,		 60, 207,  60,  75,  85, 100,  85, 115, EXP_T5, 0, NULL };
+extern const struct PokemonBase Starmie		= { 121, "Starmie",		WASSER,		PSYCHO,		 60, 207,  60,  75,  85, 100,  85, 115, EXP_T5, 0, NULL,			&StarmieLearns };
 
 const struct Evolution  SternduEvo[]	= { STONE_WATER, &Starmie };
-extern const struct PokemonBase Sterndu		= { 120, "Sterndu",		WASSER,		KEINTYP,	225, 106,  30,  45,  55,  70,  55,  85, EXP_T5, 1, SternduEvo };
+extern const struct PokemonBase Sterndu		= { 120, "Sterndu",		WASSER,		KEINTYP,	225, 106,  30,  45,  55,  70,  55,  85, EXP_T5, 1, SternduEvo,		&SternduLearns };
 
-extern const struct PokemonBase Golking		= { 119, "Golking",		WASSER,		KEINTYP,	 60, 170,  80,  92,  65,  65,  80,  68, EXP_T3, 0, NULL };
+extern const struct PokemonBase Golking		= { 119, "Golking",		WASSER,		KEINTYP,	 60, 170,  80,  92,  65,  65,  80,  68, EXP_T3, 0, NULL,			&GolkingLearns };
 
 const struct Evolution  GoldiniEvo[]	= { 33, &Golking };
-extern const struct PokemonBase Goldini		= { 118, "Goldini",		WASSER,		KEINTYP,	225, 111,  45,  67,  60,  35,  50,  63, EXP_T3, 1, GoldiniEvo };
+extern const struct PokemonBase Goldini		= { 118, "Goldini",		WASSER,		KEINTYP,	225, 111,  45,  67,  60,  35,  50,  63, EXP_T3, 1, GoldiniEvo,		&GoldiniLearns };
 
-extern const struct PokemonBase Seemon		= { 117, "Seemon",		WASSER,		KEINTYP,	 75, 155,  55,  65,  95,  95,  45,  85, EXP_T3, 0, NULL };
+extern const struct PokemonBase Seemon		= { 117, "Seemon",		WASSER,		KEINTYP,	 75, 155,  55,  65,  95,  95,  45,  85, EXP_T3, 0, NULL,			&SeemonLearns };
 
 const struct Evolution  SeeperEvo[]		= { 32, &Seemon };
-extern const struct PokemonBase Seeper		= { 116, "Seeper",		WASSER,		KEINTYP,	225,  83,  30,  40,  70,  70,  25,  60, EXP_T3, 1, SeeperEvo };
+extern const struct PokemonBase Seeper		= { 116, "Seeper",		WASSER,		KEINTYP,	225,  83,  30,  40,  70,  70,  25,  60, EXP_T3, 1, SeeperEvo,		&SeeperLearns };
 
-extern const struct PokemonBase Kangama		= { 115, "Kangama",		NORMAL,		KEINTYP,	 45, 175, 105,  95,  80,  40,  80,  90, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kangama		= { 115, "Kangama",		NORMAL,		KEINTYP,	 45, 175, 105,  95,  80,  40,  80,  90, EXP_T3, 0, NULL,			&KangamaLearns };
 
-extern const struct PokemonBase Tangela		= { 114, "Tangela",		PFLANZE,	KEINTYP,	 45, 166,  65,  55, 115, 100,  40,  60, EXP_T3, 0, NULL };
+extern const struct PokemonBase Tangela		= { 114, "Tangela",		PFLANZE,	KEINTYP,	 45, 166,  65,  55, 115, 100,  40,  60, EXP_T3, 0, NULL,			&TangelaLearns };
 
-extern const struct PokemonBase Chaneira	= { 113, "Chaneira",	NORMAL,		KEINTYP,	 30, 255, 250,   5,   5,  35, 105,  50, EXP_T2, 0, NULL };
+extern const struct PokemonBase Chaneira	= { 113, "Chaneira",	NORMAL,		KEINTYP,	 30, 255, 250,   5,   5,  35, 105,  50, EXP_T2, 0, NULL,			&ChaneiraLearns };
 
-extern const struct PokemonBase Rizeros		= { 112, "Rizeros",		BODEN,		STEIN,		 60, 204, 105, 130, 120,  45,  45,  40, EXP_T5, 0, NULL };
+extern const struct PokemonBase Rizeros		= { 112, "Rizeros",		BODEN,		STEIN,		 60, 204, 105, 130, 120,  45,  45,  40, EXP_T5, 0, NULL,			&RizerosLearns };
 
 const struct Evolution  RihornEvo[]		= { 42, &Rizeros };
-extern const struct PokemonBase Rihorn		= { 111, "Rihorn",		BODEN,		STEIN,		120, 135,  80,  85,  95,  30,  30,  25, EXP_T5, 1, RihornEvo };
+extern const struct PokemonBase Rihorn		= { 111, "Rihorn",		BODEN,		STEIN,		120, 135,  80,  85,  95,  30,  30,  25, EXP_T5, 1, RihornEvo,		&RihornLearns };
 
-extern const struct PokemonBase Smogmog		= { 110, "Smogmog",		GIFT,		KEINTYP,	 60, 173,  65,  90, 120,  85,  70,  60, EXP_T3, 0, NULL };
+extern const struct PokemonBase Smogmog		= { 110, "Smogmog",		GIFT,		KEINTYP,	 60, 173,  65,  90, 120,  85,  70,  60, EXP_T3, 0, NULL,			&SmogmogLearns };
 
 const struct Evolution  SmogonEvo[]		= { 35, &Smogmog };
-extern const struct PokemonBase Smogon		= { 109, "Smogon",		GIFT,		KEINTYP,	190, 114,  40,  65,  95,  60,  45,  35, EXP_T3, 1, SmogonEvo };
+extern const struct PokemonBase Smogon		= { 109, "Smogon",		GIFT,		KEINTYP,	190, 114,  40,  65,  95,  60,  45,  35, EXP_T3, 1, SmogonEvo,		&SmogonLearns };
 
-extern const struct PokemonBase Schlurp		= { 108, "Schlurp",		NORMAL,		KEINTYP,	 45, 127,  90,  55,  75,  60,  75,  30, EXP_T3, 0, NULL };
+extern const struct PokemonBase Schlurp		= { 108, "Schlurp",		NORMAL,		KEINTYP,	 45, 127,  90,  55,  75,  60,  75,  30, EXP_T3, 0, NULL,			&SchlurpLearns };
 
-extern const struct PokemonBase Nockchan	= { 107, "Nockchan",	KAMPF,		KEINTYP,	 45, 140,  50, 105,  79,  35, 110,  76, EXP_T3, 0, NULL };
+extern const struct PokemonBase Nockchan	= { 107, "Nockchan",	KAMPF,		KEINTYP,	 45, 140,  50, 105,  79,  35, 110,  76, EXP_T3, 0, NULL,			&NockchanLearns };
 
-extern const struct PokemonBase Kicklee		= { 106, "Kicklee",		KAMPF,		KEINTYP,	 45, 139,  50, 120,  53,  35, 110,  87, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kicklee		= { 106, "Kicklee",		KAMPF,		KEINTYP,	 45, 139,  50, 120,  53,  35, 110,  87, EXP_T3, 0, NULL,			&KickleeLearns };
 
-extern const struct PokemonBase Knogga		= { 105, "Knogga",		BODEN,		KEINTYP,	 75, 124,  60,  80, 110,  50,  80,  45, EXP_T3, 0, NULL };
+extern const struct PokemonBase Knogga		= { 105, "Knogga",		BODEN,		KEINTYP,	 75, 124,  60,  80, 110,  50,  80,  45, EXP_T3, 0, NULL,			&KnoggaLearns };
 
 const struct Evolution  TragossoEvo[]	= { 28, &Knogga };
-extern const struct PokemonBase Tragosso	= { 104, "Tragosso",	BODEN,		KEINTYP,	190,  87,  50,  50,  95,  40,  50,  35, EXP_T3, 1, TragossoEvo };
+extern const struct PokemonBase Tragosso	= { 104, "Tragosso",	BODEN,		KEINTYP,	190,  87,  50,  50,  95,  40,  50,  35, EXP_T3, 1, TragossoEvo,		&TragossoLearns };
 
-extern const struct PokemonBase Kokowei		= { 103, "Kokowei",		PFLANZE,	PSYCHO,		 45, 212,  95,  95,  85, 125,  75,  55, EXP_T5, 0, NULL };
+extern const struct PokemonBase Kokowei		= { 103, "Kokowei",		PFLANZE,	PSYCHO,		 45, 212,  95,  95,  85, 125,  75,  55, EXP_T5, 0, NULL,			&KokoweiLearns };
 
 const struct Evolution  OweiEvo[]		= { STONE_LEAF, &Kokowei };
-extern const struct PokemonBase Owei		= { 102, "Owei",		PFLANZE,	PSYCHO,		 90,  98,  60,  40,  80,  60,  45,  40, EXP_T5, 1, OweiEvo };
+extern const struct PokemonBase Owei		= { 102, "Owei",		PFLANZE,	PSYCHO,		 90,  98,  60,  40,  80,  60,  45,  40, EXP_T5, 1, OweiEvo,			&OweiLearns };
 
-extern const struct PokemonBase Lektrobal	= { 101, "Lektrobal",	ELEKTRO,	KEINTYP,	 70, 150,  60,  50,  70,  80,  80, 150, EXP_T3, 0, NULL };
+extern const struct PokemonBase Lektrobal	= { 101, "Lektrobal",	ELEKTRO,	KEINTYP,	 70, 150,  60,  50,  70,  80,  80, 150, EXP_T3, 0, NULL,			&LektrobalLearns };
 
 const struct Evolution  VoltobalEvo[]	= { 30, &Lektrobal };
-extern const struct PokemonBase Voltobal	= { 100, "Voltobal",	ELEKTRO,	KEINTYP,	 190, 103,  40,  30,  50,  55,  55, 100, EXP_T3, 1, VoltobalEvo };
+extern const struct PokemonBase Voltobal	= { 100, "Voltobal",	ELEKTRO,	KEINTYP,	 190, 103,  40,  30,  50,  55,  55, 100, EXP_T3, 1, VoltobalEvo,	&VoltobalLearns };
 
-extern const struct PokemonBase Kingler		= {  99, "Kingler",		WASSER,		KEINTYP,	 60, 206,  55, 130, 115,  50,  50,  75, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kingler		= {  99, "Kingler",		WASSER,		KEINTYP,	 60, 206,  55, 130, 115,  50,  50,  75, EXP_T3, 0, NULL,			&KinglerLearns };
 
 const struct Evolution  KrabbyEvo[]		= { 28, &Kingler };
-extern const struct PokemonBase Krabby		= {  98, "Krabby",		WASSER,		KEINTYP,	225, 115,  30, 105,  90,  25,  25,  50, EXP_T3, 1, KrabbyEvo };
+extern const struct PokemonBase Krabby		= {  98, "Krabby",		WASSER,		KEINTYP,	225, 115,  30, 105,  90,  25,  25,  50, EXP_T3, 1, KrabbyEvo,		&KrabbyLearns };
 
 extern const struct PokemonBase Hypno		= {  97, "Hypno",		PSYCHO,		KEINTYP,	 75, 165,  85,  73,  70,  73, 115,  67, EXP_T3, 0, NULL,			&HypnoLearns };
 
@@ -1914,7 +1926,7 @@ extern const struct PokemonBase Ultrigaria	= {  70, "Ultrigaria",	PFLANZE,	GIFT,
 const struct Evolution KnofensaEvo[]	= { 21, &Ultrigaria };
 extern const struct PokemonBase Knofensa	= {  69, "Knofensa",	PFLANZE,	GIFT,		255,  84,  50,  75,  35,  70,  30,  40, EXP_T4, 1, KnofensaEvo,		&KnofensaLearns };
 
-extern const struct PokemonBase Machomei	= {  68, "Machomei",	KAMPF,		KEINTYP,	 45, 193,  90, 130,  80,  65,  85,  55, EXP_T4, 0, NULL,			&Machomei };
+extern const struct PokemonBase Machomei	= {  68, "Machomei",	KAMPF,		KEINTYP,	 45, 193,  90, 130,  80,  65,  85,  55, EXP_T4, 0, NULL,			&MachomeiLearns };
 
 const struct Evolution MaschockEvo[]	= { EVO_TRADE, &Machomei };
 extern const struct PokemonBase Maschock	= {  67, "Maschock",	KAMPF,		KEINTYP,	 90, 146,  80, 100,  70,  50,  60,  45, EXP_T4, 1, MaschockEvo,		&MaschockLearns };
