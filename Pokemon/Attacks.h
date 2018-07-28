@@ -176,12 +176,12 @@
 
 typedef struct Attacke{
 	const char *name;
-	const int typ;
-	const int DMG;
-	const int precision;
-	const int AP;
-	const char priority;	
-	const int klasse;
+	const byte typ;
+	const byte DMG;
+	const byte precision;
+	const byte AP;
+	const byte priority;	
+	const byte klasse;
 }Attacke;
 // SP = Schadenspunkte
 // TQ = Trefferquote

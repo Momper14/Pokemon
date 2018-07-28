@@ -4,6 +4,6 @@
 #include "Util.h"
 #include "attacks.h"
 
-unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID);
+uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID);
 
-void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger,int attackID);
+void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID);

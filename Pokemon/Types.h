@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Util.h"
+
 // Positionen des Typs im Array
 #define NORMAL   0
 #define KAMPF    1
@@ -28,4 +30,4 @@
 #define EFFEKT_IMMUN 0
 
 // Multiplikator ausrechnen
-unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType2, unsigned long *damage);
+byte getMultiplikator(byte attackType, byte defenseType1, byte defenseType2, ulong *damage);
