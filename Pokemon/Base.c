@@ -1,6 +1,626 @@
 #include "Base.h"
 #include "Attacks.h"
 
+const struct Learnable MewLearn[] = {
+	{ 1, ATTACKE_PFUND},
+	{10, ATTACKE_WANDLER},
+	{20, ATTACKE_MEGAHIEB},
+	{30, ATTACKE_METRONOM},
+	{40, ATTACKE_PSYCHOKINESE}
+};
+const struct Learnables MewLearns = {5 , MewLearn};
+
+const struct Learnable MewtwoLearn[] = {
+	{ 1, ATTACKE_AUSSETZER },
+	{ 1,ATTACKE_KONFUSION },
+	{ 1,ATTACKE_STERNSCHAUER },
+	{ 1,ATTACKE_PSYCHOKINESE },
+	{ 63, ATTACKE_BARRIERE },
+	{ 66, ATTACKE_PSYCHOKINESE },
+	{ 70,ATTACKE_GENESUNG },
+	{ 75,ATTACKE_WEISSNEBEL },
+	{ 81, ATTACKE_AMNESIE }
+};
+const struct Learnables MewtwoLearns = {9,MewtwoLearn};
+
+const struct Learnable DragoranLearn[] = {
+	{1, ATTACKE_AGILITAET},
+	{1, ATTACKE_DONNERWELLE},
+	{1, ATTACKE_SILBERBLICK},
+	{1, ATTACKE_WICKEL},
+	{10,ATTACKE_DONNERWELLE},
+	{20,ATTACKE_AGILITAET},
+	{35,ATTACKE_SLAM},
+	{45,ATTACKE_DRACHENWUT},
+	{60,ATTACKE_HYPERSTRAHL}
+};
+const struct Learnables DragoranLearns = { 9,DragoranLearn };
+
+const struct Learnable DragonirLearn[] = {
+	{1 , ATTACKE_DONNERWELLE},
+	{1 , ATTACKE_SILBERBLICK},
+	{1 , ATTACKE_WICKEL },
+	{10, ATTACKE_DONNERWELLE},
+	{20, ATTACKE_AGILITAET},
+	{35, ATTACKE_SLAM},
+	{45, ATTACKE_DRACHENWUT},
+	{55, ATTACKE_HYPERSTRAHL}
+};
+const struct Learnables DragonirLearns = { 8,DragonirLearn };
+
+const struct Learnable DratiniLearn[] = {
+	{ 1,  ATTACKE_WICKEL },
+	{ 1,  ATTACKE_SILBERBLICK},
+	{ 10,  ATTACKE_DONNERWELLE},
+	{ 20,  ATTACKE_AGILITAET},
+	{ 30,  ATTACKE_SLAM},
+	{ 40,  ATTACKE_DRACHENWUT},
+	{ 50,  ATTACKE_HYPERSTRAHL}
+};
+const struct Learnables DratiniLearns = { 7,DratiniLearn };
+
+const struct Learnable LavadosLearn[] = {
+	{1,ATTACKE_SCHNABEL},
+	{1,ATTACKE_FEUERWIRBEL},
+	{51, ATTACKE_SILBERBLICK},
+	{55, ATTACKE_AGILITAET},
+	{60,ATTACKE_HIMMELSFEGER}
+};
+const struct Learnables LavadosLearns = {5,LavadosLearn };
+
+const struct Learnable ZapdosLearn[] = {
+	{ 1,  ATTACKE_BOHRSCHNABEL },
+	{ 1,  ATTACKE_DONNERSCHOCK },
+	{ 51, ATTACKE_DONNER },
+	{ 55, ATTACKE_AGILITAET },
+	{ 60, ATTACKE_LICHTSCHILD }
+};
+const struct Learnables ZapdosLearns = { 5,ZapdosLearn };
+
+const struct Learnable ArktosLearn[] = {
+	{ 1,  ATTACKE_EISSTRAHL },
+	{ 1,  ATTACKE_SCHNABEL },
+	{ 51, ATTACKE_BLIZZARD },
+	{ 55, ATTACKE_AGILITAET },
+	{ 60, ATTACKE_WEISSNEBEL }
+};
+const struct Learnables ArktosLearns = { 5,ArktosLearn };
+
+const struct Learnable RelaxoLearn[] = {
+	{ 1 , ATTACKE_KOPFNUSS },
+	{ 1 , ATTACKE_AMNESIE },
+	{ 1 , ATTACKE_ERHOLUNG },
+	{ 35, ATTACKE_BODYSLAM },
+	{ 41, ATTACKE_HAERTNER },
+	{ 48, ATTACKE_RISIKOTACKLE},
+	{ 56, ATTACKE_HYPERSTRAHL}
+};
+const struct Learnables RelaxoLearns = { 7,RelaxoLearn };
+
+const struct Learnable AerodactylLearn[] = {
+	{1, ATTACKE_AGILITAET},
+	{1,ATTACKE_FLUEGELSCHLAG},
+	{33,ATTACKE_SUPERSCHALL},
+	{38,ATTACKE_BISS},
+	{45, ATTACKE_BODYCHECK},
+	{54,ATTACKE_HYPERSTRAHL}
+};
+const struct Learnables AerodactylLearns = {6,AerodactylLearn };
+
+const struct Learnable KabutopsLearn[] = {
+	{1,ATTACKE_KRATZER},
+	{1,ATTACKE_ABSORBER},
+	{1,ATTACKE_HAERTNER},
+	{34,ATTACKE_ABSORBER},
+	{39,ATTACKE_SCHLITZER},
+	{46,ATTACKE_SILBERBLICK},
+	{53,ATTACKE_HYDROPUMPE}
+};
+const struct Learnables KabutopsLearns = { 7,KabutopsLearn };
+
+const struct Learnable KabutoLearn[] = {
+	{ 1,ATTACKE_KRATZER },
+	{ 1,ATTACKE_HAERTNER },
+	{ 34,ATTACKE_ABSORBER },
+	{ 39,ATTACKE_SCHLITZER },
+	{ 44,ATTACKE_SILBERBLICK },
+	{ 49,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables KabutoLearns = { 6,KabutoLearn };
+
+const struct Learnable AmorosoLearn[] = {
+	{ 1,ATTACKE_AQUAKNARRE },
+	{ 1,ATTACKE_HORNATTACKE },
+	{ 1,ATTACKE_PANZERSCHUTZ },
+	{ 34,ATTACKE_HORNATTACKE},
+	{ 39,ATTACKE_SILBERBLICK },
+	{ 44,ATTACKE_DORNKANONE },
+	{ 49,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables AmorosoLearns = { 7,AmorosoLearn };
+
+const struct Learnable AmonitasLearn[] = {
+	{ 1,ATTACKE_AQUAKNARRE },
+	{ 1,ATTACKE_PANZERSCHUTZ },
+	{ 34,ATTACKE_HORNATTACKE },
+	{ 39,ATTACKE_SILBERBLICK },
+	{ 44,ATTACKE_DORNKANONE },
+	{ 49,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables AmonitasLearns = { 6,AmonitasLearn };
+
+const struct Learnable PorygonLearn[] = {
+	{ 1 ,ATTACKE_TACKLE },
+	{ 1 ,ATTACKE_SCHAERFER },
+	{ 1 ,ATTACKE_UMWANDLUNG },
+	{ 23,ATTACKE_PSYSTRAHL },
+	{ 28,ATTACKE_GENESUNG },
+	{ 35,ATTACKE_AGILITAET },
+	{ 42,ATTACKE_TRIPLETTE}
+};
+const struct Learnables PorygonLearns = { 7,PorygonLearn };
+
+const struct Learnable FlamaraLearn[] = {
+	{ 1 ,ATTACKE_GLUT },
+	{ 1 ,ATTACKE_RUCKZUCKHIEB },
+	{ 1 ,ATTACKE_SANDWIRBEL },
+	{ 1,ATTACKE_TACKLE },
+	{ 27,ATTACKE_RUCKZUCKHIEB },
+	{ 31,ATTACKE_GLUT },
+	{ 37,ATTACKE_RUTENSCHLAG },
+	{ 40,ATTACKE_BISS },
+	{ 42,ATTACKE_SILBERBLICK },
+	{ 44,ATTACKE_FEUERWIRBEL },
+	{ 48,ATTACKE_RASEREI },
+	{ 54,ATTACKE_FLAMMENWURF }
+};
+const struct Learnables FlamaraLearns = { 12,FlamaraLearn };
+
+const struct Learnable BlitzaLearn[] = {
+	{ 1 ,ATTACKE_DONNERSCHOCK },
+	{ 1 ,ATTACKE_RUCKZUCKHIEB },
+	{ 1 ,ATTACKE_SANDWIRBEL },
+	{ 1 ,ATTACKE_TACKLE },
+	{ 27,ATTACKE_RUCKZUCKHIEB },
+	{ 31,ATTACKE_DONNERSCHOCK },
+	{ 37,ATTACKE_RUTENSCHLAG },
+	{ 40,ATTACKE_DONNERWELLE },
+	{ 42,ATTACKE_DOPPELKICK },
+	{ 44,ATTACKE_AGILITAET },
+	{ 48,ATTACKE_NADELRAKETE },
+	{ 54,ATTACKE_DONNER }
+};
+const struct Learnables BlitzaLearns = { 12,BlitzaLearn };
+
+const struct Learnable AquanaLearn[] = {
+	{ 1 ,ATTACKE_AQUAKNARRE },
+	{ 1 ,ATTACKE_RUCKZUCKHIEB },
+	{ 1 ,ATTACKE_SANDWIRBEL },
+	{ 1 ,ATTACKE_TACKLE },
+	{ 27,ATTACKE_RUCKZUCKHIEB },
+	{ 31,ATTACKE_AQUAKNARRE },
+	{ 37,ATTACKE_RUTENSCHLAG },
+	{ 40,ATTACKE_BISS },
+	{ 42,ATTACKE_SAUREPANZER },
+	{ 44,ATTACKE_DUNKELNEBEL },
+	{ 48,ATTACKE_WEISSNEBEL },
+	{ 54,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables AquanaLearns = { 12,AquanaLearn };
+
+const struct Learnable EvoliLearn[] = {
+	{ 1 ,ATTACKE_SANDWIRBEL },
+	{ 1 ,ATTACKE_TACKLE },
+	{ 27,ATTACKE_RUCKZUCKHIEB },
+	{ 31,ATTACKE_RUTENSCHLAG },
+	{ 37,ATTACKE_BISS },
+	{ 45,ATTACKE_BODYCHECK }	
+};
+const struct Learnables EvoliLearns = { 6,EvoliLearn };
+
+const struct Learnable DittoLearn[] = {
+	{ 1 ,ATTACKE_WANDLER }
+};
+const struct Learnables DittoLearns = { 1,DittoLearn };
+
+const struct Learnable LaprasLearn[] = {
+	{ 1 ,ATTACKE_AQUAKNARRE },
+	{ 1 ,ATTACKE_HEULER },
+	{ 16,ATTACKE_GESANG },
+	{ 20,ATTACKE_WEISSNEBEL },
+	{ 25,ATTACKE_BODYSLAM },
+	{ 31,ATTACKE_KONFUSTRAHL },
+	{ 38,ATTACKE_EISSTRAHL},
+	{ 46,ATTACKE_HYDROPUMPE}
+};
+const struct Learnables LaprasLearns = { 8,LaprasLearn };
+
+const struct Learnable GaradosLearn[] = {
+	{ 1 ,ATTACKE_BISS },
+	{ 1 ,ATTACKE_DRACHENWUT },
+	{ 1,ATTACKE_SILBERBLICK },
+	{ 1,ATTACKE_HYDROPUMPE },
+	{ 1,ATTACKE_TACKLE }, //Nur in der Gelben Edition
+	{ 20,ATTACKE_BISS },
+	{ 25,ATTACKE_DRACHENWUT },
+	{ 32,ATTACKE_SILBERBLICK },
+	{ 41,ATTACKE_HYDROPUMPE},
+	{ 52,ATTACKE_HYPERSTRAHL}
+};
+const struct Learnables GaradosLearns = { 10,GaradosLearn };
+
+const struct Learnable KarpadorLearn[] = {
+	{ 1 ,ATTACKE_PLATSCHER },
+	{ 1 ,ATTACKE_TACKLE }
+};
+const struct Learnables KarpadorLearns = { 2,KarpadorLearn };
+
+const struct Learnable TaurosLearn[] = {
+	{  1,ATTACKE_TACKLE },
+	{ 21,ATTACKE_STAMPFER },
+	{ 28,ATTACKE_RUTENSCHLAG },
+	{ 35,ATTACKE_SILBERBLICK },
+	{ 44,ATTACKE_RASEREI },
+	{ 51,ATTACKE_BODYCHECK }
+};
+const struct Learnables TaurosLearns = { 6,TaurosLearn };
+
+const struct Learnable PinsirLearn[] = {
+	{ 1,ATTACKE_KLAMMER },
+	{ 21,ATTACKE_KLAMMERGRIFF },
+	{ 25,ATTACKE_GEOWURF },
+	{ 30,ATTACKE_GUILLOTINE },
+	{ 36,ATTACKE_ENERGIEFOKUS },
+	{ 43,ATTACKE_HAERTNER },
+	{ 49,ATTACKE_SCHLITZER},
+	{ 54,ATTACKE_SCHWERTTANZ}
+};
+const struct Learnables PinsirLearns = { 8,PinsirLearn };
+
+const struct Learnable MagmarLearn[] = {
+	{  1,ATTACKE_GLUT },
+	{ 36,ATTACKE_SILBERBLICK },
+	{ 39,ATTACKE_KONFUSTRAHL },
+	{ 43,ATTACKE_FEUERSCHLAG },
+	{ 48,ATTACKE_RAUCHWOLKE },
+	{ 52,ATTACKE_SMOG },
+	{ 55,ATTACKE_FLAMMENWURF }
+};
+const struct Learnables MagmarLearns = { 7,MagmarLearn };
+
+const struct Learnable ElektekLearn[] = {
+	{ 1 ,ATTACKE_SILBERBLICK },
+	{ 1 ,ATTACKE_RUCKZUCKHIEB },
+	{ 34,ATTACKE_DONNERSCHOCK },
+	{ 37,ATTACKE_KREIDESCHREI },
+	{ 42,ATTACKE_DONNERSCHLAG },
+	{ 49,ATTACKE_LICHTSCHILD },
+	{ 54,ATTACKE_DONNER }
+};
+const struct Learnables ElektekLearns = { 7,ElektekLearn };
+
+const struct Learnable RossanaLearn[] = {
+	{ 1 ,ATTACKE_PFUND },
+	{ 1 ,ATTACKE_TODESKUSS },
+	{ 34,ATTACKE_SCHLECKER },
+	{ 37,ATTACKE_DUPLEXHIEB },
+	{ 42,ATTACKE_EISHIEB },
+	{ 49,ATTACKE_FUCHTLER },
+	{ 54,ATTACKE_BLIZZARD }
+};
+const struct Learnables RossanaLearns = { 7,RossanaLearn };
+
+const struct Learnable SichlorLearn[] = {
+	{ 1 ,ATTACKE_RUCKZUCKHIEB },
+	{ 17,ATTACKE_SILBERBLICK },
+	{ 20,ATTACKE_ENERGIEFOKUS },
+	{ 24,ATTACKE_DOPPELTEAM },
+	{ 29,ATTACKE_SCHLITZER },
+	{ 35,ATTACKE_SCHWERTTANZ },
+	{ 42,ATTACKE_AGILITAET },
+	{ 50,ATTACKE_FLUEGELSCHLAG}
+};
+const struct Learnables SichlorLearns = { 8,SichlorLearn };
+
+const struct Learnable PantimosLearn[] = {
+	{ 1 ,ATTACKE_BARRIERE },
+	{ 1 ,ATTACKE_KONFUSION },
+	{ 15,ATTACKE_KONFUSION },
+	{ 23,ATTACKE_LICHTSCHILD },
+	{ 31,ATTACKE_DUPLEXHIEB },
+	{ 39,ATTACKE_MEDITATION },
+	{ 47,ATTACKE_DELEGATOR }
+};
+const struct Learnables PantimosLearns = { 7,PantimosLearn };
+
+const struct Learnable StarmieLearn[] = {
+	{ 1 ,ATTACKE_AQUAKNARRE },
+	{ 1 ,ATTACKE_HAERTNER },
+	{ 1,ATTACKE_TACKLE }
+};
+const struct Learnables StarmieLearns = { 3,StarmieLearn };
+
+const struct Learnable SternduLearn[] = {
+	{ 1 ,ATTACKE_TACKLE },
+	{ 17 ,ATTACKE_AQUAKNARRE },
+	{ 22 ,ATTACKE_HAERTNER },
+	{ 27,ATTACKE_GENESUNG },
+	{ 32,ATTACKE_STERNSCHAUER },
+	{ 37,ATTACKE_KOMPRIMATOR },
+	{ 42,ATTACKE_LICHTSCHILD },
+	{ 47,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables SternduLearns = { 8,SternduLearn };
+
+const struct Learnable GolkingLearn[] = {
+	{ 1 ,ATTACKE_RUTENSCHLAG },
+	{ 1 ,ATTACKE_SCHNABEL },
+	{ 1 ,ATTACKE_SUPERSCHALL },
+	{ 19,ATTACKE_SUPERSCHALL },
+	{ 24,ATTACKE_HORNATTACKE },
+	{ 30,ATTACKE_FURIENSCHLAG },
+	{ 39,ATTACKE_KASKADE },
+	{ 48,ATTACKE_HORNBOHRER },
+	{ 54,ATTACKE_AGILITAET}
+};
+const struct Learnables GolkingLearns = { 9,GolkingLearn };
+
+const struct Learnable GoldiniLearn[] = {
+	{ 1 ,ATTACKE_RUTENSCHLAG },
+	{ 1 ,ATTACKE_SCHNABEL },
+	{ 19,ATTACKE_SUPERSCHALL },
+	{ 24,ATTACKE_HORNATTACKE },
+	{ 30,ATTACKE_FURIENSCHLAG },
+	{ 37,ATTACKE_KASKADE },
+	{ 45,ATTACKE_HORNBOHRER },
+	{ 54,ATTACKE_AGILITAET }
+};
+const struct Learnables GoldiniLearns = { 8,GoldiniLearn };
+
+const struct Learnable SeemonLearn[] = {
+	{ 1 ,ATTACKE_BLUBBER },
+	{ 1 ,ATTACKE_RAUCHWOLKE },
+	{ 19,ATTACKE_RAUCHWOLKE },
+	{ 24,ATTACKE_SILBERBLICK },
+	{ 30,ATTACKE_AQUAKNARRE },
+	{ 41,ATTACKE_AGILITAET },
+	{ 52,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables SeemonLearns = { 7,SeemonLearn };
+
+const struct Learnable SeeperLearn[] = {
+	{ 1 ,ATTACKE_BLUBBER },
+	{ 1 ,ATTACKE_RAUCHWOLKE },
+	{ 24,ATTACKE_SILBERBLICK },
+	{ 30,ATTACKE_AQUAKNARRE },
+	{ 37,ATTACKE_AGILITAET },
+	{ 45,ATTACKE_HYDROPUMPE }
+};
+const struct Learnables SeeperLearns = { 6,SeeperLearn };
+
+const struct Learnable KangamaLearn[] = {
+	{ 1 ,ATTACKE_KOMETENHIEB },
+	{ 1 ,ATTACKE_RASEREI },
+	{ 26,ATTACKE_BISS },
+	{ 31,ATTACKE_RUTENSCHLAG },
+	{ 36,ATTACKE_MEGAHIEB },
+	{ 41,ATTACKE_SILBERBLICK },
+	{ 46,ATTACKE_IRRSCHLAG}
+};
+const struct Learnables KangamaLearns = { 7,KangamaLearn };
+
+const struct Learnable TangelaLearn[] = {
+	{ 1 ,ATTACKE_KLAMMERGRIFF },
+	{ 1 ,ATTACKE_UMKLAMMERUNG },
+	{ 27,ATTACKE_ABSORBER},
+	{ 29,ATTACKE_RANKENHIEB },
+	{ 32,ATTACKE_GIFTPUDER },
+	{ 36,ATTACKE_STACHELSPORE },
+	{ 39,ATTACKE_SCHLAFPUDER },
+	{ 45,ATTACKE_SLAM },
+	{ 49,ATTACKE_WACHSTUM}
+};
+const struct Learnables TangelaLearns = { 9,TangelaLearn };
+
+const struct Learnable ChaneiraLearn[] = {
+	{ 1 ,ATTACKE_PFUND },
+	{ 1 ,ATTACKE_RUTENSCHLAG },
+	{ 12,ATTACKE_DUPLEXHIEB },
+	{ 24,ATTACKE_GESANG },
+	{ 30,ATTACKE_HEULER },
+	{ 38,ATTACKE_KOMPRIMATOR },
+	{ 44,ATTACKE_EINIGLER },
+	{ 48,ATTACKE_LICHTSCHILD },
+	{ 54,ATTACKE_RISIKOTACKLE }
+};
+const struct Learnables ChaneiraLearns = { 9,ChaneiraLearn };
+
+const struct Learnable RizerosLearn[] = {
+	{ 1 ,ATTACKE_FURIENSCHLAG },
+	{ 1 ,ATTACKE_HORNATTACKE },
+	{ 1 ,ATTACKE_RUTENSCHLAG },
+	{ 1 ,ATTACKE_STAMPFER },
+	{ 30,ATTACKE_STAMPFER},
+	{ 35,ATTACKE_RUTENSCHLAG },
+	{ 40,ATTACKE_FURIENSCHLAG },
+	{ 48,ATTACKE_HORNBOHRER },
+	{ 55,ATTACKE_SILBERBLICK },
+	{ 64,ATTACKE_BODYCHECK }
+};
+const struct Learnables RizerosLearns = { 10,RizerosLearn };
+
+const struct Learnable RihornLearn[] = {
+	{ 1 ,ATTACKE_HORNATTACKE },
+	{ 30,ATTACKE_STAMPFER },
+	{ 35,ATTACKE_RUTENSCHLAG },
+	{ 40,ATTACKE_FURIENSCHLAG },
+	{ 48,ATTACKE_HORNBOHRER },
+	{ 50,ATTACKE_SILBERBLICK },
+	{ 55,ATTACKE_BODYCHECK }
+};
+const struct Learnables RihornLearns = { 7,RihornLearn };
+
+const struct Learnable SmogmogLearn[] = {
+	{ 1 ,ATTACKE_SCHLAMMBAD },
+	{ 1 ,ATTACKE_SMOG },
+	{ 1 ,ATTACKE_TACKLE },
+	{ 32,ATTACKE_SCHLAMMBAD },
+	{ 39,ATTACKE_RAUCHWOLKE },
+	{ 43,ATTACKE_FINALE },
+	{ 49,ATTACKE_DUNKELNEBEL },
+	{ 53,ATTACKE_EXPLOSION}
+};
+const struct Learnables SmogmogLearns = { 8,SmogmogLearn };
+
+const struct Learnable SmogonLearn[] = {
+	
+	{ 1 ,ATTACKE_TACKLE },
+	{ 1 ,ATTACKE_SMOG },
+	{ 32,ATTACKE_SCHLAMMBAD },
+	{ 37,ATTACKE_RAUCHWOLKE },
+	{ 40,ATTACKE_FINALE },
+	{ 45,ATTACKE_DUNKELNEBEL },
+	{ 48,ATTACKE_EXPLOSION }
+};
+const struct Learnables SmogonLearns = { 7,SmogonLearn };
+
+const struct Learnable SchlurpLearn[] = {
+
+	{ 1 ,ATTACKE_WICKEL },
+	{ 1 ,ATTACKE_SUPERSCHALL },
+	{ 7 ,ATTACKE_STAMPFER },
+	{ 15,ATTACKE_AUSSETZER },
+	{ 23,ATTACKE_EINIGLER },
+	{ 31,ATTACKE_SLAM },
+	{ 39,ATTACKE_KREIDESCHREI }
+};
+const struct Learnables SchlurpLearns = { 7,SchlurpLearn };
+
+const struct Learnable NockchanLearn[] = {
+
+	{ 1 ,ATTACKE_KOMETENHIEB },
+	{ 1 ,ATTACKE_AGILITAET },
+	{ 33,ATTACKE_FEUERSCHLAG },
+	{ 38,ATTACKE_EISHIEB },
+	{ 43,ATTACKE_DONNERSCHLAG },
+	{ 48,ATTACKE_MEGAHIEB },
+	{ 53,ATTACKE_KONTER }
+};
+const struct Learnables NockchanLearns = { 7,NockchanLearn };
+
+const struct Learnable KickleeLearn[] = {
+
+	{ 1 ,ATTACKE_DOPPELKICK },
+	{ 1 ,ATTACKE_MEDITATION },
+	{ 33,ATTACKE_FEGEKICK },
+	{ 38,ATTACKE_SPRUNGKICK },
+	{ 43,ATTACKE_ENERGIEFOKUS },
+	{ 48,ATTACKE_TURMKICK },
+	{ 53,ATTACKE_MEGAKICK }
+};
+const struct Learnables KickleeLearns = { 7,KickleeLearn };
+
+const struct Learnable KnoggaLearn[] = {
+
+	{ 1 ,ATTACKE_ENERGIEFOKUS },
+	{ 1 ,ATTACKE_HEULER },
+	{ 10,ATTACKE_KNOCHENKEULE },
+	{ 13,ATTACKE_RUTENSCHLAG },
+	{ 18,ATTACKE_KOPFNUSS },
+	{ 25,ATTACKE_SILBERBLICK },
+	{ 33,ATTACKE_ENERGIEFOKUS },
+	{ 42,ATTACKE_FUCHTLER},
+	{ 48,ATTACKE_KNOCHMERANG},
+	{ 55,ATTACKE_RASEREI}
+};
+const struct Learnables KnoggaLearns = { 10,KnoggaLearn };
+
+const struct Learnable TragossoLearn[] = {
+
+	{ 1 ,ATTACKE_HEULER },
+	{ 10,ATTACKE_KNOCHENKEULE },
+	{ 13,ATTACKE_RUTENSCHLAG },
+	{ 18,ATTACKE_KOPFNUSS },
+	{ 25,ATTACKE_SILBERBLICK },
+	{ 31,ATTACKE_ENERGIEFOKUS },
+	{ 38,ATTACKE_FUCHTLER },
+	{ 43,ATTACKE_KNOCHMERANG },
+	{ 46,ATTACKE_RASEREI }
+};
+const struct Learnables TragossoLearns = { 9,TragossoLearn };
+
+const struct Learnable KokoweiLearn[] = {
+
+	{ 1 ,ATTACKE_HYPNOSE },
+	{ 1 ,ATTACKE_STAKKATO },
+	{ 28,ATTACKE_STAMPFER }
+};
+const struct Learnables KokoweiLearns = { 3,KokoweiLearn };
+
+const struct Learnable OweiLearn[] = {
+
+	{ 1 ,ATTACKE_HYPNOSE },
+	{ 1 ,ATTACKE_STAKKATO },
+	{ 25,ATTACKE_REFLEKTOR },
+	{ 28,ATTACKE_EGELSAMEN },
+	{ 32,ATTACKE_STACHELSPORE },
+	{ 37,ATTACKE_GIFTPUDER },
+	{ 42,ATTACKE_SOLARSTRAHL },
+	{ 48,ATTACKE_SCHLAFPUDER }
+};
+const struct Learnables OweiLearns = { 8,OweiLearn };
+
+const struct Learnable LektrobalLearn[] = {
+
+	{ 1 ,ATTACKE_KREIDESCHREI },
+	{ 1 ,ATTACKE_TACKLE },
+	{ 1 ,ATTACKE_ULTRASCHALL },
+	{ 17,ATTACKE_ULTRASCHALL },
+	{ 22,ATTACKE_FINALE },
+	{ 29,ATTACKE_LICHTSCHILD },
+	{ 40,ATTACKE_STERNSCHAUER },
+	{ 50,ATTACKE_EXPLOSION }
+};
+const struct Learnables LektrobalLearns = { 8,LektrobalLearn };
+
+const struct Learnable VoltobalLearn[] = {
+
+	{ 1 ,ATTACKE_KREIDESCHREI },
+	{ 1 ,ATTACKE_TACKLE },
+	{ 17,ATTACKE_ULTRASCHALL },
+	{ 22,ATTACKE_FINALE },
+	{ 29,ATTACKE_LICHTSCHILD },
+	{ 36,ATTACKE_STERNSCHAUER },
+	{ 43,ATTACKE_EXPLOSION }
+};
+const struct Learnables VoltobalLearns = { 7,VoltobalLearn };
+
+const struct Learnable KinglerLearn[] = {
+
+	{ 1 ,ATTACKE_BLUBBER },
+	{ 1 ,ATTACKE_KLAMMER },
+	{ 1,ATTACKE_SILBERBLICK },
+	{ 20,ATTACKE_KLAMMER },
+	{ 25,ATTACKE_GUILLOTINE },
+	{ 34,ATTACKE_STAMPFER },
+	{ 42,ATTACKE_KRABBHAMMER },
+	{ 49,ATTACKE_HAERTNER}
+};
+const struct Learnables KinglerLearns = { 8,KinglerLearn };
+
+
+const struct Learnable KrabbyLearn[] = {
+
+	{ 1 ,ATTACKE_SILBERBLICK },
+	{ 1 ,ATTACKE_BLUBBER },
+	{ 20,ATTACKE_KLAMMER },
+	{ 25,ATTACKE_GUILLOTINE },
+	{ 30,ATTACKE_STAMPFER },
+	{ 35,ATTACKE_KRABBHAMMER },
+	{ 40,ATTACKE_HAERTNER }
+};
+const struct Learnables KrabbyLearns = { 7,KrabbyLearn };
+
 const struct Learnable HypnoLearn[] = {
 	{  1, ATTACKE_AUSSETZER },
 	{  1, ATTACKE_KONFUSION },
