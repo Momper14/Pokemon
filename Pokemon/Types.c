@@ -1,6 +1,6 @@
 #include "Types.h"
 
-const double matrix[18][18] = {
+const byte matrix[18][18] = {
 	//            Normal		Kampf			Flug			Gift			Boden			Stein			Käfer			Geist			Stahl			Feuer			Wasser			Pflanze			Elektro			Psycho			Eis				Drache			Unlicht				Kein Typ
 	/* Normal*/	 {EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NICHT	,EFFEKT_NORM	,EFFEKT_IMMUN	,EFFEKT_NICHT	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM		,EFFEKT_NORM },
 	/* Kampf*/	 {EFFEKT_SEHR	,EFFEKT_NORM	,EFFEKT_NICHT	,EFFEKT_NICHT	,EFFEKT_NORM	,EFFEKT_SEHR	,EFFEKT_NICHT	,EFFEKT_IMMUN	,EFFEKT_SEHR	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NORM	,EFFEKT_NICHT	,EFFEKT_SEHR	,EFFEKT_NORM	,EFFEKT_SEHR		,EFFEKT_NORM },
@@ -24,7 +24,7 @@ const double matrix[18][18] = {
 
 };
 
-unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType2, unsigned long *damage){
+byte getMultiplikator(byte attackType, byte defenseType1, byte defenseType2, ulong *damage){
 	/*
 		Bei EFFEKT_SEHR wird << 1 geshiftet
 		Bei EFFEKT_NORM wird <<0 geshiftet
@@ -34,42 +34,20 @@ unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType
 
 
 	// Ersten Typen vergleichen
-	char effektivitaet = EFFEKT_NORM;
+	byte effektivitaet = matrix[attackType][defenseType1];
+	byte effTmp = matrix[attackType][defenseType2];
 
-	if (matrix[attackType][defenseType1]== EFFEKT_IMMUN) {
+	if (effektivitaet == EFFEKT_IMMUN || effTmp == EFFEKT_IMMUN) {
 		// Direktes Beenden der Methode, weil keine weiteren Rechnungen notwendig sind
 		//printf("Es hat keine Wirkung");
 		return 0;
 	}
-	else if (matrix[attackType][defenseType1] == EFFEKT_NICHT) {
-		*damage >> 1;
-		effektivitaet = EFFEKT_NICHT;
-	}
-	else if (matrix[attackType][defenseType1] == EFFEKT_SEHR) {
-		*damage << 1;
-		effektivitaet = EFFEKT_SEHR;
-	}
-	else {
-		effektivitaet = EFFEKT_NORM;
-	}
+	
 
-	// Zweiten Typen vergleichen
-	if (matrix[attackType][defenseType2] == EFFEKT_IMMUN) {
-		// Direktes Beenden der Methode, weil keine weiteren Rechnungen notwendig sind
-		//printf("Es hat keine Wirkung");
-		return 0;
+	if (effTmp == EFFEKT_NICHT) {
+		(*damage >> 1);
 	}
-	else if (matrix[attackType][defenseType2] == EFFEKT_NICHT) {
-		*damage >> 1;
-		effektivitaet += EFFEKT_NICHT;
-	}
-	else if (matrix[attackType][defenseType2] == EFFEKT_SEHR) {
-		*damage << 1;
-		effektivitaet += EFFEKT_SEHR;
-	}
-	else {
-		effektivitaet += EFFEKT_NORM;
-	}
+	
 
 	/*
 		EFFEKT_SEHR  = 3
@@ -88,21 +66,21 @@ unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType
 	*/
 
 	// Ausgabe für die Effektivität
-	if (effektivitaet == 6) {
-		//printf("4-Fach effektivität !");	
-	}
-	else if (effektivitaet == 5) {
-		//printf("Es ist sehr effektiv !");
-	}
-	else if (effektivitaet == 4) {
-		
-	}
-	else if (effektivitaet == 3) {
-		//printf("Es ist nicht sehr effektiv !");
-	}
-	else if(effektivitaet == 2) {
-		//printf("4-Fach Resistenz !");
-	}
+	//if (effektivitaet == 6) {
+	//	printf("4-Fach effektivität !");	
+	//}
+	//else if (effektivitaet == 5) {
+	//	printf("Es ist sehr effektiv !");
+	//}
+	//else if (effektivitaet == 4) {
+	//	
+	//}
+	//else if (effektivitaet == 3) {
+	//	printf("Es ist nicht sehr effektiv !");
+	//}
+	//else if(effektivitaet == 2) {
+	//	printf("4-Fach Resistenz !");
+	//}
 
 	return effektivitaet;
 	

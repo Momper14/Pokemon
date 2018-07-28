@@ -3,7 +3,7 @@
 
 
 
-unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID) {
+uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID) {
 
 	// berechnen ob es zu einem Treffer kommt
 	int hit = rand()%101;
@@ -15,7 +15,7 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	uint power = AttackDex[attackID]->DMG;
 	uint A, D;
 
-	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
+	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten mÃ¼ssen und A und D zuweisen
 
 	if (AttackDex[attackID]->typ == SPEZIAL) {
 		A = angreifer->stats[STAT_ANGRIFF];
@@ -42,7 +42,7 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	*/
 	damage = ((2 * angreifer->level) / 5) + 2;
 	damage = damage * power;
-	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen möglich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
+	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen mÃ¶glich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
 	damage = (damage / 50)+2;
 
 	// Nun werden die Parameter von modifier ermittelt
@@ -51,8 +51,8 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	uint random = 100 - (rand() % 16);
 	uint stab = 100;
 	uint type = 100;
-	unsigned long modifier = 1;
-	unsigned long korrektur = critical * 100 * stab * type;
+	ulong modifier = 1;
+	ulong korrektur = critical * 100 * stab * type;
 	// modifier = random
 	modifier *= random;
 
@@ -79,11 +79,11 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	// modifier = critical * random * stab * type
 	getMultiplikator(AttackDex[attackID]->typ,verteidiger->base->typ1,verteidiger->base->typ2,&modifier);
 
-	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
+	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurÃ¼ckkehren
 
 	modifier = modifier / korrektur;
 
-	// Letzte Rechnung um damage zu ermitteln und zurückgeben
+	// Letzte Rechnung um damage zu ermitteln und zurÃ¼ckgeben
 
 	damage *= modifier;
 
@@ -91,13 +91,13 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 
 }
 
-unsigned long applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID) {
+uint applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID) {
 
-	uint damage = 0;
-	uint power = AttackDex[attackID]->DMG;
+	uint damage;
+	byte power = AttackDex[attackID]->DMG;
 	uint A, D;
 
-	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
+	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten mÃ¼ssen und A und D zuweisen
 
 	if (AttackDex[attackID]->typ == SPEZIAL) {
 		A = angreifer->stats[STAT_ANGRIFF];
@@ -114,37 +114,37 @@ unsigned long applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidi
 	
 	damage = ((2 * angreifer->level) / 5) + 2;
 	damage = damage * power;
-	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen möglich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
+	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen mÃ¶glich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
 	damage = (damage / 50) + 2;
 
 	// Nun werden die Parameter von modifier ermittelt
 	// modifier = critical * random * STAB * type
-	uint critical = 100;
-	uint random = 100 - (rand() % 16);
-	uint stab = 100;
-	uint type = 100;
-	unsigned long modifier = 1;
-	unsigned long korrektur = critical * 100 * stab * type;
+	byte critical;
+	byte random = 100 - (rand() % 16);
+	byte stab;
+	ulong modifier;
+	// type, random und stab (100 * 100 * 10)
+	uint korrektur = 100000;
 	// modifier = random
-	modifier *= random;
+	modifier = random;
 
 	// Crit ermitteln
 	uint critRange = rand() % 256;
 	uint critChance = angreifer->base->stats[STAT_INITIATIVE] >> 1;
 	if (critRange > critChance) {
-		critical = 100;
+		critical = 1;
 	}
 	else {
-		critical = 200;
+		critical = 2;
 	}
 	//modifier = critical * random
 	modifier *= critical;
 	// STAB ermitteln
 	if (angreifer->base->typ1 == AttackDex[attackID]->typ || angreifer->base->typ2 == AttackDex[attackID]->typ) {
-		stab += stab >> 1;
+		stab = 15;
 	}
 	else {
-		stab = 100;
+		stab = 10;
 	}
 	// modifier = critical * random * stab
 	modifier *= stab;
@@ -153,18 +153,18 @@ unsigned long applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidi
 	// modifier = critical * random * stab * type
 	getMultiplikator(AttackDex[attackID]->typ, verteidiger->base->typ1, verteidiger->base->typ2, &modifier);
 
-	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
+	// Durch 100000 teilen damit wir wieder in den 1-Byte bereich zurÃ¼ckkehren
 
-	modifier = modifier / korrektur;
+	modifier /= korrektur;
 
-	// Letzte Rechnung um damage zu ermitteln und zurückgeben
+	// Letzte Rechnung um damage zu ermitteln und zurÃ¼ckgeben
 
 	damage *= modifier;
 
 	return damage;
 }
 
-void applyDMGRecursive(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID, int counter) {
+void applyDMGRecursive(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID, byte counter) {
 
 	if (counter == 2) {
 		for (counter; counter > 0; counter--) {
@@ -186,7 +186,7 @@ void applyDMGRecursive(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 
 }
 
-void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID) {
+void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID) {
 
 	switch (attackID){
 
@@ -195,7 +195,8 @@ void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID
 		break;
 	case ATTACKE_KARATESCHLAG:
 		// Vorerst keine extra Crit-Rate
-		verteidiger->stats[STAT_KP] -= applyDMG(angreifer, verteidiger, attackID); break;
+		verteidiger->stats[STAT_KP] -= applyDMG(angreifer, verteidiger, attackID);
+		break;
 	case ATTACKE_DUPLEXHIEB:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;

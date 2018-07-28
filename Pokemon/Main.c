@@ -1,8 +1,8 @@
 
 #include "Base.h"
-#include "attacks.h"
+#include "Attacks.h"
 #include "Pokemon.h"
-#include "types.h"
+#include "Types.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,10 +13,11 @@ int main(){
 
 	int i;
 
-	for(i = 0; i < pkm->learnables->count; i++){
-		int tmpi = pkm->learnables->learnables[i].lvl;
-		const char *tmps = pkm->learnables->learnables[i].attacke->name;
-		printf("%d, %s\n", tmpi, tmps);
+	const struct Learnables *ls= pkm->learnables;
+	const struct Learnable *l; 
+	for(i = 0; i < ls->count; i++){
+		l = &ls->learnables[i];
+		printf("%d, %s\n", l->lvl, AttackDex[l->attacke]->name);
 	}
 
 	scanf_s("%c", &in, 1);
