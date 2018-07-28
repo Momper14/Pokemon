@@ -15,7 +15,7 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	uint power = AttackDex[attackID]->DMG;
 	uint A, D;
 
-	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
+	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten mÃ¼ssen und A und D zuweisen
 
 	if (AttackDex[attackID]->typ == SPEZIAL) {
 		A = angreifer->stats[STAT_ANGRIFF];
@@ -42,7 +42,7 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	*/
 	damage = ((2 * angreifer->level) / 5) + 2;
 	damage = damage * power;
-	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen möglich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
+	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen mÃ¶glich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
 	damage = (damage / 50)+2;
 
 	// Nun werden die Parameter von modifier ermittelt
@@ -79,11 +79,11 @@ unsigned long applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, int a
 	// modifier = critical * random * stab * type
 	getMultiplikator(AttackDex[attackID]->typ,verteidiger->base->typ1,verteidiger->base->typ2,&modifier);
 
-	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
+	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurÃ¼ckkehren
 
 	modifier = modifier / korrektur;
 
-	// Letzte Rechnung um damage zu ermitteln und zurückgeben
+	// Letzte Rechnung um damage zu ermitteln und zurÃ¼ckgeben
 
 	damage *= modifier;
 
@@ -97,7 +97,7 @@ unsigned long applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidi
 	uint power = AttackDex[attackID]->DMG;
 	uint A, D;
 
-	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
+	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten mÃ¼ssen und A und D zuweisen
 
 	if (AttackDex[attackID]->typ == SPEZIAL) {
 		A = angreifer->stats[STAT_ANGRIFF];
@@ -114,7 +114,7 @@ unsigned long applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidi
 	
 	damage = ((2 * angreifer->level) / 5) + 2;
 	damage = damage * power;
-	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen möglich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
+	damage = damage * (A / D); // Hier kann es passieren dass DMG = 0 wird, da dies aber auch in den Spielen mÃ¶glich ist unter 3 KP Dmg zu kommen nehme ich an dass dies gewollt ist
 	damage = (damage / 50) + 2;
 
 	// Nun werden die Parameter von modifier ermittelt
@@ -153,11 +153,11 @@ unsigned long applyDMGGuaranteed(PokemonClass *angreifer, PokemonClass *verteidi
 	// modifier = critical * random * stab * type
 	getMultiplikator(AttackDex[attackID]->typ, verteidiger->base->typ1, verteidiger->base->typ2, &modifier);
 
-	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
+	// Durch 100000000 teilen damit wir wieder in den 1-Byte bereich zurÃ¼ckkehren
 
 	modifier = modifier / korrektur;
 
-	// Letzte Rechnung um damage zu ermitteln und zurückgeben
+	// Letzte Rechnung um damage zu ermitteln und zurÃ¼ckgeben
 
 	damage *= modifier;
 
