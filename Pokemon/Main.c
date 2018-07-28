@@ -1,8 +1,8 @@
 
 #include "Base.h"
-#include "attacks.h"
+#include "Attacks.h"
 #include "Pokemon.h"
-#include "types.h"
+#include "Types.h"
 #include <stdio.h>
 #include <stdlib.h>
 

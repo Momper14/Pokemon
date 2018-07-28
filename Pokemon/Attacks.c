@@ -1,4 +1,4 @@
-#include "attacks.h"
+#include "Attacks.h"
 
 // Die beste Attacke aller Zeiten
 const Attacke Platscher     = { "Platscher"    ,NORMAL ,  0,100,40, 0,PHYSISCH };

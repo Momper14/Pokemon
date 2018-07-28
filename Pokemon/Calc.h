@@ -2,7 +2,7 @@
 
 #include "Pokemon.h"
 #include "Util.h"
-#include "attacks.h"
+#include "Attacks.h"
 
 uint applyDMG(PokemonClass *angreifer, PokemonClass *verteidiger, byte attackID);
 

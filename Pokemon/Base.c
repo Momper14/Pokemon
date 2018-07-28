@@ -1,5 +1,5 @@
 #include "Base.h"
-#include "attacks.h"
+#include "Attacks.h"
 
 const struct Learnable KnuddeluffLearn[] = {
 	{ 1, ATTACKE_AUSSETZER },
@@ -236,16 +236,6 @@ const struct Learnable RattfratzLearn[] = {
 	{ 1, ATTACKE_RUTENSCHLAG },
 	{ 1, ATTACKE_TACKLE },
 	{ 7, ATTACKE_RUCKZUCKHIEB },
-	{ 14, ATTACKE_HYPERZAHN },
-	{ 23, ATTACKE_ENERGIEFOKUS },
-	{ 34, ATTACKE_SUPERZAHN }
-};
-const struct Learnables RattfratzLearns = { 6, RattfratzLearn };
-
-const struct Learnable RattfratzLearn[] = {
-	{  1, ATTACKE_RUTENSCHLAG },
-	{  1, ATTACKE_TACKLE },
-	{  7, ATTACKE_RUCKZUCKHIEB },
 	{ 14, ATTACKE_HYPERZAHN },
 	{ 23, ATTACKE_ENERGIEFOKUS },
 	{ 34, ATTACKE_SUPERZAHN }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Base.h"
-#include "attacks.h"
+#include "Attacks.h"
 #include "Util.h"
 
 struct PokemonClass{
