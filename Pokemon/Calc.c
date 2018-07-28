@@ -342,7 +342,7 @@ void mainAttack(PokemonClass *angreifer, PokemonClass *verteidiger, int attackID
 	case ATTACKE_KREIDESCHREI:
 	case ATTACKE_DOPPELTEAM:
 	case ATTACKE_GENESUNG:
-	case ATTACKE_HEARTNER:
+	case ATTACKE_HAERTNER:
 	case ATTACKE_KOMPRIMATOR:
 	case ATTACKE_RAUCHWOLKE:
 	case ATTACKE_KONFUSTRAHL:

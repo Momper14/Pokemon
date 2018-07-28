@@ -42,11 +42,11 @@ unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType
 		return 0;
 	}
 	else if (matrix[attackType][defenseType1] == EFFEKT_NICHT) {
-		damage = *damage >> 1;
+		*damage >> 1;
 		effektivitaet = EFFEKT_NICHT;
 	}
 	else if (matrix[attackType][defenseType1] == EFFEKT_SEHR) {
-		damage = *damage << 1;
+		*damage << 1;
 		effektivitaet = EFFEKT_SEHR;
 	}
 	else {
@@ -60,11 +60,11 @@ unsigned long getMultiplikator(int attackType, int defenseType1, int defenseType
 		return 0;
 	}
 	else if (matrix[attackType][defenseType2] == EFFEKT_NICHT) {
-		damage = *damage >> 1;
+		*damage >> 1;
 		effektivitaet += EFFEKT_NICHT;
 	}
 	else if (matrix[attackType][defenseType2] == EFFEKT_SEHR) {
-		damage = *damage << 1;
+		*damage << 1;
 		effektivitaet += EFFEKT_SEHR;
 	}
 	else {
