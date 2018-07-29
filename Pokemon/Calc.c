@@ -761,8 +761,12 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 
 
 	}
-	if (verteidiger->pokemon->aktKP == 0) {
+	// Falls Finale oder Explosion ausgeführt wurde
+	if (angreifer->pokemon->aktKP == 0) 
+		angreifer->pokemon->status = STATUS_KO;	
+	// Falls Verteidigendes Pokemon besiegt wurde
+	if (verteidiger->pokemon->aktKP == 0) 
 		verteidiger->pokemon->status = STATUS_KO;
-	}
+	
 
 }
