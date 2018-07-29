@@ -7,11 +7,12 @@
 struct PokemonClass{
 	char *spitzname;
 	byte level;
+	uint expAct;
 	uint expNext;
 	struct PokemonBase *base;
 	ushort stats[6];
 	const byte iv[6];
-	byte dv[6];
+	ushort ev[6];
 	struct Attacke *moves[4];
 	byte item;
 };
@@ -29,3 +30,6 @@ struct PokemonFight{
 	byte stufen[6];
 };
 typedef struct PokemonFight PokemonFight;
+
+void clacStats(struct PokemonClass *pokemon);
+void calcEXPNext(struct PokemonClass *pokemon);
