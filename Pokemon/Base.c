@@ -10,18 +10,18 @@ const struct Learnable MewLearn[] = {
 };
 const struct Learnables MewLearns = {5 , MewLearn};
 
-const struct Learnable MewtwoLearn[] = {
-	{ 1, ATTACKE_AUSSETZER },
-	{ 1,ATTACKE_KONFUSION },
-	{ 1,ATTACKE_STERNSCHAUER },
-	{ 1,ATTACKE_PSYCHOKINESE },
+const struct Learnable MewtuLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_KONFUSION },
+	{  1, ATTACKE_STERNSCHAUER },
+	{  1, ATTACKE_PSYCHOKINESE },
 	{ 63, ATTACKE_BARRIERE },
 	{ 66, ATTACKE_PSYCHOKINESE },
-	{ 70,ATTACKE_GENESUNG },
-	{ 75,ATTACKE_WEISSNEBEL },
+	{ 70, ATTACKE_GENESUNG },
+	{ 75, ATTACKE_WEISSNEBEL },
 	{ 81, ATTACKE_AMNESIE }
 };
-const struct Learnables MewtwoLearns = {9,MewtwoLearn};
+const struct Learnables MewtuLearns = {9,MewtuLearn};
 
 const struct Learnable DragoranLearn[] = {
 	{1, ATTACKE_AGILITAET},
@@ -621,6 +621,667 @@ const struct Learnable KrabbyLearn[] = {
 };
 const struct Learnables KrabbyLearns = { 7,KrabbyLearn };
 
+const struct Learnable HypnoLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_KONFUSION },
+	{  1, ATTACKE_HYPNOSE },
+	{  1, ATTACKE_PFUND },
+	{ 12, ATTACKE_AUSSETZER },
+	{ 17, ATTACKE_KONFUSION },
+	{ 24, ATTACKE_KOPFNUSS },
+	{ 33, ATTACKE_GIFTWOLKE },
+	{ 37, ATTACKE_PSYCHOKINESE },
+	{ 43, ATTACKE_MEDITATION }
+};
+const struct Learnables HypnoLearns = { 10, HypnoLearn };
+
+const struct Learnable TraumatoLearn[] = {
+	{  1, ATTACKE_PFUND },
+	{  1, ATTACKE_HYPNOSE },
+	{ 12, ATTACKE_AUSSETZER },
+	{ 17, ATTACKE_KONFUSION },
+	{ 24, ATTACKE_KOPFNUSS },
+	{ 29, ATTACKE_GIFTWOLKE },
+	{ 32, ATTACKE_PSYCHOKINESE },
+	{ 37, ATTACKE_MEDITATION }
+};
+const struct Learnables TraumatoLearns = { 8, TraumatoLearn };
+
+const struct Learnable OnixLearn[] = {
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_KREIDESCHREI },
+	{ 15, ATTACKE_KLAMMERGRIFF },
+	{ 19, ATTACKE_STEINWURF },
+	{ 25, ATTACKE_RASEREI },
+	{ 33, ATTACKE_SLAM },
+	{ 43, ATTACKE_HAERTNER }
+};
+const struct Learnables OnixLearns = { 7, OnixLearn };
+
+const struct Learnable GengarLearn[] = {
+	{  1, ATTACKE_KONFUSTRAHL },
+	{  1, ATTACKE_NACHTNEBEL },
+	{  1, ATTACKE_SCHLECKER },
+	{ 29, ATTACKE_HYPNOSE },
+	{ 38, ATTACKE_TRAUMFRESSER }
+};
+const struct Learnables GengarLearns = { 5, GengarLearn };
+
+const struct Learnable AlpolloLearn[] = {
+	{  1, ATTACKE_NACHTNEBEL },
+	{  1, ATTACKE_KONFUSTRAHL },
+	{  1, ATTACKE_SCHLECKER },
+	{ 29, ATTACKE_HYPNOSE },
+	{ 38, ATTACKE_TRAUMFRESSER }
+};
+const struct Learnables AlpolloLearns = { 5, AlpolloLearn };
+
+const struct Learnable NebulakLearn[] = {
+	{  1, ATTACKE_NACHTNEBEL },
+	{  1, ATTACKE_KONFUSTRAHL },
+	{  1, ATTACKE_SCHLECKER },
+	{ 27, ATTACKE_HYPNOSE },
+	{ 35, ATTACKE_TRAUMFRESSER }
+};
+const struct Learnables NebulakLearns = { 5, NebulakLearn };
+
+const struct Learnable AustosLearn[] = {
+	{  1, ATTACKE_AURORASTRAHL },
+	{  1, ATTACKE_PANZERSCHUTZ },
+	{  1, ATTACKE_SCHNAPPER },
+	{  1, ATTACKE_SUPERSCHALL },
+	{ 50, ATTACKE_DORNKANONE }
+};
+const struct Learnables AustosLearns = { 5, AustosLearn };
+
+const struct Learnable MuschasLearn[] = {
+	{  1, ATTACKE_PANZERSCHUTZ },
+	{  1, ATTACKE_TACKLE },
+	{ 18, ATTACKE_SUPERSCHALL },
+	{ 23, ATTACKE_SCHNAPPER },
+	{ 30, ATTACKE_AURORASTRAHL },
+	{ 39, ATTACKE_SILBERBLICK },
+	{ 50, ATTACKE_EISSTRAHL }
+};
+const struct Learnables MuschasLearns = { 7, MuschasLearn };
+
+const struct Learnable SleimokLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_GIFTWOLKE },
+	{  1, ATTACKE_PFUND },
+	{ 30, ATTACKE_GIFTWOLKE },
+	{ 33, ATTACKE_KOMPRIMATOR },
+	{ 37, ATTACKE_SCHLAMMBAD },
+	{ 45, ATTACKE_HAERTNER },
+	{ 53, ATTACKE_KREIDESCHREI },
+	{ 60, ATTACKE_SAUREPANZER }
+};
+const struct Learnables SleimokLearns = { 9, SleimokLearn };
+
+const struct Learnable SleimaLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_PFUND },
+	{ 30, ATTACKE_GIFTWOLKE },
+	{ 33, ATTACKE_KOMPRIMATOR },
+	{ 37, ATTACKE_SCHLAMMBAD },
+	{ 42, ATTACKE_HAERTNER },
+	{ 48, ATTACKE_KREIDESCHREI },
+	{ 55, ATTACKE_SAUREPANZER }
+};
+const struct Learnables SleimaLearns = { 8, SleimaLearn };
+
+const struct Learnable JugongLearn[] = {
+	{  1, ATTACKE_AURORASTRAHL },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_KOPFNUSS },
+	{ 30, ATTACKE_HEULER },
+	{ 35, ATTACKE_AURORASTRAHL },
+	{ 44, ATTACKE_ERHOLUNG },
+	{ 50, ATTACKE_BODYCHECK },
+	{ 56, ATTACKE_EISSTRAHL }
+};
+const struct Learnables JugongLearns = { 8, JugongLearn };
+
+const struct Learnable JurobLearn[] = {
+	{  1, ATTACKE_KOPFNUSS },
+	{ 30, ATTACKE_HEULER },
+	{ 35, ATTACKE_AURORASTRAHL },
+	{ 40, ATTACKE_ERHOLUNG },
+	{ 45, ATTACKE_BODYCHECK },
+	{ 50, ATTACKE_EISSTRAHL }
+};
+const struct Learnables JurobLearns = { 6, JurobLearn };
+
+const struct Learnable DodriLearn[] = {
+	{  1, ATTACKE_FURIENSCHLAG },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_SCHNABEL },
+	{ 20, ATTACKE_HEULER },
+	{ 24, ATTACKE_FURIENSCHLAG },
+	{ 30, ATTACKE_BOHRSCHNABEL },
+	{ 39, ATTACKE_RASEREI },
+	{ 45, ATTACKE_TRIPLETTE },
+	{ 51, ATTACKE_AGILITAET }
+};
+const struct Learnables DodriLearns = { 9, DodriLearn };
+
+const struct Learnable DoduLearn[] = {
+	{  1, ATTACKE_SCHNABEL },
+	{ 20, ATTACKE_HEULER },
+	{ 24, ATTACKE_FURIENSCHLAG },
+	{ 30, ATTACKE_BOHRSCHNABEL },
+	{ 36, ATTACKE_RASEREI },
+	{ 40, ATTACKE_TRIPLETTE },
+	{ 44, ATTACKE_AGILITAET }
+};
+const struct Learnables DoduLearns = { 7, DoduLearn };
+
+const struct Learnable PorentaLearn[] = {
+	{  1, ATTACKE_SANDWIRBEL },
+	{  1, ATTACKE_SCHNABEL },
+	{  7, ATTACKE_SILBERBLICK },
+	{ 15, ATTACKE_FURIENSCHLAG },
+	{ 23, ATTACKE_SCHWERTTANZ },
+	{ 31, ATTACKE_AGILITAET },
+	{ 39, ATTACKE_SCHLITZER }
+};
+const struct Learnables PorentaLearns = { 7, PorentaLearn };
+
+const struct Learnable MagnetonLearn[] = {
+	{  1, ATTACKE_DONNERSCHOCK },
+	{  1, ATTACKE_TACKLE },
+	{  1, ATTACKE_ULTRASCHALL },
+	{ 21, ATTACKE_ULTRASCHALL },
+	{ 25, ATTACKE_DONNERSCHOCK },
+	{ 29, ATTACKE_SUPERSCHALL },
+	{ 38, ATTACKE_DONNERWELLE },
+	{ 46, ATTACKE_STERNSCHAUER },
+	{ 54, ATTACKE_KREIDESCHREI }
+};
+const struct Learnables MagnetonLearns = { 9, MagnetonLearn };
+
+const struct Learnable MagnetiloLearn[] = {
+	{  1, ATTACKE_TACKLE },
+	{ 21, ATTACKE_ULTRASCHALL },
+	{ 25, ATTACKE_DONNERSCHOCK },
+	{ 29, ATTACKE_SUPERSCHALL },
+	{ 35, ATTACKE_DONNERWELLE },
+	{ 41, ATTACKE_STERNSCHAUER },
+	{ 47, ATTACKE_KREIDESCHREI }
+};
+const struct Learnables MagnetiloLearns = { 7, MagnetiloLearn };
+
+const struct Learnable LahmusLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_KONFUSION },
+	{  1, ATTACKE_KOPFNUSS },
+	{ 18, ATTACKE_AUSSETZER },
+	{ 22, ATTACKE_KOPFNUSS },
+	{ 27, ATTACKE_HEULER },
+	{ 33, ATTACKE_AQUAKNARRE },
+	{ 37, ATTACKE_PANZERSCHUTZ },
+	{ 44, ATTACKE_AMNESIE },
+	{ 55, ATTACKE_PSYCHOKINESE }
+};
+const struct Learnables LahmusLearns = { 10, LahmusLearn };
+
+const struct Learnable FlegmonLearn[] = {
+	{  1, ATTACKE_KONFUSION },
+	{ 18, ATTACKE_AUSSETZER },
+	{ 22, ATTACKE_KOPFNUSS },
+	{ 27, ATTACKE_HEULER },
+	{ 33, ATTACKE_AQUAKNARRE },
+	{ 40, ATTACKE_AMNESIE },
+	{ 48, ATTACKE_PSYCHOKINESE }
+};
+const struct Learnables FlegmonLearns = { 7, FlegmonLearn };
+
+const struct Learnable GallopaLearn[] = {
+	{  1, ATTACKE_GLUT },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_RUTENSCHLAG },
+	{  1, ATTACKE_STAMPFER },
+	{ 30, ATTACKE_RUTENSCHLAG },
+	{ 32, ATTACKE_STAMPFER },
+	{ 35, ATTACKE_HEULER },
+	{ 39, ATTACKE_FEUERWIRBEL },
+	{ 47, ATTACKE_BODYCHECK },
+	{ 55, ATTACKE_AGILITAET }
+};
+const struct Learnables GallopaLearns = { 10, GallopaLearn };
+
+const struct Learnable PonitaLearn[] = {
+	{  1, ATTACKE_GLUT },
+	{ 30, ATTACKE_RUTENSCHLAG },
+	{ 32, ATTACKE_STAMPFER },
+	{ 35, ATTACKE_HEULER },
+	{ 39, ATTACKE_FEUERWIRBEL },
+	{ 43, ATTACKE_BODYCHECK },
+	{ 48, ATTACKE_AGILITAET }
+};
+const struct Learnables PonitaLearns = { 7, PonitaLearn };
+
+const struct Learnable GeowazLearn[] = {
+	{  1, ATTACKE_EINIGLER },
+	{  1, ATTACKE_TACKLE },
+	{ 11, ATTACKE_EINIGLER },
+	{ 16, ATTACKE_STEINWURF },
+	{ 21, ATTACKE_FINALE },
+	{ 29, ATTACKE_HAERTNER },
+	{ 36, ATTACKE_ERDBEBEN },
+	{ 43, ATTACKE_EXPLOSION }
+};
+const struct Learnables GeowazLearns = { 8, GeowazLearn };
+
+const struct Learnable GeorokLearn[] = {
+	{  1, ATTACKE_EINIGLER },
+	{  1, ATTACKE_TACKLE },
+	{ 11, ATTACKE_EINIGLER },
+	{ 16, ATTACKE_STEINWURF },
+	{ 21, ATTACKE_FINALE },
+	{ 29, ATTACKE_HAERTNER },
+	{ 36, ATTACKE_ERDBEBEN },
+	{ 43, ATTACKE_EXPLOSION }
+};
+const struct Learnables GeorokLearns = { 8, GeorokLearn };
+
+const struct Learnable KleinsteinLearn[] = {
+	{  1, ATTACKE_TACKLE },
+	{ 11, ATTACKE_EINIGLER },
+	{ 16, ATTACKE_STEINWURF },
+	{ 21, ATTACKE_FINALE },
+	{ 26, ATTACKE_HAERTNER },
+	{ 31, ATTACKE_ERDBEBEN },
+	{ 36, ATTACKE_EXPLOSION }
+};
+const struct Learnables KleinsteinLearns = { 7, KleinsteinLearn };
+
+const struct Learnable TentoxaLearn[] = {
+	{  1, ATTACKE_SAEURE },
+	{  1, ATTACKE_SUPERSCHALL },
+	{  1, ATTACKE_WICKEL },
+	{  7, ATTACKE_SUPERSCHALL },
+	{ 13, ATTACKE_WICKEL },
+	{ 18, ATTACKE_GIFTSTACHEL },
+	{ 22, ATTACKE_AQUAKNARRE },
+	{ 27, ATTACKE_UMKLAMMERUNG },
+	{ 35, ATTACKE_BARRIERE },
+	{ 43, ATTACKE_KREIDESCHREI },
+	{ 50, ATTACKE_HYDROPUMPE }
+};
+const struct Learnables TentoxaLearns = { 11, TentoxaLearn };
+
+const struct Learnable TentachaLearn[] = {
+	{  1, ATTACKE_SAEURE },
+	{  7, ATTACKE_SUPERSCHALL },
+	{ 13, ATTACKE_WICKEL },
+	{ 18, ATTACKE_GIFTSTACHEL },
+	{ 22, ATTACKE_AQUAKNARRE },
+	{ 27, ATTACKE_UMKLAMMERUNG },
+	{ 33, ATTACKE_BARRIERE },
+	{ 40, ATTACKE_KREIDESCHREI },
+	{ 48, ATTACKE_HYDROPUMPE }
+};
+const struct Learnables TentachaLearns = { 9, TentachaLearn };
+
+const struct Learnable SarzeniaLearn[] = {
+	{  1, ATTACKE_RASIERBLATT },
+	{  1, ATTACKE_SAEURE },
+	{  1, ATTACKE_SCHLAFPUDER },
+	{  1, ATTACKE_STACHELSPORE },
+	{ 13, ATTACKE_WICKEL },
+	{ 15, ATTACKE_GIFTPUDER },
+	{ 18, ATTACKE_SCHLAFPUDER }
+};
+const struct Learnables SarzeniaLearns = { 7, SarzeniaLearn };
+
+const struct Learnable UltrigariaLearn[] = {
+	{  1, ATTACKE_RANKENHIEB },
+	{  1, ATTACKE_WACHSTUM },
+	{  1, ATTACKE_WICKEL },
+	{ 13, ATTACKE_WICKEL },
+	{ 15, ATTACKE_GIFTPUDER },
+	{ 18, ATTACKE_SCHLAFPUDER },
+	{ 23, ATTACKE_STACHELSPORE },
+	{ 29, ATTACKE_SAEURE },
+	{ 38, ATTACKE_RASIERBLATT },
+	{ 49, ATTACKE_SLAM }
+};
+const struct Learnables UltrigariaLearns = { 10, UltrigariaLearn };
+
+const struct Learnable KnofensaLearn[] = {
+	{  1, ATTACKE_RANKENHIEB },
+	{  1, ATTACKE_WACHSTUM },
+	{ 13, ATTACKE_WICKEL },
+	{ 15, ATTACKE_GIFTPUDER },
+	{ 18, ATTACKE_SCHLAFPUDER },
+	{ 21, ATTACKE_STACHELSPORE },
+	{ 26, ATTACKE_SAEURE },
+	{ 33, ATTACKE_RASIERBLATT },
+	{ 42, ATTACKE_SLAM }
+};
+const struct Learnables KnofensaLearns = { 9, KnofensaLearn };
+
+const struct Learnable MachomeiLearn[] = {
+	{  1, ATTACKE_FUSSKICK },
+	{  1, ATTACKE_KARATESCHLAG },
+	{  1, ATTACKE_SILBERBLICK },
+	{ 20, ATTACKE_FUSSKICK },
+	{ 25, ATTACKE_SILBERBLICK },
+	{ 36, ATTACKE_ENERGIEFOKUS },
+	{ 44, ATTACKE_GEOWURF },
+	{ 52, ATTACKE_UEBERROLLER }
+};
+const struct Learnables MachomeiLearns = { 8, MachomeiLearn };
+
+const struct Learnable MaschockLearn[] = {
+	{  1, ATTACKE_FUSSKICK },
+	{  1, ATTACKE_KARATESCHLAG },
+	{  1, ATTACKE_SILBERBLICK },
+	{ 20, ATTACKE_FUSSKICK },
+	{ 25, ATTACKE_SILBERBLICK },
+	{ 36, ATTACKE_ENERGIEFOKUS },
+	{ 44, ATTACKE_GEOWURF },
+	{ 52, ATTACKE_UEBERROLLER }
+};
+const struct Learnables MaschockLearns = { 8, MaschockLearn };
+
+const struct Learnable MacholloLearn[] = {
+	{  1, ATTACKE_KARATESCHLAG },
+	{ 20, ATTACKE_FUSSKICK },
+	{ 25, ATTACKE_SILBERBLICK },
+	{ 32, ATTACKE_ENERGIEFOKUS },
+	{ 39, ATTACKE_GEOWURF },
+	{ 46, ATTACKE_UEBERROLLER }
+};
+const struct Learnables MacholloLearns = { 6, MacholloLearn };
+
+const struct Learnable SimsalaLearn[] = {
+	{  1, ATTACKE_PSYKRAFT },
+	{  1, ATTACKE_TELEPORT },
+	{ 16, ATTACKE_KONFUSION },
+	{ 20, ATTACKE_AUSSETZER },
+	{ 27, ATTACKE_PSYSTRAHL },
+	{ 31, ATTACKE_GENESUNG },
+	{ 38, ATTACKE_PSYCHOKINESE },
+	{ 42, ATTACKE_REFLEKTOR }
+};
+const struct Learnables SimsalaLearns = { 8, SimsalaLearn };
+
+const struct Learnable KadabraLearn[] = {
+	{  1, ATTACKE_PSYKRAFT },
+	{  1, ATTACKE_TELEPORT },
+	{ 16, ATTACKE_KONFUSION },
+	{ 20, ATTACKE_AUSSETZER },
+	{ 27, ATTACKE_PSYSTRAHL },
+	{ 31, ATTACKE_GENESUNG },
+	{ 38, ATTACKE_PSYCHOKINESE },
+	{ 42, ATTACKE_REFLEKTOR }
+};
+const struct Learnables KadabraLearns = { 8, KadabraLearn };
+
+const struct Learnable AbraLearn[] = {
+	{ 1, ATTACKE_TELEPORT }
+};
+const struct Learnables AbraLearns = { 1, AbraLearn };
+
+const struct Learnable QuappoLearn[] = {
+	{  1, ATTACKE_AQUAKNARRE },
+	{  1, ATTACKE_BODYSLAM },
+	{  1, ATTACKE_DUPLEXHIEB },
+	{  1, ATTACKE_HYPNOSE },
+	{ 16, ATTACKE_HYPNOSE },
+	{ 19, ATTACKE_AQUAKNARRE },
+};
+const struct Learnables QuappoLearns = { 6, QuappoLearn };
+
+const struct Learnable QuaputziLearn[] = {
+	{  1, ATTACKE_AQUAKNARRE },
+	{  1, ATTACKE_BLUBBER },
+	{  1, ATTACKE_HYPNOSE },
+	{ 16, ATTACKE_HYPNOSE },
+	{ 19, ATTACKE_AQUAKNARRE },
+	{ 26, ATTACKE_DUPLEXHIEB },
+	{ 33, ATTACKE_BODYSLAM },
+	{ 41, ATTACKE_AMNESIE },
+	{ 49, ATTACKE_HYDROPUMPE }
+};
+const struct Learnables QuaputziLearns = { 9, QuaputziLearn };
+
+const struct Learnable QuapselLearn[] = {
+	{  1, ATTACKE_BLUBBER },
+	{ 16, ATTACKE_HYPNOSE },
+	{ 19, ATTACKE_AQUAKNARRE },
+	{ 25, ATTACKE_DUPLEXHIEB },
+	{ 31, ATTACKE_BODYSLAM },
+	{ 38, ATTACKE_AMNESIE },
+	{ 45, ATTACKE_HYDROPUMPE }
+};
+const struct Learnables QuapselLearns = { 7, QuapselLearn };
+
+const struct Learnable ArkaniLearn[] = {
+	{ 1, ATTACKE_BODYCHECK },
+	{ 1, ATTACKE_BRUELLER },
+	{ 1, ATTACKE_GLUT },
+	{ 1, ATTACKE_SILBERBLICK }
+};
+const struct Learnables ArkaniLearns = { 4, ArkaniLearn };
+
+const struct Learnable FukanoLearn[] = {
+	{ 1, ATTACKE_BISS },
+	{ 1, ATTACKE_BRUELLER },
+	{ 1, ATTACKE_GLUT },
+	{ 1, ATTACKE_SILBERBLICK },
+	{ 9, ATTACKE_BODYCHECK },
+	{ 15, ATTACKE_AGILITAET },
+	{ 21, ATTACKE_FLAMMENWURF }
+};
+const struct Learnables FukanoLearns = { 7, FukanoLearn };
+
+const struct Learnable RasaffLearn[] = {
+	{  1, ATTACKE_FUSSKICK },
+	{  1, ATTACKE_KARATESCHLAG },
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_SILBERBLICK },
+	{  9, ATTACKE_FUSSKICK },
+	{ 15, ATTACKE_KARATESCHLAG },
+	{ 21, ATTACKE_KRATZFURIE },
+	{ 27, ATTACKE_ENERGIEFOKUS },
+	{ 28, ATTACKE_RASEREI },
+	{ 37, ATTACKE_GEOWURF },
+	{ 45, ATTACKE_KREIDESCHREI },
+	{ 46, ATTACKE_FUCHTLER }
+};
+const struct Learnables RasaffLearns = { 12, RasaffLearn };
+
+const struct Learnable MenkiLearn[] = {
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_SILBERBLICK },
+	{  9, ATTACKE_FUSSKICK },
+	{ 15, ATTACKE_KARATESCHLAG },
+	{ 21, ATTACKE_KRATZFURIE },
+	{ 27, ATTACKE_ENERGIEFOKUS },
+	{ 33, ATTACKE_GEOWURF },
+	{ 39, ATTACKE_FUCHTLER },
+	{ 45, ATTACKE_KREIDESCHREI }
+};
+const struct Learnables MenkiLearns = { 9, MenkiLearn };
+
+const struct Learnable EntoronLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_RUTENSCHLAG },
+	{ 28, ATTACKE_RUTENSCHLAG },
+	{ 31, ATTACKE_AUSSETZER },
+	{ 39, ATTACKE_KONFUSION },
+	{ 48, ATTACKE_KRATZFURIE },
+	{ 59, ATTACKE_HYDROPUMPE }
+};
+const struct Learnables EntoronLearns = { 8, EntoronLearn };
+
+const struct Learnable EntonLearn[] = {
+	{  1, ATTACKE_KRATZER },
+	{ 28, ATTACKE_RUTENSCHLAG },
+	{ 31, ATTACKE_AUSSETZER },
+	{ 36, ATTACKE_KONFUSION },
+	{ 43, ATTACKE_KRATZFURIE },
+	{ 52, ATTACKE_HYDROPUMPE }
+};
+const struct Learnables EntonLearns = { 6, EntonLearn };
+
+const struct Learnable SnobilikatLearn[] = {
+	{  1, ATTACKE_BISS },
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_KREIDESCHREI },
+	{ 12, ATTACKE_BISS },
+	{ 17, ATTACKE_ZAHLTAG },
+	{ 24, ATTACKE_KREIDESCHREI },
+	{ 37, ATTACKE_KRATZFURIE },
+	{ 51, ATTACKE_SCHLITZER }
+};
+const struct Learnables SnobilikatLearns = { 9, SnobilikatLearn };
+
+const struct Learnable MauziLearn[] = {
+	{ 1, ATTACKE_KRATZER },
+	{ 1, ATTACKE_HEULER },
+	{ 1, ATTACKE_BISS },
+	{ 15, ATTACKE_ZAHLTAG },
+	{ 19, ATTACKE_KREIDESCHREI },
+	{ 24, ATTACKE_KRATZFURIE },
+	{ 35, ATTACKE_SCHLITZER }
+};
+const struct Learnables MauziLearns = { 7, MauziLearn };
+
+const struct Learnable DigdriLearn[] = {
+	{  1, ATTACKE_HEULER },
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_SCHAUFLER },
+	{ 15, ATTACKE_HEULER },
+	{ 19, ATTACKE_SCHAUFLER },
+	{ 24, ATTACKE_SANDWIRBEL },
+	{ 35, ATTACKE_SCHLITZER },
+	{ 47, ATTACKE_ERDBEBEN }
+};
+const struct Learnables DigdriLearns = { 8, DigdriLearn };
+
+const struct Learnable DigdaLearn[] = {
+	{  1, ATTACKE_KRATZER },
+	{ 15, ATTACKE_HEULER },
+	{ 19, ATTACKE_SCHAUFLER },
+	{ 24, ATTACKE_SANDWIRBEL },
+	{ 31, ATTACKE_SCHLITZER },
+	{ 40, ATTACKE_ERDBEBEN }
+};
+const struct Learnables DigdaLearns = { 6, DigdaLearn };
+
+const struct Learnable OmotLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_KONFUSION },
+	{  1, ATTACKE_SUPERSCHALL },
+	{  1, ATTACKE_TACKLE },
+	{ 22, ATTACKE_GIFTPUDER },
+	{ 27, ATTACKE_BLUTSAUGER },
+	{ 30, ATTACKE_STACHELSPORE },
+	{ 38, ATTACKE_PSYSTRAHL },
+	{ 43, ATTACKE_SCHLAFPUDER },
+	{ 50, ATTACKE_PSYCHOKINESE }
+};
+const struct Learnables OmotLearns = { 10, OmotLearn };
+
+const struct Learnable BluzukLearn[] = {
+	{  1, ATTACKE_AUSSETZER },
+	{  1, ATTACKE_TACKLE },
+	{ 11, ATTACKE_SUPERSCHALL },
+	{ 19, ATTACKE_KONFUSION },
+	{ 22, ATTACKE_GIFTPUDER },
+	{ 27, ATTACKE_BLUTSAUGER },
+	{ 30, ATTACKE_STACHELSPORE },
+	{ 35, ATTACKE_PSYSTRAHL },
+	{ 38, ATTACKE_SCHLAFPUDER },
+	{ 43, ATTACKE_PSYCHOKINESE }
+};
+const struct Learnables BluzukLearns = { 10, BluzukLearn };
+
+const struct Learnable ParasekLearn[] = {
+	{  1, ATTACKE_BLUTSAUGER },
+	{  1, ATTACKE_KRATZER },
+	{  1, ATTACKE_STACHELSPORE },
+	{ 13, ATTACKE_STACHELSPORE },
+	{ 20, ATTACKE_BLUTSAUGER },
+	{ 30, ATTACKE_PILZSPORE },
+	{ 39, ATTACKE_SCHLITZER },
+	{ 48, ATTACKE_WACHSTUM }
+};
+const struct Learnables ParasekLearns = { 8, ParasekLearn };
+
+const struct Learnable ParasLearn[] = {
+	{  1, ATTACKE_KRATZER },
+	{ 13, ATTACKE_STACHELSPORE },
+	{ 20, ATTACKE_BLUTSAUGER },
+	{ 27, ATTACKE_PILZSPORE },
+	{ 34, ATTACKE_SCHLITZER },
+	{ 41, ATTACKE_WACHSTUM }
+};
+const struct Learnables ParasLearns = { 6, ParasLearn };
+
+const struct Learnable GiflorLearn[] = {
+	{  1, ATTACKE_BLAETTERTANZ },
+	{  1, ATTACKE_SAEURE },
+	{  1, ATTACKE_SCHLAFPUDER },
+	{  1, ATTACKE_STACHELSPORE },
+	{ 15, ATTACKE_GIFTPUDER },
+	{ 17, ATTACKE_STACHELSPORE },
+	{ 19, ATTACKE_SCHLAFPUDER }
+};
+const struct Learnables GiflorLearns = { 7, GiflorLearn };
+
+const struct Learnable DuflorLearn[] = {
+	{  1, ATTACKE_ABSORBER },
+	{  1, ATTACKE_GIFTPUDER },
+	{  1, ATTACKE_STACHELSPORE },
+	{ 15, ATTACKE_GIFTPUDER },
+	{ 17, ATTACKE_STACHELSPORE },
+	{ 19, ATTACKE_SCHLAFPUDER },
+	{ 28, ATTACKE_SAEURE },
+	{ 38, ATTACKE_BLAETTERTANZ },
+	{ 52, ATTACKE_SOLARSTRAHL }
+};
+const struct Learnables DuflorLearns = { 9, DuflorLearn };
+
+const struct Learnable MyraplaLearn[] = {
+	{  1, ATTACKE_ABSORBER },
+	{ 15, ATTACKE_GIFTPUDER },
+	{ 17, ATTACKE_STACHELSPORE },
+	{ 19, ATTACKE_SCHLAFPUDER },
+	{ 24, ATTACKE_SAEURE },
+	{ 33, ATTACKE_BLAETTERTANZ },
+	{ 46, ATTACKE_SOLARSTRAHL }
+};
+const struct Learnables MyraplaLearns = { 7, MyraplaLearn };
+
+const struct Learnable GolbatLearn[] = {
+	{  1, ATTACKE_BISS },
+	{  1, ATTACKE_BLUTSAUGER },
+	{  1, ATTACKE_KREIDESCHREI },
+	{ 10, ATTACKE_SUPERSCHALL },
+	{ 15, ATTACKE_BISS },
+	{ 21, ATTACKE_KONFUSTRAHL },
+	{ 32, ATTACKE_FLUEGELSCHLAG },
+	{ 43, ATTACKE_DUNKELNEBEL }
+};
+const struct Learnables GolbatLearns = { 8, GolbatLearn };
+
+const struct Learnable ZubatLearn[] = {
+	{  1, ATTACKE_BLUTSAUGER },
+	{ 10, ATTACKE_SUPERSCHALL },
+	{ 15, ATTACKE_BISS },
+	{ 21, ATTACKE_KONFUSTRAHL },
+	{ 28, ATTACKE_FLUEGELSCHLAG },
+	{ 36, ATTACKE_DUNKELNEBEL }
+};
+const struct Learnables ZubatLearns = { 6, ZubatLearn };
+
 const struct Learnable KnuddeluffLearn[] = {
 	{ 1, ATTACKE_AUSSETZER },
 	{ 1, ATTACKE_DUPLEXHIEB },
@@ -1066,277 +1727,277 @@ const struct Learnable BisasamLearn[] = {
 const struct Learnables BisasamLearns = { 9, BisasamLearn};
 
 //												dex  name			typ1		typ2		cr   exp   hp  atk  def  sat  sdf  spd  EXP T   evo
-extern const struct PokemonBase Mew			= { 151, "Mew",			PSYCHO,		KEINTYP,	 45,  64, 100, 100, 100, 100, 100, 100, EXP_T4, 0, NULL };
+extern const struct PokemonBase Mew			= { 151, "Mew",			PSYCHO,		KEINTYP,	 45,  64, 100, 100, 100, 100, 100, 100, EXP_T4, 0, NULL,			&MewLearns };
 
-extern const struct PokemonBase Mewtu		= { 150, "Mewtu",		PSYCHO,		KEINTYP,	  3, 220, 106, 110,  90, 154,  90, 130, EXP_T5, 0, NULL };
+extern const struct PokemonBase Mewtu		= { 150, "Mewtu",		PSYCHO,		KEINTYP,	  3, 220, 106, 110,  90, 154,  90, 130, EXP_T5, 0, NULL,			&MewtuLearns };
 
-extern const struct PokemonBase Dragoran	= { 149, "Dragoran",	DRACHE,		FLUG,		 45, 218,  91, 134,  95, 100, 100,  80, EXP_T5, 0, NULL };
+extern const struct PokemonBase Dragoran	= { 149, "Dragoran",	DRACHE,		FLUG,		 45, 218,  91, 134,  95, 100, 100,  80, EXP_T5, 0, NULL,			&DragoranLearns };
 
 const struct Evolution  DragonirEvo[]	= { 55, &Dragoran };
-extern const struct PokemonBase Dragonir	= { 148, "Dragonir",	DRACHE,		KEINTYP,	 45, 144,  61,  84,  65,  70,  70,  70, EXP_T5, 1, DragonirEvo };
+extern const struct PokemonBase Dragonir	= { 148, "Dragonir",	DRACHE,		KEINTYP,	 45, 144,  61,  84,  65,  70,  70,  70, EXP_T5, 1, DragonirEvo,		&DragonirLearns };
 
 const struct Evolution  DratiniEvo[]	= { 30, &Dragonir };
-extern const struct PokemonBase Dratini		= { 147, "Dratini",		DRACHE,		KEINTYP,	 45,  67,  41,  64,  45,  50,  50,  50, EXP_T5, 1, DratiniEvo };
+extern const struct PokemonBase Dratini		= { 147, "Dratini",		DRACHE,		KEINTYP,	 45,  67,  41,  64,  45,  50,  50,  50, EXP_T5, 1, DratiniEvo,		&DratiniLearns };
 
-extern const struct PokemonBase Lavados		= { 146, "Lavados",		FEUER,		FLUG,		  3, 217,  90, 100,  90, 125,  85,  90, EXP_T5, 0, NULL };
+extern const struct PokemonBase Lavados		= { 146, "Lavados",		FEUER,		FLUG,		  3, 217,  90, 100,  90, 125,  85,  90, EXP_T5, 0, NULL,			&LavadosLearns };
 
-extern const struct PokemonBase Zapdos		= { 145, "Zapdos",		ELEKTRO,	FLUG,		  3, 216,  90,  90,  85, 125,  90, 100, EXP_T5, 0, NULL };
+extern const struct PokemonBase Zapdos		= { 145, "Zapdos",		ELEKTRO,	FLUG,		  3, 216,  90,  90,  85, 125,  90, 100, EXP_T5, 0, NULL,			&ZapdosLearns };
 
-extern const struct PokemonBase Arktos		= { 144, "Arktos",		EIS,		FLUG,		  3, 215,  90,  85, 100,  95, 125,  85, EXP_T5, 0, NULL };
+extern const struct PokemonBase Arktos		= { 144, "Arktos",		EIS,		FLUG,		  3, 215,  90,  85, 100,  95, 125,  85, EXP_T5, 0, NULL,			&ArktosLearns };
 
-extern const struct PokemonBase Relaxo		= { 143, "Relaxo",		NORMAL,		KEINTYP,	 25, 154, 160, 110,  65,  65, 110,  30, EXP_T5, 0, NULL };
+extern const struct PokemonBase Relaxo		= { 143, "Relaxo",		NORMAL,		KEINTYP,	 25, 154, 160, 110,  65,  65, 110,  30, EXP_T5, 0, NULL,			&RelaxoLearns };
 
-extern const struct PokemonBase Aerodactyl	= { 142, "Aerodactyl",	STEIN,		FLUG,		 45, 202,  80, 105,  65,  60,  75, 130, EXP_T5, 0, NULL };
+extern const struct PokemonBase Aerodactyl	= { 142, "Aerodactyl",	STEIN,		FLUG,		 45, 202,  80, 105,  65,  60,  75, 130, EXP_T5, 0, NULL,			&AerodactylLearns };
 
-extern const struct PokemonBase Kabutops	= { 141, "Kabutops",	STEIN,		WASSER,		 45, 199,  60, 115, 105,  65,  70,  80, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kabutops	= { 141, "Kabutops",	STEIN,		WASSER,		 45, 199,  60, 115, 105,  65,  70,  80, EXP_T3, 0, NULL,			&KabutopsLearns };
 
 const struct Evolution  KabutoEvo[]		= { 40, &Kabutops };
-extern const struct PokemonBase Kabuto		= { 140, "Kabuto",		STEIN,		WASSER,		 45,  99,  30,  80,  90,  55,  45,  55, EXP_T3, 1, KabutoEvo };
+extern const struct PokemonBase Kabuto		= { 140, "Kabuto",		STEIN,		WASSER,		 45,  99,  30,  80,  90,  55,  45,  55, EXP_T3, 1, KabutoEvo,		&KabutoLearns };
 
-extern const struct PokemonBase Amoroso		= { 139, "Amoroso",		STEIN,		WASSER,		 45, 199,  70,  60, 125, 115,  70,  55, EXP_T3, 0, NULL };
+extern const struct PokemonBase Amoroso		= { 139, "Amoroso",		STEIN,		WASSER,		 45, 199,  70,  60, 125, 115,  70,  55, EXP_T3, 0, NULL,			&AmorosoLearns };
 
 const struct Evolution  AmonitasEvo[]	= { 40, &Amoroso };
-extern const struct PokemonBase Amonitas	= { 138, "Amonitas",	STEIN,		WASSER,		 45,  99,  35,  40, 100,  90,  55,  35, EXP_T3, 1, AmonitasEvo };
+extern const struct PokemonBase Amonitas	= { 138, "Amonitas",	STEIN,		WASSER,		 45,  99,  35,  40, 100,  90,  55,  35, EXP_T3, 1, AmonitasEvo,		&AmonitasLearns };
 
-extern const struct PokemonBase Porygon		= { 137, "Porygon",		NORMAL,		KEINTYP,	 45, 130,  65,  60,  70,  85,  75,  40, EXP_T3, 0, NULL };
+extern const struct PokemonBase Porygon		= { 137, "Porygon",		NORMAL,		KEINTYP,	 45, 130,  65,  60,  70,  85,  75,  40, EXP_T3, 0, NULL,			&PorygonLearns };
 
-extern const struct PokemonBase Flamara		= { 136, "Flamara",		FEUER,		KEINTYP,	 45, 198,  65, 130,  60,  95, 110,  65, EXP_T3, 0, NULL };
+extern const struct PokemonBase Flamara		= { 136, "Flamara",		FEUER,		KEINTYP,	 45, 198,  65, 130,  60,  95, 110,  65, EXP_T3, 0, NULL,			&FlamaraLearns };
 
-extern const struct PokemonBase Blitza		= { 135, "Blitza",		ELEKTRO,	KEINTYP,	 45, 197,  65,  65,  60, 110,  95, 130, EXP_T3, 0, NULL };
+extern const struct PokemonBase Blitza		= { 135, "Blitza",		ELEKTRO,	KEINTYP,	 45, 197,  65,  65,  60, 110,  95, 130, EXP_T3, 0, NULL,			&BlitzaLearns };
 
-extern const struct PokemonBase Aquana		= { 134, "Aquana",		WASSER,		KEINTYP,	 45, 196, 130,  65,  60, 110,  95,  65, EXP_T3, 0, NULL };
+extern const struct PokemonBase Aquana		= { 134, "Aquana",		WASSER,		KEINTYP,	 45, 196, 130,  65,  60, 110,  95,  65, EXP_T3, 0, NULL,			&AquanaLearns };
 
 const struct Evolution EvoliEvo[]		= { 
 											{ STONE_FIRE, &Flamara },
 											{ STONE_THUNDER, &Blitza },
 											{ STONE_WATER, &Aquana } 
 										};
-extern const struct PokemonBase Evoli		= { 133, "Evoli",		NORMAL,		KEINTYP,	 45,  92,  55,  55,  50,  45,  65,  55, EXP_T3, 3, EvoliEvo };
+extern const struct PokemonBase Evoli		= { 133, "Evoli",		NORMAL,		KEINTYP,	 45,  92,  55,  55,  50,  45,  65,  55, EXP_T3, 3, EvoliEvo,		&EvoliLearns };
 
-extern const struct PokemonBase Ditto		= { 132, "Ditto",		NORMAL,		KEINTYP,	 35,  61,  48,  48,  48,  48,  48,  48, EXP_T3, 0, NULL };
+extern const struct PokemonBase Ditto		= { 132, "Ditto",		NORMAL,		KEINTYP,	 35,  61,  48,  48,  48,  48,  48,  48, EXP_T3, 0, NULL,			&DittoLearns };
 
-extern const struct PokemonBase Lapras		= { 131, "Lapras",		WASSER,		EIS,		 45, 219, 130,  85,  80,  85,  95,  60, EXP_T5, 0, NULL };
+extern const struct PokemonBase Lapras		= { 131, "Lapras",		WASSER,		EIS,		 45, 219, 130,  85,  80,  85,  95,  60, EXP_T5, 0, NULL,			&LaprasLearns };
 
-extern const struct PokemonBase Garados		= { 130, "Garados",		WASSER,		FLUG,		 45, 214,  95, 125,  79,  60, 100,  81, EXP_T5, 0, NULL };
+extern const struct PokemonBase Garados		= { 130, "Garados",		WASSER,		FLUG,		 45, 214,  95, 125,  79,  60, 100,  81, EXP_T5, 0, NULL,			&GaradosLearns };
 
 const struct Evolution  KarpadorEvo[]	= { 20, &Garados };
-extern const struct PokemonBase Karpador	= { 129, "Karpador",	WASSER,		KEINTYP,	255,  20,  20,  10,  55,  15,  20,  80, EXP_T5, 1, KarpadorEvo };
+extern const struct PokemonBase Karpador	= { 129, "Karpador",	WASSER,		KEINTYP,	255,  20,  20,  10,  55,  15,  20,  80, EXP_T5, 1, KarpadorEvo,		&KarpadorLearns };
 
-extern const struct PokemonBase Tauros		= { 128, "Tauros",		NORMAL,		KEINTYP,	 45, 211,  75, 100,  95,  40,  70, 110, EXP_T5, 0, NULL };
+extern const struct PokemonBase Tauros		= { 128, "Tauros",		NORMAL,		KEINTYP,	 45, 211,  75, 100,  95,  40,  70, 110, EXP_T5, 0, NULL,			&TaurosLearns };
 
-extern const struct PokemonBase Pinsir		= { 127, "Pinsir",		KAEFER,		KEINTYP,	 45, 200,  65, 125, 100,  55,  70,  85, EXP_T5, 0, NULL };
+extern const struct PokemonBase Pinsir		= { 127, "Pinsir",		KAEFER,		KEINTYP,	 45, 200,  65, 125, 100,  55,  70,  85, EXP_T5, 0, NULL,			&PinsirLearns };
 
-extern const struct PokemonBase Magmar		= { 126, "Magmar",		FEUER,		KEINTYP,	 45, 167,  65,  95,  57, 100,  85,  93, EXP_T3, 0, NULL };
+extern const struct PokemonBase Magmar		= { 126, "Magmar",		FEUER,		KEINTYP,	 45, 167,  65,  95,  57, 100,  85,  93, EXP_T3, 0, NULL,			&MagmarLearns };
 
-extern const struct PokemonBase Elektek		= { 125, "Elektek",		ELEKTRO,	KEINTYP,	 45, 156,  65,  83,  57,  95,  85, 105, EXP_T3, 0, NULL };
+extern const struct PokemonBase Elektek		= { 125, "Elektek",		ELEKTRO,	KEINTYP,	 45, 156,  65,  83,  57,  95,  85, 105, EXP_T3, 0, NULL,			&ElektekLearns };
 
-extern const struct PokemonBase Rossana		= { 124, "Rossana",		EIS,		PSYCHO,		 45, 137,  65,  50,  35, 115,  95,  95, EXP_T3, 0, NULL };
+extern const struct PokemonBase Rossana		= { 124, "Rossana",		EIS,		PSYCHO,		 45, 137,  65,  50,  35, 115,  95,  95, EXP_T3, 0, NULL,			&RossanaLearns };
 
-extern const struct PokemonBase Sichlor		= { 123, "Sichlor",		KAEFER,		FLUG,		 45, 187,  70, 110,  80,  55,  80, 105, EXP_T3, 0, NULL };
+extern const struct PokemonBase Sichlor		= { 123, "Sichlor",		KAEFER,		FLUG,		 45, 187,  70, 110,  80,  55,  80, 105, EXP_T3, 0, NULL,			&SichlorLearns };
 
-extern const struct PokemonBase Pantimos	= { 122, "Pantimos",	PSYCHO,		KEINTYP,	 45, 136,  40,  45,  65, 100, 120,  90, EXP_T3, 0, NULL };
+extern const struct PokemonBase Pantimos	= { 122, "Pantimos",	PSYCHO,		KEINTYP,	 45, 136,  40,  45,  65, 100, 120,  90, EXP_T3, 0, NULL,			&PantimosLearns };
 
-extern const struct PokemonBase Starmie		= { 121, "Starmie",		WASSER,		PSYCHO,		 60, 207,  60,  75,  85, 100,  85, 115, EXP_T5, 0, NULL };
+extern const struct PokemonBase Starmie		= { 121, "Starmie",		WASSER,		PSYCHO,		 60, 207,  60,  75,  85, 100,  85, 115, EXP_T5, 0, NULL,			&StarmieLearns };
 
 const struct Evolution  SternduEvo[]	= { STONE_WATER, &Starmie };
-extern const struct PokemonBase Sterndu		= { 120, "Sterndu",		WASSER,		KEINTYP,	225, 106,  30,  45,  55,  70,  55,  85, EXP_T5, 1, SternduEvo };
+extern const struct PokemonBase Sterndu		= { 120, "Sterndu",		WASSER,		KEINTYP,	225, 106,  30,  45,  55,  70,  55,  85, EXP_T5, 1, SternduEvo,		&SternduLearns };
 
-extern const struct PokemonBase Golking		= { 119, "Golking",		WASSER,		KEINTYP,	 60, 170,  80,  92,  65,  65,  80,  68, EXP_T3, 0, NULL };
+extern const struct PokemonBase Golking		= { 119, "Golking",		WASSER,		KEINTYP,	 60, 170,  80,  92,  65,  65,  80,  68, EXP_T3, 0, NULL,			&GolkingLearns };
 
 const struct Evolution  GoldiniEvo[]	= { 33, &Golking };
-extern const struct PokemonBase Goldini		= { 118, "Goldini",		WASSER,		KEINTYP,	225, 111,  45,  67,  60,  35,  50,  63, EXP_T3, 1, GoldiniEvo };
+extern const struct PokemonBase Goldini		= { 118, "Goldini",		WASSER,		KEINTYP,	225, 111,  45,  67,  60,  35,  50,  63, EXP_T3, 1, GoldiniEvo,		&GoldiniLearns };
 
-extern const struct PokemonBase Seemon		= { 117, "Seemon",		WASSER,		KEINTYP,	 75, 155,  55,  65,  95,  95,  45,  85, EXP_T3, 0, NULL };
+extern const struct PokemonBase Seemon		= { 117, "Seemon",		WASSER,		KEINTYP,	 75, 155,  55,  65,  95,  95,  45,  85, EXP_T3, 0, NULL,			&SeemonLearns };
 
 const struct Evolution  SeeperEvo[]		= { 32, &Seemon };
-extern const struct PokemonBase Seeper		= { 116, "Seeper",		WASSER,		KEINTYP,	225,  83,  30,  40,  70,  70,  25,  60, EXP_T3, 1, SeeperEvo };
+extern const struct PokemonBase Seeper		= { 116, "Seeper",		WASSER,		KEINTYP,	225,  83,  30,  40,  70,  70,  25,  60, EXP_T3, 1, SeeperEvo,		&SeeperLearns };
 
-extern const struct PokemonBase Kangama		= { 115, "Kangama",		NORMAL,		KEINTYP,	 45, 175, 105,  95,  80,  40,  80,  90, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kangama		= { 115, "Kangama",		NORMAL,		KEINTYP,	 45, 175, 105,  95,  80,  40,  80,  90, EXP_T3, 0, NULL,			&KangamaLearns };
 
-extern const struct PokemonBase Tangela		= { 114, "Tangela",		PFLANZE,	KEINTYP,	 45, 166,  65,  55, 115, 100,  40,  60, EXP_T3, 0, NULL };
+extern const struct PokemonBase Tangela		= { 114, "Tangela",		PFLANZE,	KEINTYP,	 45, 166,  65,  55, 115, 100,  40,  60, EXP_T3, 0, NULL,			&TangelaLearns };
 
-extern const struct PokemonBase Chaneira	= { 113, "Chaneira",	NORMAL,		KEINTYP,	 30, 255, 250,   5,   5,  35, 105,  50, EXP_T2, 0, NULL };
+extern const struct PokemonBase Chaneira	= { 113, "Chaneira",	NORMAL,		KEINTYP,	 30, 255, 250,   5,   5,  35, 105,  50, EXP_T2, 0, NULL,			&ChaneiraLearns };
 
-extern const struct PokemonBase Rizeros		= { 112, "Rizeros",		BODEN,		STEIN,		 60, 204, 105, 130, 120,  45,  45,  40, EXP_T5, 0, NULL };
+extern const struct PokemonBase Rizeros		= { 112, "Rizeros",		BODEN,		STEIN,		 60, 204, 105, 130, 120,  45,  45,  40, EXP_T5, 0, NULL,			&RizerosLearns };
 
 const struct Evolution  RihornEvo[]		= { 42, &Rizeros };
-extern const struct PokemonBase Rihorn		= { 111, "Rihorn",		BODEN,		STEIN,		120, 135,  80,  85,  95,  30,  30,  25, EXP_T5, 1, RihornEvo };
+extern const struct PokemonBase Rihorn		= { 111, "Rihorn",		BODEN,		STEIN,		120, 135,  80,  85,  95,  30,  30,  25, EXP_T5, 1, RihornEvo,		&RihornLearns };
 
-extern const struct PokemonBase Smogmog		= { 110, "Smogmog",		GIFT,		KEINTYP,	 60, 173,  65,  90, 120,  85,  70,  60, EXP_T3, 0, NULL };
+extern const struct PokemonBase Smogmog		= { 110, "Smogmog",		GIFT,		KEINTYP,	 60, 173,  65,  90, 120,  85,  70,  60, EXP_T3, 0, NULL,			&SmogmogLearns };
 
 const struct Evolution  SmogonEvo[]		= { 35, &Smogmog };
-extern const struct PokemonBase Smogon		= { 109, "Smogon",		GIFT,		KEINTYP,	190, 114,  40,  65,  95,  60,  45,  35, EXP_T3, 1, SmogonEvo };
+extern const struct PokemonBase Smogon		= { 109, "Smogon",		GIFT,		KEINTYP,	190, 114,  40,  65,  95,  60,  45,  35, EXP_T3, 1, SmogonEvo,		&SmogonLearns };
 
-extern const struct PokemonBase Schlurp		= { 108, "Schlurp",		NORMAL,		KEINTYP,	 45, 127,  90,  55,  75,  60,  75,  30, EXP_T3, 0, NULL };
+extern const struct PokemonBase Schlurp		= { 108, "Schlurp",		NORMAL,		KEINTYP,	 45, 127,  90,  55,  75,  60,  75,  30, EXP_T3, 0, NULL,			&SchlurpLearns };
 
-extern const struct PokemonBase Nockchan	= { 107, "Nockchan",	KAMPF,		KEINTYP,	 45, 140,  50, 105,  79,  35, 110,  76, EXP_T3, 0, NULL };
+extern const struct PokemonBase Nockchan	= { 107, "Nockchan",	KAMPF,		KEINTYP,	 45, 140,  50, 105,  79,  35, 110,  76, EXP_T3, 0, NULL,			&NockchanLearns };
 
-extern const struct PokemonBase Kicklee		= { 106, "Kicklee",		KAMPF,		KEINTYP,	 45, 139,  50, 120,  53,  35, 110,  87, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kicklee		= { 106, "Kicklee",		KAMPF,		KEINTYP,	 45, 139,  50, 120,  53,  35, 110,  87, EXP_T3, 0, NULL,			&KickleeLearns };
 
-extern const struct PokemonBase Knogga		= { 105, "Knogga",		BODEN,		KEINTYP,	 75, 124,  60,  80, 110,  50,  80,  45, EXP_T3, 0, NULL };
+extern const struct PokemonBase Knogga		= { 105, "Knogga",		BODEN,		KEINTYP,	 75, 124,  60,  80, 110,  50,  80,  45, EXP_T3, 0, NULL,			&KnoggaLearns };
 
 const struct Evolution  TragossoEvo[]	= { 28, &Knogga };
-extern const struct PokemonBase Tragosso	= { 104, "Tragosso",	BODEN,		KEINTYP,	190,  87,  50,  50,  95,  40,  50,  35, EXP_T3, 1, TragossoEvo };
+extern const struct PokemonBase Tragosso	= { 104, "Tragosso",	BODEN,		KEINTYP,	190,  87,  50,  50,  95,  40,  50,  35, EXP_T3, 1, TragossoEvo,		&TragossoLearns };
 
-extern const struct PokemonBase Kokowei		= { 103, "Kokowei",		PFLANZE,	PSYCHO,		 45, 212,  95,  95,  85, 125,  75,  55, EXP_T5, 0, NULL };
+extern const struct PokemonBase Kokowei		= { 103, "Kokowei",		PFLANZE,	PSYCHO,		 45, 212,  95,  95,  85, 125,  75,  55, EXP_T5, 0, NULL,			&KokoweiLearns };
 
 const struct Evolution  OweiEvo[]		= { STONE_LEAF, &Kokowei };
-extern const struct PokemonBase Owei		= { 102, "Owei",		PFLANZE,	PSYCHO,		 90,  98,  60,  40,  80,  60,  45,  40, EXP_T5, 1, OweiEvo };
+extern const struct PokemonBase Owei		= { 102, "Owei",		PFLANZE,	PSYCHO,		 90,  98,  60,  40,  80,  60,  45,  40, EXP_T5, 1, OweiEvo,			&OweiLearns };
 
-extern const struct PokemonBase Lektrobal	= { 101, "Lektrobal",	ELEKTRO,	KEINTYP,	 70, 150,  60,  50,  70,  80,  80, 150, EXP_T3, 0, NULL };
+extern const struct PokemonBase Lektrobal	= { 101, "Lektrobal",	ELEKTRO,	KEINTYP,	 70, 150,  60,  50,  70,  80,  80, 150, EXP_T3, 0, NULL,			&LektrobalLearns };
 
 const struct Evolution  VoltobalEvo[]	= { 30, &Lektrobal };
-extern const struct PokemonBase Voltobal	= { 100, "Voltobal",	ELEKTRO,	KEINTYP,	 190, 103,  40,  30,  50,  55,  55, 100, EXP_T3, 1, VoltobalEvo };
+extern const struct PokemonBase Voltobal	= { 100, "Voltobal",	ELEKTRO,	KEINTYP,	 190, 103,  40,  30,  50,  55,  55, 100, EXP_T3, 1, VoltobalEvo,	&VoltobalLearns };
 
-extern const struct PokemonBase Kingler		= {  99, "Kingler",		WASSER,		KEINTYP,	 60, 206,  55, 130, 115,  50,  50,  75, EXP_T3, 0, NULL };
+extern const struct PokemonBase Kingler		= {  99, "Kingler",		WASSER,		KEINTYP,	 60, 206,  55, 130, 115,  50,  50,  75, EXP_T3, 0, NULL,			&KinglerLearns };
 
 const struct Evolution  KrabbyEvo[]		= { 28, &Kingler };
-extern const struct PokemonBase Krabby		= {  98, "Krabby",		WASSER,		KEINTYP,	225, 115,  30, 105,  90,  25,  25,  50, EXP_T3, 1, KrabbyEvo };
+extern const struct PokemonBase Krabby		= {  98, "Krabby",		WASSER,		KEINTYP,	225, 115,  30, 105,  90,  25,  25,  50, EXP_T3, 1, KrabbyEvo,		&KrabbyLearns };
 
-extern const struct PokemonBase Hypno		= {  97, "Hypno",		PSYCHO,		KEINTYP,	 75, 165,  85,  73,  70,  73, 115,  67, EXP_T3, 0, NULL };
+extern const struct PokemonBase Hypno		= {  97, "Hypno",		PSYCHO,		KEINTYP,	 75, 165,  85,  73,  70,  73, 115,  67, EXP_T3, 0, NULL,			&HypnoLearns };
 
 const struct Evolution  TraumatoEvo[]	= { 26, &Hypno };
-extern const struct PokemonBase Traumato	= {  96, "Traumato",	PSYCHO,		KEINTYP,	190, 102,  60,  48,  45,  43,  90,  42, EXP_T3, 1, TraumatoEvo };
+extern const struct PokemonBase Traumato	= {  96, "Traumato",	PSYCHO,		KEINTYP,	190, 102,  60,  48,  45,  43,  90,  42, EXP_T3, 1, TraumatoEvo,		&TraumatoLearns };
 
-extern const struct PokemonBase Onix		= {  95, "Onix",		STEIN,		BODEN,		 45, 108,  35,  45, 160,  30,  45,  70, EXP_T3, 0, NULL };
+extern const struct PokemonBase Onix		= {  95, "Onix",		STEIN,		BODEN,		 45, 108,  35,  45, 160,  30,  45,  70, EXP_T3, 0, NULL,			&OnixLearns };
 
-extern const struct PokemonBase Gengar		= {  94, "Gengar",		GEIST,		GIFT,		 45, 190,  60,  65,  60, 130,  75, 110, EXP_T4, 0, NULL };
+extern const struct PokemonBase Gengar		= {  94, "Gengar",		GEIST,		GIFT,		 45, 190,  60,  65,  60, 130,  75, 110, EXP_T4, 0, NULL,			&GengarLearns };
 
 const struct Evolution  AlpolloEvo[]	= { EVO_TRADE, &Gengar };
-extern const struct PokemonBase Alpollo		= {  93, "Alpollo",		GEIST,		GIFT,		 90, 126,  45,  50,  45, 115,  55,  95, EXP_T4, 1, AlpolloEvo };
+extern const struct PokemonBase Alpollo		= {  93, "Alpollo",		GEIST,		GIFT,		 90, 126,  45,  50,  45, 115,  55,  95, EXP_T4, 1, AlpolloEvo,		&AlpolloLearns };
 
 const struct Evolution  NebulakEvo[]	= { 25, &Alpollo };
-extern const struct PokemonBase Nebulak		= {  92, "Nebulak",		GEIST,		GIFT,		190,  95,  30,  35,  30, 100,  35,  80, EXP_T4, 1, NebulakEvo };
+extern const struct PokemonBase Nebulak		= {  92, "Nebulak",		GEIST,		GIFT,		190,  95,  30,  35,  30, 100,  35,  80, EXP_T4, 1, NebulakEvo,		&NebulakLearns };
 
-extern const struct PokemonBase Austos		= {  91, "Austos",		WASSER,		EIS,		 60, 203,  50,  95, 180,  85,  45,  70, EXP_T5, 0, NULL };
+extern const struct PokemonBase Austos		= {  91, "Austos",		WASSER,		EIS,		 60, 203,  50,  95, 180,  85,  45,  70, EXP_T5, 0, NULL,			&AustosLearns };
 
 const struct Evolution  MuschasEvo[]	= { STONE_WATER, &Austos };
-extern const struct PokemonBase Muschas		= {  90, "Muschas",		WASSER,		KEINTYP,	190,  97,  30,  65, 100,  45,  25,  40, EXP_T5, 1, MuschasEvo };
+extern const struct PokemonBase Muschas		= {  90, "Muschas",		WASSER,		KEINTYP,	190,  97,  30,  65, 100,  45,  25,  40, EXP_T5, 1, MuschasEvo,		&MuschasLearns };
 
-extern const struct PokemonBase Sleimok		= {  89, "Sleimok",		GIFT,		KEINTYP,	 75, 157, 105, 105,  75,  65, 100,  50, EXP_T3, 0, NULL };
+extern const struct PokemonBase Sleimok		= {  89, "Sleimok",		GIFT,		KEINTYP,	 75, 157, 105, 105,  75,  65, 100,  50, EXP_T3, 0, NULL,			&SleimokLearns };
 
 const struct Evolution  SleimaEvo[]		= { 38, &Sleimok };
-extern const struct PokemonBase Sleima		= {  88, "Sleima",		GIFT,		KEINTYP,	190,  90,  80,  80,  50,  40,  50,  25, EXP_T3, 1, SleimaEvo };
+extern const struct PokemonBase Sleima		= {  88, "Sleima",		GIFT,		KEINTYP,	190,  90,  80,  80,  50,  40,  50,  25, EXP_T3, 1, SleimaEvo,		&SleimaLearns };
 
-extern const struct PokemonBase Jugong		= {  87, "Jugong",		WASSER,		EIS,		 75, 176,  90,  70,  80,  70,  95,  70, EXP_T3, 0, NULL };
+extern const struct PokemonBase Jugong		= {  87, "Jugong",		WASSER,		EIS,		 75, 176,  90,  70,  80,  70,  95,  70, EXP_T3, 0, NULL,			&JugongLearns };
 
 const struct Evolution  JurobEvo[]		= { 34, &Jugong };
-extern const struct PokemonBase Jurob		= {  86, "Jurob",		WASSER,		KEINTYP,	190, 100,  65,  45,  55,  45,  70,  45, EXP_T3, 1, JurobEvo };
+extern const struct PokemonBase Jurob		= {  86, "Jurob",		WASSER,		KEINTYP,	190, 100,  65,  45,  55,  45,  70,  45, EXP_T3, 1, JurobEvo,		&JurobLearns };
 
-extern const struct PokemonBase Dodri		= {  85, "Dodri",		NORMAL,		FLUG,		 45, 158,  60, 110,  70,  60,  60, 110, EXP_T3, 0, NULL };
+extern const struct PokemonBase Dodri		= {  85, "Dodri",		NORMAL,		FLUG,		 45, 158,  60, 110,  70,  60,  60, 110, EXP_T3, 0, NULL,			&DodriLearns };
 
 const struct Evolution  DoduEvo[]		= { 31, &Dodri };
-extern const struct PokemonBase Dodu		= {  84, "Dodu",		NORMAL,		FLUG,		190,  96,  35,  85,  45,  35,  35,  75, EXP_T3, 1, DoduEvo };
+extern const struct PokemonBase Dodu		= {  84, "Dodu",		NORMAL,		FLUG,		190,  96,  35,  85,  45,  35,  35,  75, EXP_T3, 1, DoduEvo,			&DoduLearns };
 
-extern const struct PokemonBase Porenta		= {  83, "Porenta",		NORMAL,		FLUG,		 45,  94,  52,  90,  55,  58,  62,  60, EXP_T3, 0, NULL };
+extern const struct PokemonBase Porenta		= {  83, "Porenta",		NORMAL,		FLUG,		 45,  94,  52,  90,  55,  58,  62,  60, EXP_T3, 0, NULL,			&PorentaLearns };
 
-extern const struct PokemonBase Magneton	= {  82, "Magneton",	ELEKTRO,	STAHL,		 60, 161,  50,  60,  95, 120,  70,  70, EXP_T3, 0, NULL };
+extern const struct PokemonBase Magneton	= {  82, "Magneton",	ELEKTRO,	STAHL,		 60, 161,  50,  60,  95, 120,  70,  70, EXP_T3, 0, NULL,			&MagnetonLearns };
 
 const struct Evolution  MagnetiloEvo[]	= { 30, &Magneton };
-extern const struct PokemonBase Magnetilo	= {  81, "Magnetilo",	ELEKTRO,	STAHL,		190,  89,  25,  35,  70,  95,  55,  45, EXP_T3, 1, MagnetiloEvo };
+extern const struct PokemonBase Magnetilo	= {  81, "Magnetilo",	ELEKTRO,	STAHL,		190,  89,  25,  35,  70,  95,  55,  45, EXP_T3, 1, MagnetiloEvo,	&MagnetiloLearns };
 
-extern const struct PokemonBase Lahmus		= {  80, "Lahmus",		WASSER,		PSYCHO,		 75, 164,  95,  75, 110, 100,  80,  30, EXP_T3, 0, NULL };
+extern const struct PokemonBase Lahmus		= {  80, "Lahmus",		WASSER,		PSYCHO,		 75, 164,  95,  75, 110, 100,  80,  30, EXP_T3, 0, NULL,			&LahmusLearns };
 
 const struct Evolution FlegmonEvo[]		= { 37, &Lahmus };
-extern const struct PokemonBase Flegmon		= {  79, "Flegmon",		WASSER,		PSYCHO,		190,  99,  90,  65,  65,  40,  40,  15, EXP_T3, 1, FlegmonEvo };
+extern const struct PokemonBase Flegmon		= {  79, "Flegmon",		WASSER,		PSYCHO,		190,  99,  90,  65,  65,  40,  40,  15, EXP_T3, 1, FlegmonEvo,		&FlegmonLearns };
 
-extern const struct PokemonBase Gallopa		= {  78, "Gallopa",		FEUER,		KEINTYP,	 60, 192,  65, 100,  70,  80,  80, 105, EXP_T3, 0, NULL };
+extern const struct PokemonBase Gallopa		= {  78, "Gallopa",		FEUER,		KEINTYP,	 60, 192,  65, 100,  70,  80,  80, 105, EXP_T3, 0, NULL,			&GallopaLearns };
 
 const struct Evolution PonitaEvo[]		= { 40, &Gallopa };
-extern const struct PokemonBase Ponita		= {  77, "Ponita",		FEUER,		KEINTYP,	190, 152,  50,  85,  55,  65,  65,  90, EXP_T3, 1, PonitaEvo };
+extern const struct PokemonBase Ponita		= {  77, "Ponita",		FEUER,		KEINTYP,	190, 152,  50,  85,  55,  65,  65,  90, EXP_T3, 1, PonitaEvo,		&GeorokLearns };
 
-extern const struct PokemonBase Geowaz		= {  76, "Geowaz",		STEIN,		BODEN,		 45, 177,  80, 120, 130,  55,  65,  45, EXP_T4, 0, NULL };
+extern const struct PokemonBase Geowaz		= {  76, "Geowaz",		STEIN,		BODEN,		 45, 177,  80, 120, 130,  55,  65,  45, EXP_T4, 0, NULL,			&GeowazLearns };
 
 const struct Evolution GeorokEvo[]		= { EVO_TRADE, &Geowaz };
-extern const struct PokemonBase Georok		= {  75, "Georok",		STEIN,		BODEN,		120, 134,  55,  95, 115,  45,  45,  35, EXP_T4, 1, GeorokEvo };
+extern const struct PokemonBase Georok		= {  75, "Georok",		STEIN,		BODEN,		120, 134,  55,  95, 115,  45,  45,  35, EXP_T4, 1, GeorokEvo,		&GeorokLearns };
 
 const struct Evolution KleinsteinEvo[]	= { 25, &Georok };
-extern const struct PokemonBase Kleinstein	= {  74, "Kleinstein",	STEIN,		BODEN,		255,  73,  40,  80, 100,  30,  30,  20, EXP_T4, 1, KleinsteinEvo };
+extern const struct PokemonBase Kleinstein	= {  74, "Kleinstein",	STEIN,		BODEN,		255,  73,  40,  80, 100,  30,  30,  20, EXP_T4, 1, KleinsteinEvo,	&KleinsteinLearns };
 
-extern const struct PokemonBase Tentoxa		= {  73, "Tentoxa",		WASSER,		GIFT,		 60, 205,  80,  70,  65,  80, 120, 100, EXP_T5, 0, NULL };
+extern const struct PokemonBase Tentoxa		= {  73, "Tentoxa",		WASSER,		GIFT,		 60, 205,  80,  70,  65,  80, 120, 100, EXP_T5, 0, NULL,			&TentoxaLearns };
 
 const struct Evolution TentachaEvo[]	= { 30, &Tentoxa };
-extern const struct PokemonBase Tentacha	= {  72, "Tentacha",	WASSER,		GIFT,		190, 105,  40,  40,  35,  50, 100,  70, EXP_T5, 1, TentachaEvo };
+extern const struct PokemonBase Tentacha	= {  72, "Tentacha",	WASSER,		GIFT,		190, 105,  40,  40,  35,  50, 100,  70, EXP_T5, 1, TentachaEvo,		&TentachaLearns };
 
-extern const struct PokemonBase Sarzenia	= {  71, "Sarzenia",	PFLANZE,	GIFT,		 45, 191,  80, 105,  65, 100,  70,  70, EXP_T4, 0, NULL };
+extern const struct PokemonBase Sarzenia	= {  71, "Sarzenia",	PFLANZE,	GIFT,		 45, 191,  80, 105,  65, 100,  70,  70, EXP_T4, 0, NULL,			&SarzeniaLearns };
 
 const struct Evolution UltrigariaEvo[]	= { STONE_LEAF, &Sarzenia };
-extern const struct PokemonBase Ultrigaria	= {  70, "Ultrigaria",	PFLANZE,	GIFT,		120, 151,  65,  90,  50,  85,  45,  55, EXP_T4, 1, UltrigariaEvo };
+extern const struct PokemonBase Ultrigaria	= {  70, "Ultrigaria",	PFLANZE,	GIFT,		120, 151,  65,  90,  50,  85,  45,  55, EXP_T4, 1, UltrigariaEvo,	&UltrigariaLearns };
 
 const struct Evolution KnofensaEvo[]	= { 21, &Ultrigaria };
-extern const struct PokemonBase Knofensa	= {  69, "Knofensa",	PFLANZE,	GIFT,		255,  84,  50,  75,  35,  70,  30,  40, EXP_T4, 1, KnofensaEvo };
+extern const struct PokemonBase Knofensa	= {  69, "Knofensa",	PFLANZE,	GIFT,		255,  84,  50,  75,  35,  70,  30,  40, EXP_T4, 1, KnofensaEvo,		&KnofensaLearns };
 
-extern const struct PokemonBase Machomei	= {  68, "Machomei",	KAMPF,		KEINTYP,	 45, 193,  90, 130,  80,  65,  85,  55, EXP_T4, 0, NULL };
+extern const struct PokemonBase Machomei	= {  68, "Machomei",	KAMPF,		KEINTYP,	 45, 193,  90, 130,  80,  65,  85,  55, EXP_T4, 0, NULL,			&MachomeiLearns };
 
 const struct Evolution MaschockEvo[]	= { EVO_TRADE, &Machomei };
-extern const struct PokemonBase Maschock	= {  67, "Maschock",	KAMPF,		KEINTYP,	 90, 146,  80, 100,  70,  50,  60,  45, EXP_T4, 1, MaschockEvo };
+extern const struct PokemonBase Maschock	= {  67, "Maschock",	KAMPF,		KEINTYP,	 90, 146,  80, 100,  70,  50,  60,  45, EXP_T4, 1, MaschockEvo,		&MaschockLearns };
 
 const struct Evolution MacholloEvo[]	= { 28, &Maschock };
-extern const struct PokemonBase Machollo	= {  66, "Machollo",	KAMPF,		KEINTYP,	180,  75,  70,  80,  50,  35,  35,  35, EXP_T4, 1, MacholloEvo };
+extern const struct PokemonBase Machollo	= {  66, "Machollo",	KAMPF,		KEINTYP,	180,  75,  70,  80,  50,  35,  35,  35, EXP_T4, 1, MacholloEvo,		&MacholloLearns };
 
-extern const struct PokemonBase Simsala		= {  65, "Simsala",		PSYCHO,		KEINTYP,	 50, 186,  55,  50,  45, 135,  95, 120, EXP_T4, 0, NULL };
+extern const struct PokemonBase Simsala		= {  65, "Simsala",		PSYCHO,		KEINTYP,	 50, 186,  55,  50,  45, 135,  95, 120, EXP_T4, 0, NULL,			&SimsalaLearns };
 
 const struct Evolution KadabraEvo[]		= { EVO_TRADE, &Simsala };
-extern const struct PokemonBase Kadabra		= {  64, "Kadabra",		PSYCHO,		KEINTYP,	100, 145,  40,  35,  30, 120,  70, 105, EXP_T4, 1, KadabraEvo };
+extern const struct PokemonBase Kadabra		= {  64, "Kadabra",		PSYCHO,		KEINTYP,	100, 145,  40,  35,  30, 120,  70, 105, EXP_T4, 1, KadabraEvo,		&KadabraLearns };
 
 const struct Evolution AbraEvo[]		= { 16, &Kadabra };
-extern const struct PokemonBase Abra		= {  63, "Abra",		PSYCHO,		KEINTYP,	200,  75,  25,  20,  15, 105,  55,  90, EXP_T4, 1, AbraEvo };
+extern const struct PokemonBase Abra		= {  63, "Abra",		PSYCHO,		KEINTYP,	200,  75,  25,  20,  15, 105,  55,  90, EXP_T4, 1, AbraEvo,			&AbraLearns };
 
-extern const struct PokemonBase Quappo		= {  62, "Quappo",		WASSER,		KAMPF,		 45, 185,  90,  95,  95,  70,  90,  70, EXP_T4, 0, NULL };
+extern const struct PokemonBase Quappo		= {  62, "Quappo",		WASSER,		KAMPF,		 45, 185,  90,  95,  95,  70,  90,  70, EXP_T4, 0, NULL,			&QuappoLearns };
 
 const struct Evolution QuaputziEvo[]	= { STONE_WATER, &Quappo };
-extern const struct PokemonBase Quaputzi	= {  61, "Quaputzi",	WASSER,		KEINTYP,	120, 131,  65,  65,  65,  50,  50,  90, EXP_T4, 1, QuaputziEvo };
+extern const struct PokemonBase Quaputzi	= {  61, "Quaputzi",	WASSER,		KEINTYP,	120, 131,  65,  65,  65,  50,  50,  90, EXP_T4, 1, QuaputziEvo,		&QuaputziLearns };
 
 const struct Evolution QuapselEvo[]		= { 25, &Quaputzi };
-extern const struct PokemonBase Quapsel		= {  60, "Quapsel",		WASSER,		KEINTYP,	255,  77,  40,  50,  40,  40,  40,  90, EXP_T4, 1, QuapselEvo };
+extern const struct PokemonBase Quapsel		= {  60, "Quapsel",		WASSER,		KEINTYP,	255,  77,  40,  50,  40,  40,  40,  90, EXP_T4, 1, QuapselEvo,		&QuapselLearns };
 
-extern const struct PokemonBase Arkani		= {  59, "Arkani",		FEUER,		KEINTYP,	 75, 213,  90, 110,  80, 100,  80,  95, EXP_T5, 0, NULL };
+extern const struct PokemonBase Arkani		= {  59, "Arkani",		FEUER,		KEINTYP,	 75, 213,  90, 110,  80, 100,  80,  95, EXP_T5, 0, NULL,			&ArkaniLearns };
 
 const struct Evolution FukanoEvo[]		= { STONE_FIRE, &Arkani };
-extern const struct PokemonBase Fukano		= {  58, "Fukano",		FEUER,		KEINTYP,	190,  91,  55,  70,  45,  70,  50,  60, EXP_T5, 1, FukanoEvo };
+extern const struct PokemonBase Fukano		= {  58, "Fukano",		FEUER,		KEINTYP,	190,  91,  55,  70,  45,  70,  50,  60, EXP_T5, 1, FukanoEvo,		&FukanoLearns };
 
-extern const struct PokemonBase Rasaff		= {  57, "Rasaff",		KAMPF,		KEINTYP,	 75, 149,  65, 105,  60,  60,  70,  95, EXP_T3, 0, NULL };
+extern const struct PokemonBase Rasaff		= {  57, "Rasaff",		KAMPF,		KEINTYP,	 75, 149,  65, 105,  60,  60,  70,  95, EXP_T3, 0, NULL,			&RasaffLearns };
 
 const struct Evolution MenkiEvo[]		= { 28, &Rasaff };
-extern const struct PokemonBase Menki		= {  56, "Menki",		KAMPF,		KEINTYP,	190,  74,  40,  80,  35,  35,  45,  70, EXP_T3, 1, MenkiEvo };
+extern const struct PokemonBase Menki		= {  56, "Menki",		KAMPF,		KEINTYP,	190,  74,  40,  80,  35,  35,  45,  70, EXP_T3, 1, MenkiEvo,		&MenkiLearns };
 
-extern const struct PokemonBase Entoron		= {  55, "Entoron",		WASSER,		KEINTYP,	 75, 174,  80,  82,  75,  95,  80,  85, EXP_T3, 0, NULL };
+extern const struct PokemonBase Entoron		= {  55, "Entoron",		WASSER,		KEINTYP,	 75, 174,  80,  82,  75,  95,  80,  85, EXP_T3, 0, NULL,			&EntoronLearns };
 
 const struct Evolution EntonEvo[]		= { 33, &Entoron };
-extern const struct PokemonBase Enton		= {  54, "Enton",		WASSER,		KEINTYP,	190,  80,  50,  52,  48,  65,  50,  55, EXP_T3, 1, EntonEvo };
+extern const struct PokemonBase Enton		= {  54, "Enton",		WASSER,		KEINTYP,	190,  80,  50,  52,  48,  65,  50,  55, EXP_T3, 1, EntonEvo,		&EntonLearns };
 
-extern const struct PokemonBase Snobilikat	= {  53, "Snobilikat",	NORMAL,		KEINTYP,	 90, 148,  65,  70,  60,  65,  65, 115, EXP_T3, 0, NULL };
+extern const struct PokemonBase Snobilikat	= {  53, "Snobilikat",	NORMAL,		KEINTYP,	 90, 148,  65,  70,  60,  65,  65, 115, EXP_T3, 0, NULL,			&SnobilikatLearns };
 
 const struct Evolution MauziEvo[]		= { 28, &Snobilikat };
-extern const struct PokemonBase Mauzi		= {  52, "Mauzi",		NORMAL,		KEINTYP,	255,  69,  40,  45,  35,  40,  40,  90, EXP_T3, 1, MauziEvo };
+extern const struct PokemonBase Mauzi		= {  52, "Mauzi",		NORMAL,		KEINTYP,	255,  69,  40,  45,  35,  40,  40,  90, EXP_T3, 1, MauziEvo,		&MauziLearns };
 
-extern const struct PokemonBase Digdri		= {  51, "Digdri",		BODEN,		KEINTYP,	 50, 153,  35, 100,  50,  50,  70, 120, EXP_T3, 0, NULL };
+extern const struct PokemonBase Digdri		= {  51, "Digdri",		BODEN,		KEINTYP,	 50, 153,  35, 100,  50,  50,  70, 120, EXP_T3, 0, NULL,			&DigdriLearns };
 
 const struct Evolution DigdaEvo[]		= { 26, &Digdri };
-extern const struct PokemonBase Digda		= {  50, "Digda",		BODEN,		KEINTYP,	255,  81,  10,  55,  25,  35,  45,  95, EXP_T3, 1, DigdaEvo };
+extern const struct PokemonBase Digda		= {  50, "Digda",		BODEN,		KEINTYP,	255,  81,  10,  55,  25,  35,  45,  95, EXP_T3, 1, DigdaEvo,		&DigdaLearns };
 
-extern const struct PokemonBase Omot		= {  49, "Omot",		KAEFER,		GIFT,		 75, 138,  70,  65,  60,  90,  75,  90, EXP_T3, 0, NULL };
+extern const struct PokemonBase Omot		= {  49, "Omot",		KAEFER,		GIFT,		 75, 138,  70,  65,  60,  90,  75,  90, EXP_T3, 0, NULL,			&OmotLearns };
 
 const struct Evolution BluzukEvo[]		= { 31, &Omot };
-extern const struct PokemonBase Bluzuk		= {  48, "Bluzuk",		KAEFER,		GIFT,		190,  75,  60,  55,  50,  40,  55,  45, EXP_T3, 1, BluzukEvo };
+extern const struct PokemonBase Bluzuk		= {  48, "Bluzuk",		KAEFER,		GIFT,		190,  75,  60,  55,  50,  40,  55,  45, EXP_T3, 1, BluzukEvo,		&BluzukLearns };
 
-extern const struct PokemonBase Parasek		= {  47, "Parasek",		KAEFER,		PFLANZE,	 75, 128,  60,  95,  80,  60,  80,  30, EXP_T3, 0, NULL };
+extern const struct PokemonBase Parasek		= {  47, "Parasek",		KAEFER,		PFLANZE,	 75, 128,  60,  95,  80,  60,  80,  30, EXP_T3, 0, NULL,			&ParasekLearns };
 
 const struct Evolution ParasEvo[]		= { 24, &Parasek };
-extern const struct PokemonBase Paras		= {  46, "Paras",		KAEFER,		PFLANZE,	190,  70,  35,  70,  55,  45,  55,  25, EXP_T3, 1, ParasEvo };
+extern const struct PokemonBase Paras		= {  46, "Paras",		KAEFER,		PFLANZE,	190,  70,  35,  70,  55,  45,  55,  25, EXP_T3, 1, ParasEvo,		&ParasekLearns };
 
-extern const struct PokemonBase Giflor		= {  45, "Giflor",		PFLANZE,	GIFT,		 45, 184,  75,  80,  85, 110,  90,  50, EXP_T4, 0, NULL };
+extern const struct PokemonBase Giflor		= {  45, "Giflor",		PFLANZE,	GIFT,		 45, 184,  75,  80,  85, 110,  90,  50, EXP_T4, 0, NULL,			&GiflorLearns };
 
 const struct Evolution DuflorEvo[]		= { STONE_LEAF, &Giflor };
-extern const struct PokemonBase Duflor		= {  44, "Duflor",		PFLANZE,	GIFT,		120, 132,  60,  65,  70,  85,  75,  40, EXP_T4, 1, DuflorEvo };
+extern const struct PokemonBase Duflor		= {  44, "Duflor",		PFLANZE,	GIFT,		120, 132,  60,  65,  70,  85,  75,  40, EXP_T4, 1, DuflorEvo,		&DuflorLearns };
 
 const struct Evolution MyraplaEvo[]		= { 21, &Duflor };
-extern const struct PokemonBase Myrapla		= {  43, "Myrapla",		PFLANZE,	GIFT,		255,  78,  45,  50,  55,  75,  65,  30, EXP_T4, 1, MyraplaEvo };
+extern const struct PokemonBase Myrapla		= {  43, "Myrapla",		PFLANZE,	GIFT,		255,  78,  45,  50,  55,  75,  65,  30, EXP_T4, 1, MyraplaEvo,		&MyraplaLearns };
 
-extern const struct PokemonBase Golbat		= {  42, "Golbat",		GIFT,		FLUG,		 90, 171,  71,  80,  70,  65,  75,  90, EXP_T3, 0, NULL };
+extern const struct PokemonBase Golbat		= {  42, "Golbat",		GIFT,		FLUG,		 90, 171,  71,  80,  70,  65,  75,  90, EXP_T3, 0, NULL,			&GolbatLearns };
 
 const struct Evolution ZubatEvo[]		= { 22, &Golbat };
-extern const struct PokemonBase Zubat		= {  41, "Zubat",		GIFT,		FLUG,		255,  54,  40,  45,  35,  30,  40,  55, EXP_T3, 1, ZubatEvo };
+extern const struct PokemonBase Zubat		= {  41, "Zubat",		GIFT,		FLUG,		255,  54,  40,  45,  35,  30,  40,  55, EXP_T3, 1, ZubatEvo,		&ZubatLearns };
 
 extern const struct PokemonBase Knuddeluff	= {  40, "Knuddeluff",	NORMAL,		KEINTYP,	 50, 109, 140,  70,  45,  85,  50,  45, EXP_T2, 0, NULL,			&KnuddeluffLearns };
 

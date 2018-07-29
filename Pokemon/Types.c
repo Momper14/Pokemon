@@ -44,17 +44,17 @@ byte getMultiplikator(byte attackType, byte defenseType1, byte defenseType2, ulo
 	}	
 
 	if (effektivitaet == EFFEKT_NICHT) {
-		*damage >> 1;
+		(*damage >> 1);
 	}
 	else if (effektivitaet == EFFEKT_SEHR) {
-		*damage << 1;
+		(*damage << 1);
 	}
 
 	if (effTmp == EFFEKT_NICHT) {
-		*damage >> 1;
+		(*damage >> 1);
 	}
 	else if (effTmp == EFFEKT_SEHR) {
-		*damage << 1;
+		(*damage << 1);
 	}	
 
 	/*
