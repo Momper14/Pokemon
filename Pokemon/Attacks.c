@@ -11,7 +11,7 @@ const AttackeBasis Bohrschnabel  = { "Bohrschnabel" ,FLUG   , 80,100,20, 0,PHYSI
 const AttackeBasis Eierbombe     = { "Eierbombe"    ,NORMAL ,100, 75,10, 0,PHYSISCH };
 const AttackeBasis Erdbeben      = { "Erdbeben"     ,BODEN  ,100,100,10, 0,PHYSISCH };
 const AttackeBasis Fluegelschlag = { "Flügelschlag" ,FLUG   , 60,100,35, 0,PHYSISCH };
-const AttackeBasis HornAttackeBasis   = { "HornAttackeBasis"  ,NORMAL , 65,100,25, 0,PHYSISCH };
+const AttackeBasis HornAttacke  =  { "HornAttacke"  ,NORMAL , 65,100,25, 0,PHYSISCH };
 const AttackeBasis Hydropumpe    = { "Hydropumpe"   ,WASSER ,110, 80, 5, 0,SPEZIAL  };
 const AttackeBasis Hyperzahn     = { "Hyperzahn"    ,NORMAL , 80, 90,15, 0,PHYSISCH };
 const AttackeBasis Hypnose       = { "Hypnose"      ,PSYCHO ,  0, 60,20, 0,STATUS   };
@@ -231,7 +231,7 @@ extern const AttackeBasis *AttackDex[166] = {
 	&Fegekick,
 	&Sandwirbel,
 	&Kopfnuss,
-	&HornAttackeBasis,
+	&HornAttacke,
 	&Furienschlag,
 	&Hornbohrer,
 	&Tackle,
