@@ -1,5 +1,7 @@
 #pragma once
+
 #include <stddef.h>
+#include <stdbool.h>
 
 typedef unsigned char byte;
 typedef unsigned int uint;

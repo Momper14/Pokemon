@@ -24,13 +24,13 @@
 
 
 struct PokemonBase{
-	const uint natDex;
+	const byte natDex;
 	const char *name;
 	const byte typ1;
 	const byte typ2;
 	const byte catchrate;
-	const uint exp;
-	const uint stats[6];
+	const byte exp;
+	const byte stats[6];
 	const byte expTier;
 	const byte countEvolutions;
 	const struct Evolution *evolutions;
