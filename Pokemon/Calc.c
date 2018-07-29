@@ -230,19 +230,19 @@ void buffStat(PokemonFight *pokemon, ushort stat, ushort stufen) {
 		break;
 	case 5: 
 		// Alles brav geshiftet ]:D
-		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 + pokemon->pokemon->pokemon->stats[stat] + pokemon->pokemon->pokemon->stats[stat] >> 1; // 3.5 Fach
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) + pokemon->pokemon->pokemon->stats[stat] + (pokemon->pokemon->pokemon->stats[stat] >> 1); // 3.5 Fach
 		break;
 	case 4: 
-		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 + pokemon->pokemon->pokemon->stats[stat]; // 3 Fach 
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) + pokemon->pokemon->pokemon->stats[stat]; // 3 Fach 
 		break;
 	case 3: 
-		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 + pokemon->pokemon->pokemon->stats[stat] >> 1; // 2.5 Fach
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) + (pokemon->pokemon->pokemon->stats[stat] >> 1); // 2.5 Fach
 		break;
 	case 2: 
 		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 ; // 2 Fach
 		break;
 	case 1: 
-		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] + pokemon->pokemon->pokemon->stats[stat] >> 1; // 1.5 Fach
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] + (pokemon->pokemon->pokemon->stats[stat] >> 1); // 1.5 Fach
 		break;
 	case 0: 
 		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat]; // 1 Fach
@@ -745,7 +745,7 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 	case ATTACKE_SUPERZAHN:
 		//Die gegnerischen vorhandenen KP werden halbiert.
 		if (rand()%101 < AttackDex[attackID]->precision) {
-			verteidiger->pokemon->aktKP >> 1;
+			verteidiger->pokemon->aktKP = verteidiger->pokemon->aktKP >> 1;
 		}
 		break;
 	case ATTACKE_SCHLITZER:
