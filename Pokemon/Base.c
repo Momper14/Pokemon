@@ -629,6 +629,7 @@ const struct Learnable KnuddeluffLearn[] = {
 };
 const struct Learnables KnuddeluffLearns = { 4, KnuddeluffLearn };
 
+
 const struct Learnable PummeluffLearn[] = {
 	{  1, ATTACKE_GESANG },
 	{  9, ATTACKE_PFUND },
