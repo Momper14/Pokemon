@@ -19,15 +19,16 @@ struct PokemonClass{
 typedef struct PokemonClass PokemonClass;
 
 struct PokemonGroup{
-	struct PokemonClass *pokemon;
-	byte status;
-	ushort aktKP;
+	struct PokemonClass *pokemon;	// Verweis auf das Pokemon des Trainers
+	byte status;					// SLF / PAR / GIF / BRN / FRZ / Schwere Vergiftug
+	ushort aktKP;					// KP im Kampf und bis zur nächsten Heilung
 };
 typedef struct PokemonGroup PokemonGroup;
 
 struct PokemonFight{
 	struct PokemonGroup *pokemon;
-	byte stufen[6];
+	byte stufen[6];					// Temporäre stats 
+	byte verwirrung;				// 1 Für verwirrt und 0 für nicht verwirrt
 };
 typedef struct PokemonFight PokemonFight;
 
