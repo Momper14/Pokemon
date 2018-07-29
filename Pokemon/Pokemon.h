@@ -22,6 +22,7 @@ struct PokemonGroup{
 	struct PokemonClass *pokemon;	// Verweis auf das Pokemon des Trainers
 	byte status;					// SLF / PAR / GIF / BRN / FRZ / Schwere Vergiftug / KO
 	ushort aktKP;					// KP im Kampf und bis zur nächsten Heilung
+	bool teilgenommen;				// ob das Pokemon am aktuellen Kampf teilgenommen hat
 };
 typedef struct PokemonGroup PokemonGroup;
 
@@ -34,3 +35,5 @@ typedef struct PokemonFight PokemonFight;
 
 void clacStats(struct PokemonClass *pokemon);
 void calcEXPNext(struct PokemonClass *pokemon);
+ushort expGain(struct PokemonClass *gegner, short teilnemer);
+void statsGain(struct PokemonClass *pokemon, const PokemonBase *enemy);

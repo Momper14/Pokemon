@@ -28,10 +28,11 @@ int main(){
 	//clacStats(&pkm);
 	//printf("KP: %d, ATK: %d, DEF: %d, SP. ATK: %d, SP. DEF: %d, SPD: %d\n", pkm.stats[STAT_KP], pkm.stats[STAT_ANGRIFF], pkm.stats[STAT_VERTEIDIGUNG], pkm.stats[STAT_SPEZIALANGRIFF], pkm.stats[STAT_SPEZIALVERTEIDIGUNG], pkm.stats[STAT_INITIATIVE]);
 
-	int i, x;
-	for(i = EXP_T2; i <= EXP_T5; i++){
-		printf("Tier: %d, EXP Ges: %d\n", i, calcEXPNextT(99, i));
+	ushort test = USHRT_MAX - 2;
+	if(test + 10 > USHRT_MAX){
+		test = USHRT_MAX;
 	}
+	printf("%d\n", test);
 
 	scanf_s("%c", &in, 1);
 
