@@ -3,8 +3,12 @@
 
 uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
 uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
-void statusChange(PokemonGroup *pokemon, byte status, byte chance);
+void statusChange(PokemonFight *pokemon, byte status, byte chance);
 void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID,byte status,byte chance);
+void applyKOAttack(PokemonFight *verteidiger,byte chance);
+void buffStat(PokemonFight *pokemon, ushort stat, ushort stufen);
+
+
 
 uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
@@ -29,11 +33,11 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
 
 	if (AttackDex[attackID]->typ == SPEZIAL) {
-		A = angreifer->stufen[STAT_ANGRIFF];
-		D = verteidiger->stufen[STAT_VERTEIDIGUNG];
+		A = angreifer->tempStats[STAT_ANGRIFF];
+		D = verteidiger->tempStats[STAT_VERTEIDIGUNG];
 	}else if (AttackDex[attackID]->typ == PHYSISCH) {
-		A = angreifer->stufen[STAT_SPEZIALANGRIFF];
-		D = verteidiger->stufen[STAT_SPEZIALVERTEIDIGUNG];
+		A = angreifer->tempStats[STAT_SPEZIALANGRIFF];
+		D = verteidiger->tempStats[STAT_SPEZIALVERTEIDIGUNG];
 	}else {
 		// Sollte, nach jetztigem Kenntnisstand nicht vorkommen
 		A = D = 1;
@@ -119,21 +123,35 @@ void applyDMGRecursive(PokemonFight *angreifer, PokemonFight *verteidiger, byte 
 
 }
 
-void statusChange(PokemonGroup *pokemon, byte status, byte chance) {
-
-	if (status = STATUS_GIFT) {
-		if (pokemon->pokemon->base->typ1 == STAHL || pokemon->pokemon->base->typ2 == STAHL || pokemon->pokemon->base->typ1 == GIFT || pokemon->pokemon->base->typ2 == GIFT) {
-			return;
-		}	
-	}
+void statusChange(PokemonFight *pokemon, byte status, byte chance){	
 
 	// Keine Statusänderung zulassen, solange einer bereits vorliegt
-	if (pokemon->status != STATUS_NORMAL ) {
+	if (pokemon->pokemon->status != STATUS_NORMAL ) {
 		return;
 	}
+	// Pokemon von Typ GIFT oder STAHL können nicht vergiftet werden
+	if (status = STATUS_GIFT) {
+		if (pokemon->pokemon->pokemon->base->typ1 == STAHL || pokemon->pokemon->pokemon->base->typ2 == STAHL || pokemon->pokemon->pokemon->base->typ1 == GIFT || pokemon->pokemon->pokemon->base->typ2 == GIFT) {
+			return;
+		}
+	}
+	// Pokemon vom Typ FEUER können nicht verbrannt werden
+	if (status == STATUS_BRENN) {
+		if (pokemon->pokemon->pokemon->base->typ1 == FEUER || pokemon->pokemon->pokemon->base->typ2 == FEUER) {
+			return;
+		}
+	}
+	// Eis Pokemon können nicht FRZ werden
+	if (status == STATUS_FREEZE) {
+		if (pokemon->pokemon->pokemon->base->typ1 == EIS || pokemon->pokemon->pokemon->base->typ2 == EIS) {
+			return;
+		}
+	}
+
+
 	// Berechnen ob änderung eintritt
 	if (rand()%101 < chance) {
-		pokemon->status = status;
+		pokemon->pokemon->status = status;
 		return;
 	}
 	return;
@@ -150,7 +168,113 @@ void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte 
 
 }
 
+void applyKOAttack(PokemonFight *verteidiger, byte chance) {
+
+	if (rand()%101 <= chance) {
+		verteidiger->pokemon->aktKP = 0;
+		return;
+	}
+	return;
+}
+
+void buffStat(PokemonFight *pokemon, ushort stat, ushort stufen) {
+
+	if (pokemon->stufen[stat]+stufen > 6 || pokemon->stufen[stat]+stufen < -6) {
+		return;
+	}
+	pokemon->stufen[stat] += stufen;
+	/*
+	@Moritz 
+	Falls du das liest und dich fragst : " Whazze Phuck ?!"
+	https://www.pokewiki.de/images/b/b4/StufenGraph.png
+	Das hier musste implementiert werden
+
+	Um sicherzustellen dass die Implementierung der Stufen richtig funtkioniert musste ich Stufen mit vorgefertigten Rechnungen, ausgehend vom Ausgangswert 
+	einführen
+
+	Wenn ein PKM Buff Stufe 6 auf ATK hat ist sein Wert der 4 Fache vom Basis Wert.
+	Sollte er aber reduziert werden kann man nicht einfach einmal nach Rechts shiften
+	Denn dann wäre der Wert nur noch das 2 Fache vom Ausgangswert und nicht das 3.5 Fache wie geplant
+
+	░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+	░░░░░░░░░░░░░▄▄▄▄▄▄▄░░░░░░░░░
+	░░░░░░░░░▄▀▀▀░░░░░░░▀▄░░░░░░░
+	░░░░░░░▄▀░░░░░░░░░░░░▀▄░░░░░░
+	░░░░░░▄▀░░░░░░░░░░▄▀▀▄▀▄░░░░░
+	░░░░▄▀░░░░░░░░░░▄▀░░██▄▀▄░░░░
+	░░░▄▀░░▄▀▀▀▄░░░░█░░░▀▀░█▀▄░░░
+	░░░█░░█▄▄░░░█░░░▀▄░░░░░▐░█░░░ Toll
+	░░▐▌░░█▀▀░░▄▀░░░░░▀▄▄▄▄▀░░█░░
+	░░▐▌░░█░░░▄▀░░░░░░░░░░░░░░█░░
+	░░▐▌░░░▀▀▀░░░░░░░░░░░░░░░░▐▌░
+	░░▐▌░░░░░░░░░░░░░░░▄░░░░░░▐▌░
+	░░▐▌░░░░░░░░░▄░░░░░█░░░░░░▐▌░
+	░░░█░░░░░░░░░▀█▄░░▄█░░░░░░▐▌░
+	░░░▐▌░░░░░░░░░░▀▀▀▀░░░░░░░▐▌░
+	░░░░█░░░░░░░░░░░░░░░░░░░░░█░░
+	░░░░▐▌▀▄░░░░░░░░░░░░░░░░░▐▌░░
+	░░░░░█░░▀░░░░░░░░░░░░░░░░▀░░░
+	░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+	
+	Den Wert erhöhen ist ja nicht weiter ein Problem 
+	Aber beim Senken der Werte wird es richtig lustig (Also nicht)
+
+	Um Datenverlust zu vermeiden wollte ich nur nach Links shiften
+	daher diese tollen ausdrücke wie : 
+		zahl << 1 / zahl << 1 + zahl = 2/3 
+	Es sieht nach genauso viel Spass aus wie es war ^^		
+		*/
+	switch (pokemon->stufen[stat]) {
+	case 6: 
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 4; // 4 Fach
+		break;
+	case 5: 
+		// Alles brav geshiftet ]:D
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 + pokemon->pokemon->pokemon->stats[stat] + pokemon->pokemon->pokemon->stats[stat] >> 1; // 3.5 Fach
+		break;
+	case 4: 
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 + pokemon->pokemon->pokemon->stats[stat]; // 3 Fach 
+		break;
+	case 3: 
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 + pokemon->pokemon->pokemon->stats[stat] >> 1; // 2.5 Fach
+		break;
+	case 2: 
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 1 ; // 2 Fach
+		break;
+	case 1: 
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] + pokemon->pokemon->pokemon->stats[stat] >> 1; // 1.5 Fach
+		break;
+	case 0: 
+		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat]; // 1 Fach
+		break;
+	case -1:
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) / ((pokemon->pokemon->pokemon->stats[stat] << 1) + pokemon->pokemon->pokemon->stats[stat]); // 2/3 Fach
+		break;
+	case -2: 
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) / (pokemon->pokemon->pokemon->stats[stat] << 2); // 2/4 Fach
+		break;
+	case -3: 
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) / ((pokemon->pokemon->pokemon->stats[stat] << 2) + pokemon->pokemon->pokemon->stats[stat]);// 2/5 Fach
+		break;
+	case -4: 
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) / ((pokemon->pokemon->pokemon->stats[stat] << 1) + (pokemon->pokemon->pokemon->stats[stat] << 2));// 2/6
+		break;
+	case -5: 
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) / ((pokemon->pokemon->pokemon->stats[stat] << 1) + (pokemon->pokemon->pokemon->stats[stat] << 2)+ (pokemon->pokemon->pokemon->stats[stat]));// 2/7
+		break;
+	case -6: 
+		pokemon->tempStats[stat] = (pokemon->pokemon->pokemon->stats[stat] << 1) / (pokemon->pokemon->pokemon->stats[stat] << 3); // 2/8 Fach
+		break;
+	}
+
+	return;
+
+}
+
+
 void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID) {
+	
+	ushort temp = 0;
 
 	switch (attackID){
 
@@ -185,8 +309,12 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_KLAMMER:
 	case ATTACKE_GUILLOTINE:
+		applyKOAttack(verteidiger, AttackDex[attackID]->precision);
+		break;
 	case ATTACKE_KLINGENSTURM:
 	case ATTACKE_SCHWERTTANZ:
+		buffStat(angreifer,STAT_ANGRIFF,2);
+		break;
 	case ATTACKE_ZERSCHNEIDER:
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		break;
@@ -218,6 +346,9 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 	case ATTACKE_SPRUNGKICK:
 	case ATTACKE_FEGEKICK:
 	case ATTACKE_SANDWIRBEL:
+		//geplant buffstat(verteidiger,stat_genauigkeit,-1);
+		//genauigkeit und ausweichen muss noch eingeführt werden
+		break;
 	case ATTACKE_KOPFNUSS:
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		// Zurückschrecken berechnen
@@ -229,6 +360,8 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_HORNBOHRER:
+		applyKOAttack(verteidiger, AttackDex[attackID]->precision);
+		break;
 	case ATTACKE_TACKLE:
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		break;
@@ -240,6 +373,8 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 	case ATTACKE_FUCHTLER:
 	case ATTACKE_RISIKOTACKLE:
 	case ATTACKE_RUTENSCHLAG:
+		buffStat(verteidiger,STAT_VERTEIDIGUNG,-1);
+		break;
 	case ATTACKE_GIFTSTACHEL:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_GIFT, 30);
 	case ATTACKE_DUONADEL:
@@ -249,11 +384,14 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_SILBERBLICK:
+		buffStat(verteidiger,STAT_VERTEIDIGUNG,-1);
 	case ATTACKE_BISS:
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		// zurückschrecken berechnen
 		break;
 	case ATTACKE_HEULER:
+		buffStat(verteidiger,STAT_ANGRIFF,-1);
+		break;
 	case ATTACKE_BRUELLER:
 	case ATTACKE_GESANG:
 		statusChange(verteidiger, STATUS_SCHLAF, AttackDex[attackID]->precision);
@@ -265,7 +403,17 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_AUSSETZER:
 	case ATTACKE_SAEURE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		 temp = applyDMG(angreifer, verteidiger, attackID);
+		 if (verteidiger->pokemon->aktKP < temp) {
+			 verteidiger->pokemon->aktKP = 0;
+		 }
+		 else {
+			 verteidiger->pokemon->aktKP -= temp;
+		 }
+		 // temp > 0 ansonsten gab es keinen treffer, verteidiger kp = 0 = KO -> Keine statveränderung, random 10% chance auf senkung
+		 if (temp > 0 && verteidiger->pokemon->aktKP != 0 && rand()%101 < 10) {
+			 buffStat(verteidiger,STAT_VERTEIDIGUNG,-1);
+		 }
 		// Falls das Pokemon nicht KO geht, besteht 10% Chance dass Vert des Verteidigenden Pokemons um 1 Stufe sinkt
 		break;
 	case ATTACKE_GLUT:
@@ -275,6 +423,7 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_BRENN, 10);
 		break;
 	case ATTACKE_WEISSNEBEL:
+		// erhindert den Einsatz von Attacken, die das Ziel haben, den Status des Pokémon zu verändern. ... FML
 		// werden wieder auf normal zustand gesetzt
 		break;
 	case ATTACKE_AQUAKNARRE:
@@ -300,6 +449,16 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_AURORASTRAHL:
+		temp = applyDMG(angreifer,verteidiger,attackID);
+		if (temp > verteidiger->pokemon->aktKP) {
+			verteidiger->pokemon->aktKP = 0;
+		} else {
+			verteidiger->pokemon->aktKP -= temp;
+		}
+		if (temp > 0 && verteidiger->pokemon->aktKP != 0 && rand()%101 > 10) {
+			buffStat(verteidiger,STAT_ANGRIFF,-1);
+		}		
+		break;
 	case ATTACKE_HYPERSTRAHL:
 		// 2-Phasen Zuerst Angreifen dann Aufladen
 		break;
@@ -307,6 +466,8 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_BOHRSCHNABEL:
+		applyKOAttack(verteidiger,10);
+		break;
 	case ATTACKE_UEBERROLLER:
 	case ATTACKE_FUSSKICK:
 	case ATTACKE_KONTER:
@@ -333,6 +494,8 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_BLAETTERTANZ:
 	case ATTACKE_FADENSCHUSS:
+		buffStat(verteidiger,STAT_INITIATIVE,-1);
+		break;
 	case ATTACKE_DRACHENWUT:
 		// 40 KP abziehen
 		break;
@@ -356,6 +519,8 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_GEOFISSUR:
+		applyKOAttack(verteidiger, AttackDex[attackID]->precision);
+		break;
 	case ATTACKE_SCHAUFLER:
 	case ATTACKE_TOXIN:
 		statusChange(verteidiger, STATUS_SCHWERGIFT, AttackDex[attackID]->precision);
@@ -372,7 +537,11 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		statusChange(verteidiger,STATUS_SCHLAF,AttackDex[attackID]->precision);
 		break;
 	case ATTACKE_MEDITATION:
+		buffStat(angreifer,STAT_ANGRIFF,1);
+		break;
 	case ATTACKE_AGILITAET:
+		buffStat(angreifer,STAT_INITIATIVE,2);
+		break;
 	case ATTACKE_RUCKZUCKHIEB:
 	case ATTACKE_RASEREI:
 	case ATTACKE_TELEPORT:
@@ -381,25 +550,67 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_MIMIKRY:
 	case ATTACKE_KREIDESCHREI:
+		buffStat(verteidiger,STAT_VERTEIDIGUNG,-2);
+		break;
 	case ATTACKE_DOPPELTEAM:
 	case ATTACKE_GENESUNG:
+		// Hälfte der Max KP
+		temp = angreifer->pokemon->pokemon->stats[STAT_KP] >> 1;
+		// Wenn temp > als Max KP aktKP auf MaxKP setzen um Fehler zu umgehen
+		if (temp > (angreifer->pokemon->pokemon->stats[STAT_KP] - angreifer->pokemon->aktKP)) {
+			angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
+		// Ansonsten einfach akt KP + 1/2 Max KP
+		} else {
+			angreifer->pokemon->aktKP += temp;
+		}
+		break;
 	case ATTACKE_HAERTNER:
+		buffStat(angreifer,STAT_VERTEIDIGUNG,1);
+		break;
 	case ATTACKE_KOMPRIMATOR:
+		// Evade erhöhen
 	case ATTACKE_RAUCHWOLKE:
+		// Genauigkeit des verteidigers senken
 	case ATTACKE_KONFUSTRAHL:
+		// Verwirren
 	case ATTACKE_PANZERSCHUTZ:
+		buffStat(angreifer,STAT_VERTEIDIGUNG,1);
+		break;
 	case ATTACKE_EINIGLER:
+		buffStat(angreifer, STAT_VERTEIDIGUNG, 1);
+		break;
 	case ATTACKE_BARRIERE:
+		buffStat(angreifer, STAT_VERTEIDIGUNG, 2);
+		break;
 	case ATTACKE_LICHTSCHILD:
+		//Gegnerische spezielle Attacken richten 5 Runden lang nur halben Schaden an, wirkt auch nach Pokémon-Wechsel.
 	case ATTACKE_DUNKELNEBEL:
+		//Setzt alle Werte-Veränderungen zurück (Spass)
+		angreifer->tempStats[STAT_ANGRIFF]             = angreifer->pokemon->pokemon->stats[STAT_ANGRIFF];
+		angreifer->tempStats[STAT_VERTEIDIGUNG]        = angreifer->pokemon->pokemon->stats[STAT_VERTEIDIGUNG];
+		angreifer->tempStats[STAT_SPEZIALANGRIFF]      = angreifer->pokemon->pokemon->stats[STAT_SPEZIALANGRIFF];
+		angreifer->tempStats[STAT_SPEZIALVERTEIDIGUNG] = angreifer->pokemon->pokemon->stats[STAT_SPEZIALVERTEIDIGUNG];
+		angreifer->tempStats[STAT_INITIATIVE]          = angreifer->pokemon->pokemon->stats[STAT_INITIATIVE];
+
+		angreifer->stufen[STAT_ANGRIFF]             = 0;
+		angreifer->stufen[STAT_VERTEIDIGUNG]        = 0;
+		angreifer->stufen[STAT_SPEZIALANGRIFF]      = 0;
+		angreifer->stufen[STAT_SPEZIALVERTEIDIGUNG] = 0;
+		angreifer->stufen[STAT_INITIATIVE]          = 0;
+		break;
 	case ATTACKE_REFLEKTOR:
+		//Gegnerische physische Attacken richten 5 Runden lang nur halben Schaden an, wirkt auch nach Pokémon-Wechsel.
 	case ATTACKE_ENERGIEFOKUS:
 	case ATTACKE_GEDULD:
 	case ATTACKE_METRONOM:
+		// Führt eine zufällige Attacke aus
+		mainAttack(angreifer,verteidiger,(rand()%166)+1);
+		break;
 	case ATTACKE_SPIEGELTRICK:
 	case ATTACKE_FINALE:
 		// Das hier wird lustig
 	case ATTACKE_EIERBOMBE:
+		applyDMG(angreifer,verteidiger,attackID);
 	case ATTACKE_SCHLECKER:
 		applyDmgAndStatus(angreifer,verteidiger,attackID,STATUS_PARALYSE,30);
 		break;
@@ -421,19 +632,41 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 	case ATTACKE_SCHNAPPER:
 
 	case ATTACKE_STERNSCHAUER:
+		applyDMGGuaranteed(angreifer,verteidiger,attackID);
+		break;
 	case ATTACKE_SCHAEDELWUMME:
 	case ATTACKE_DORNKANONE:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_UMKLAMMERUNG:
 	case ATTACKE_AMNESIE:
+		buffStat(angreifer,STAT_SPEZIALVERTEIDIGUNG,2);
+		break;
 	case ATTACKE_PSYKRAFT:
+		//Senkt die Genauigkeit des Gegners um eine Stufe.
 	case ATTACKE_WEICHEI:
+		// Hälfte der Max KP
+		temp = angreifer->pokemon->pokemon->stats[STAT_KP] >> 1;
+		// Wenn temp > als Max KP aktKP auf MaxKP setzen um Fehler zu umgehen
+		if (temp > (angreifer->pokemon->pokemon->stats[STAT_KP] - angreifer->pokemon->aktKP)) {
+			angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
+			// Ansonsten einfach akt KP + 1/2 Max KP
+		}
+		else {
+			angreifer->pokemon->aktKP += temp;
+		}
+
+		// Ausserhalb des Kampfes Anwendbar
+		break;
 	case ATTACKE_TURMKICK:
 	case ATTACKE_GIFTBLICK:
 		statusChange(verteidiger,STATUS_PARALYSE,75); // Bis einschl. 4. Generation TQ = 75 %
 		break;
 	case ATTACKE_TRAUMFRESSER:
+		if (verteidiger->pokemon->status == STATUS_SCHLAF) {
+			applyDMG(angreifer,verteidiger,attackID);
+		}
+		break;
 	case ATTACKE_GIFTWOLKE:
 		statusChange(verteidiger,STATUS_GIFT,AttackDex[attackID]->precision);
 		break;
@@ -456,15 +689,29 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_BLITZ:
 	case ATTACKE_PSYWELLE:
+		/*
+		Diese Attacke richtet Schaden an und die Höhe des Schadens wird per Zufall bestimmt. 
+		Sie kann zwischen 1 KP und dem 1,5-fachen des Levels vom Angreifer liegen. 
+		Das heißt, ein Pokémon auf Level 100 kann einen maximalen Schaden von 150 KP anrichten. 
+		Sobald die Höhe des Schadens in einem Kampf bestimmt wurde, verändert sich diese nicht mehr. 
+		Der Schadensberechnung liegt folgender Formel zu Grunde, wobei X einen zufälligen Wert zwischen 0 und 1 annehmen kann:
+		Verursachter Schaden = (0,5+X)*Level des Anwenders 
+		*/
 	case ATTACKE_PLATSCHER:
 		// ULTIMATIVE ZERSTÖRUNG PROGRAMMIEREN
 		break;
 	case ATTACKE_SAUREPANZER:
+		buffStat(angreifer,STAT_VERTEIDIGUNG,2);
+		break;
 	case ATTACKE_KRABBHAMMER:
 		// Erhöte Crit-Chance
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_EXPLOSION:
+		// Killt sich selbst, aber Chance besteht dass die Attacke misst
+		angreifer->pokemon->aktKP = 0;
+		applyDMG(angreifer,verteidiger,attackID);
+		break;
 	case ATTACKE_KRATZFURIE:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
@@ -472,6 +719,9 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_ERHOLUNG:
+		angreifer->pokemon->status = STATUS_SCHLAF;
+		angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
+		break;
 		// ez
 	case ATTACKE_STEINHAGEL:
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
@@ -482,6 +732,8 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		// zurückschrecken berechnen
 		break;
 	case ATTACKE_SCHAERFER:
+		buffStat(angreifer,STAT_ANGRIFF,1);
+		break;
 	case ATTACKE_UMWANDLUNG:
 	case ATTACKE_TRIPLETTE:
 		switch (rand()%3) {
@@ -491,6 +743,11 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		}
 		break;
 	case ATTACKE_SUPERZAHN:
+		//Die gegnerischen vorhandenen KP werden halbiert.
+		if (rand()%101 < AttackDex[attackID]->precision) {
+			verteidiger->pokemon->aktKP >> 1;
+		}
+		break;
 	case ATTACKE_SCHLITZER:
 		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
 		// Hohe Critrate berechnen
