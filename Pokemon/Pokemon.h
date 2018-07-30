@@ -4,6 +4,9 @@
 #include "Attacks.h"
 #include "Util.h"
 
+#define STAT_GENAUIGKEIT 6
+#define STAT_FLUCHTWERT  7
+
 struct PokemonClass{
 	char *spitzname;
 	byte level;
@@ -28,8 +31,8 @@ typedef struct PokemonGroup PokemonGroup;
 
 struct PokemonFight{
 	struct PokemonGroup *pokemon;
-	byte stufen[6];					// Temporäre stufen
-	ushort tempStats[6];			// Stats mit Stufen verrechnet
+	byte stufen[8];					// Temporäre stufen
+	ushort tempStats[8];			// Stats mit Stufen verrechnet
 	byte verwirrung;				// 1 Für verwirrt und 0 für nicht verwirrt
 };
 typedef struct PokemonFight PokemonFight;
