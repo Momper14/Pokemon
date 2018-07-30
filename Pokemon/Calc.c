@@ -8,8 +8,14 @@ void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte 
 void applyKOAttack(PokemonFight *verteidiger,byte chance);
 void buffStat(PokemonFight *pokemon, byte stat, char stufen);
 
+/*
+	To-Do
+		-Statsänderungen zu Ende einrichten (Augenmerkt auf Genauigkeit und Fluchtwert Stats)
+		-Fight.h und Fight.c einrichten 
+		-Counter Funktion für Attacken wie Barriere oder Fuchtler einrichten
+		-Genauigkeit und Fluchtwert in DMG Kalkulation berücksichtigen
+*/
 
-// @todo genauigkeitsberechnung anppassen (stufensystem) https://www.pokewiki.de/Genauigkeit
 uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
 	// berechnen ob es zu einem Treffer kommt
