@@ -6,14 +6,14 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 void statusChange(PokemonFight *pokemon, byte status, byte chance);
 void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID,byte status,byte chance);
 void applyKOAttack(PokemonFight *verteidiger,byte chance);
-void buffStat(PokemonFight *pokemon, ushort stat, ushort stufen);
+void buffStat(PokemonFight *pokemon, byte stat, char stufen);
 
 
-
+// @todo genauigkeitsberechnung anppassen (stufensystem) https://www.pokewiki.de/Genauigkeit
 uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
 	// berechnen ob es zu einem Treffer kommt
-	int hit = rand()%101;
+	byte hit = rand()%100; // @done %101 auf %100, %101 ergibt 101 werte; datentyp in byte geändert
 	if (hit > AttackDex[attackID]->precision) {
 		return 0;
 	}
@@ -29,6 +29,7 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 	uint damage;
 	byte power = AttackDex[attackID]->DMG;
 	uint A, D;
+	AttackeBasis *attacke; // @todo attecke in variable speichern und diese nutzen um zugriffe zu verringern
 
 	// Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
 
@@ -100,6 +101,7 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 	return damage;
 }
 
+// @todo schleifen abbrechen, falls pokemon KO; Genauigkeitsberechnung anpassen https://www.pokewiki.de/Mehrmals_angreifende_Attacken#Serien-Attacken
 void applyDMGRecursive(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID, byte counter) {
 	// Für Attacken wie Doppelkick, die nur 2 mal, aber dafür garantiert treffen
 	if (counter == 2) {
@@ -150,7 +152,7 @@ void statusChange(PokemonFight *pokemon, byte status, byte chance){
 
 
 	// Berechnen ob änderung eintritt
-	if (rand()%101 < chance) {
+	if (rand()%100 < chance) { // @done %101 auf %100, %101 ergibt 101 werte und es ist möglich dass 100% fehl schlägt
 		pokemon->pokemon->status = status;
 		return;
 	}
@@ -170,14 +172,14 @@ void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte 
 
 void applyKOAttack(PokemonFight *verteidiger, byte chance) {
 
-	if (rand()%101 <= chance) {
+	if (rand()%100 < chance) {  // @done %101 auf %100, %101 ergibt 101 werte´; <= in < geändet. <= sind 31 werte
 		verteidiger->pokemon->aktKP = 0;
 		return;
 	}
 	return;
 }
 
-void buffStat(PokemonFight *pokemon, ushort stat, ushort stufen) {
+void buffStat(PokemonFight *pokemon, byte stat, char stufen) { // @done typen von ushort, ushort in byte, char geändert (char vorzeichen behaftet)
 
 	if (pokemon->stufen[stat]+stufen > 6 || pokemon->stufen[stat]+stufen < -6) {
 		return;
@@ -224,6 +226,7 @@ void buffStat(PokemonFight *pokemon, ushort stat, ushort stufen) {
 		zahl << 1 / zahl << 1 + zahl = 2/3 
 	Es sieht nach genauso viel Spass aus wie es war ^^		
 		*/
+	PokemonClass *pokemonC; // @todo pokemonClass in variable speichern um zugriffe zu vereinfachen
 	switch (pokemon->stufen[stat]) {
 	case 6: 
 		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 4; // 4 Fach
