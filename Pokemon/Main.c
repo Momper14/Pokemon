@@ -32,8 +32,10 @@ int main(){
 
 	struct PokemonClass *pkm = generatePokemon(3, 100);
 	printf("%d, %d, %d, %d, %d, %d\n", pkm->iv[0], pkm->iv[1], pkm->iv[2], pkm->iv[3], pkm->iv[4], pkm->iv[5]);
+	destroyPokemon(pkm);
 	pkm = generatePokemon(3, 100);
 	printf("%d, %d, %d, %d, %d, %d\n", pkm->iv[0], pkm->iv[1], pkm->iv[2], pkm->iv[3], pkm->iv[4], pkm->iv[5]);
+	destroyPokemon(pkm);
 
 	scanf_s("%c", &in, 1);
 

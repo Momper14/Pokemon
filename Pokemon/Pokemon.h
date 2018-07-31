@@ -43,3 +43,4 @@ ushort expGain(struct PokemonClass *gegner, short teilnemer);
 void statsGain(struct PokemonClass *pokemon, const PokemonBase *enemy);
 struct PokemonClass* generatePokemon(byte dexNr, byte lvl);
 bool lernbar(struct PokemonClass *pkm, byte attacke);
+void destroyPokemon(struct PokemonClass *pkm);
