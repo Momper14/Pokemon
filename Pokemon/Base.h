@@ -17,10 +17,14 @@
 #define STAT_SPEZIALVERTEIDIGUNG	4
 #define STAT_INITIATIVE				5
 
-#define EXP_T2 2
-#define EXP_T3 3
-#define EXP_T4 4
-#define EXP_T5 5
+#define ANZ_POKEMON 151
+
+//#define EXP_T2 2
+//#define EXP_T3 3
+//#define EXP_T4 4
+//#define EXP_T5 5
+
+enum EXP_TIER{EXP_T2, EXP_T3, EXP_T4, EXP_T5};
 
 
 struct PokemonBase{
@@ -31,7 +35,7 @@ struct PokemonBase{
 	const byte catchrate;
 	const byte exp;
 	const byte stats[6];
-	const byte expTier;
+	enum EXP_TIER expTier;
 	const byte countEvolutions;
 	const struct Evolution *evolutions;
 	const struct Learnables *learnables;

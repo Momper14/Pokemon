@@ -12,9 +12,9 @@ struct PokemonClass{
 	byte level;
 	uint expAct;
 	uint expNext;
-	struct PokemonBase *base;
+	const struct PokemonBase *base;
 	ushort stats[6];
-	const byte iv[6];
+	byte iv[6];
 	ushort ev[6];
 	struct Attacke *moves[4];
 	byte item;
@@ -38,6 +38,8 @@ struct PokemonFight{
 typedef struct PokemonFight PokemonFight;
 
 void clacStats(struct PokemonClass *pokemon);
-void calcEXPNext(struct PokemonClass *pokemon);
+uint calcEXPNeed(byte aktLvl, enum EXP_TIER expTier);
 ushort expGain(struct PokemonClass *gegner, short teilnemer);
 void statsGain(struct PokemonClass *pokemon, const PokemonBase *enemy);
+struct PokemonClass* generatePokemon(byte dexNr, byte lvl);
+bool lernbar(struct PokemonClass *pkm, byte attacke);

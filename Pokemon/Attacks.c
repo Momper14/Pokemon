@@ -57,7 +57,7 @@ const AttackeBasis Reflektor     = { "Reflektor"    ,PSYCHO ,  0,100,20, 0,STATU
 const AttackeBasis Schaerfer     = { "Schärfer"     ,NORMAL ,  0,100,30, 0,STATUS   };
 const AttackeBasis Schwerttanz   = { "Schwerttanz"  ,NORMAL ,  0,100,20, 0,STATUS   };
 const AttackeBasis Saeurepanzer  = { "Säurepanzer"  ,GIFT   ,  0,100,20, 0,STATUS   };
-const AttackeBasis Wachstum      = { "Wachstum"     ,PFLANZE,  0,100,20, 0,STATUS   };
+const AttackeBasis Wachstum      = { "Wachstum"     ,PFLANZE,  0,100,40, 0,STATUS   }; // @done ap von 20 in 40 (gen 1-5)
 const AttackeBasis Weichei       = { "Weichei"      ,NORMAL ,  0,100,10, 0,STATUS   };
 const AttackeBasis Weissnebel    = { "Weissnebel"   ,EIS    ,  0,100,30, 0,STATUS   };
 
