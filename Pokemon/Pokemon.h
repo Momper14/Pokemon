@@ -38,7 +38,7 @@ struct PokemonFight{
 typedef struct PokemonFight PokemonFight;
 
 void clacStats(struct PokemonClass *pokemon);
-uint calcEXPNeed(byte aktLvl, enum EXP_TIER expTier);
+uint calcEXPNeed(byte aktLvl, enum ExpTier expTier);
 ushort expGain(struct PokemonClass *gegner, short teilnemer);
 void statsGain(struct PokemonClass *pokemon, const PokemonBase *enemy);
 struct PokemonClass* generatePokemon(byte dexNr, byte lvl);
