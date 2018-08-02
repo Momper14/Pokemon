@@ -3,41 +3,68 @@
 #include "Attacks.h"
 #include "Pokemon.h"
 #include "Types.h"
+#include "Trainer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <string.h>
+#include <locale.h>
+
+#define CLEAR_IN while((getchar()) != '\n')
+#define HALBIEREN(wert) ((wert) / 2)
 
 int main(){
-	char in;
-	srand((uint)time(NULL));
+	srand((uint) time(NULL));
 
+	//SetConsoleCP(CP_UTF8);
+	//SetConsoleOutputCP(CP_UTF8);
 
-	//int x, i;
-	//for(x = 1; x <= 151; x++){
-	//	const struct PokemonBase *pkm = PokemonBaseNatDex[x];
-	//	const struct Learnables *ls = pkm->learnables;
-	//	const struct Learnable *l;
-	//	printf("%s:\n", pkm->name);
-	//	for(i = 0; i < ls->count; i++){
-	//		l = &ls->learnables[i];
-	//		printf("\t%d, %s\n", l->lvl, AttackDex[l->attacke]->name);
-	//	}
-	//	scanf_s("%c", &in, 1);
-	//}
+	struct Trainer *trainer = malloc(sizeof(struct Trainer));
+	char gelesen[100];
 
-	//struct PokemonClass pkm = { NULL, 100, 0, &Abra, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 65535, 65535, 65535, 65535, 65535, 65535, NULL, NULL, NULL, NULL, 0 };
-	//clacStats(&pkm);
-	//printf("KP: %d, ATK: %d, DEF: %d, SP. ATK: %d, SP. DEF: %d, SPD: %d\n", pkm.stats[STAT_KP], pkm.stats[STAT_ANGRIFF], pkm.stats[STAT_VERTEIDIGUNG], pkm.stats[STAT_SPEZIALANGRIFF], pkm.stats[STAT_SPEZIALVERTEIDIGUNG], pkm.stats[STAT_INITIATIVE]);
+	setlocale(LC_ALL, "");
+	printf("Hallo und willkommen bei Pokemon ***\n");
 
-	struct PokemonClass *pkm = generatePokemon(3, 100);
-	printf("%d, %d, %d, %d, %d, %d\n", pkm->iv[0], pkm->iv[1], pkm->iv[2], pkm->iv[3], pkm->iv[4], pkm->iv[5]);
-	destroyPokemon(pkm);
-	pkm = generatePokemon(3, 100);
-	printf("%d, %d, %d, %d, %d, %d\n", pkm->iv[0], pkm->iv[1], pkm->iv[2], pkm->iv[3], pkm->iv[4], pkm->iv[5]);
-	destroyPokemon(pkm);
+	do{
+		printf("Wie lautet dein Name?\n");
+		scanf_s("%s", gelesen, 100);
+		CLEAR_IN;
 
-	scanf_s("%c", &in, 1);
+		{
+			char *name = malloc(sizeof(char) * strlen(gelesen) + 1);
+			strcpy_s(name, strlen(gelesen) + 1, gelesen);
+			trainer->name = name;
+		}
+		printf("Dein name ist also %s ja? (j/n)\n", trainer->name);
+	} while(getchar() != 'j');
 
+	do{
+		CLEAR_IN;
+		do{
+			printf("Bist du ein Junge oder ein Mädchen?\n");
+			printf("\t(1) Junge\n");
+			printf("\t(2) Mädchen\n");
+			gelesen[0] = getchar();
+			CLEAR_IN;
+			if(gelesen[0] != '1' && gelesen[0] != '2'){
+				printf("Das habe ich leider nicht verstanden\n");
+			}
+		} while(gelesen[0] != '1' && gelesen[0] != '2');
+
+		if(gelesen[0] == '1'){
+			trainer->geschlecht = maenlich;
+			printf("Du bist also ein Junge ja? (j/n)\n");
+		}
+		if(gelesen[0] == '2'){
+			trainer->geschlecht = weiblich;
+			printf("Du bist also ein Mädchen ja? (j/n)\n");
+		}
+
+	} while(getchar() != 'j');
+	CLEAR_IN;
+
+	scanf_s("%c", gelesen, 1);
+	free(trainer);
 	return 0;
 }

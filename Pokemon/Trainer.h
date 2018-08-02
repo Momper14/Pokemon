@@ -11,6 +11,6 @@ struct Trainer{
 };
 typedef struct Trainer Trainer;
 
-struct Trainer * newTrainer(const char *name, enum Geschlecht geschlecht);
+//struct Trainer * newTrainer(const char *name, enum Geschlecht geschlecht);
 
-void destroyTrainer(struct Trainer *trainer);
+//void destroyTrainer(struct Trainer *trainer);
