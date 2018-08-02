@@ -5,8 +5,8 @@
 uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
 uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
 void statusChange(PokemonFight *pokemon, byte status, byte chance);
-void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID, byte status, byte chance);
-void applyKOAttack(PokemonFight *verteidiger, byte chance);
+void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID,byte status,byte chance);
+void applyKOAttack(PokemonFight *verteidiger,byte chance);
 void buffStat(PokemonFight *pokemon, byte stat, char stufen);
 
 /*
@@ -20,7 +20,7 @@ To-Do
 uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
 	// berechnen ob es zu einem Treffer kommt
-	byte hit = rand() % 100; // @done %101 auf %100, %101 ergibt 101 werte; datentyp in byte geändert
+	byte hit = rand()%100; // @done %101 auf %100, %101 ergibt 101 werte; datentyp in byte geändert
 	if (hit > AttackDex[attackID]->precision) {
 		return 0;
 	}
@@ -162,7 +162,7 @@ void statusChange(PokemonFight *pokemon, byte status, byte chance) {
 
 
 	// Berechnen ob änderung eintritt
-	if (rand() % 100 < chance) { // @done %101 auf %100, %101 ergibt 101 werte und es ist möglich dass 100% fehl schlägt
+	if (rand()%100 < chance) { // @done %101 auf %100, %101 ergibt 101 werte und es ist möglich dass 100% fehl schlägt
 		pokemon->pokemon->status = status;
 		return;
 	}
@@ -182,7 +182,7 @@ void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte 
 
 void applyKOAttack(PokemonFight *verteidiger, byte chance) {
 
-	if (rand() % 100 < chance) {  // @done %101 auf %100, %101 ergibt 101 werte´; <= in < geändet. <= sind 31 werte
+	if (rand()%100 < chance) {  // @done %101 auf %100, %101 ergibt 101 werte´; <= in < geändet. <= sind 31 werte
 		verteidiger->pokemon->aktKP = 0;
 		return;
 	}
@@ -228,10 +228,10 @@ void buffStat(PokemonFight *pokemon, byte stat, char stufen) { // @done typen vo
 	Den Wert erhöhen ist ja nicht weiter ein Problem
 	Aber beim Senken der Werte wird es richtig lustig (Also nicht)
 	Um Datenverlust zu vermeiden wollte ich nur nach Links shiften
-	daher diese tollen ausdrücke wie :
-	zahl << 1 / zahl << 1 + zahl = 2/3
-	Es sieht nach genauso viel Spass aus wie es war ^^
-	*/
+	daher diese tollen ausdrücke wie : 
+		zahl << 1 / zahl << 1 + zahl = 2/3 
+	Es sieht nach genauso viel Spass aus wie es war ^^		
+		*/
 	PokemonClass *pokemonC; // @todo pokemonClass in variable speichern um zugriffe zu vereinfachen
 	switch (pokemon->stufen[stat]) {
 	case 6:

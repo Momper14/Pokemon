@@ -152,6 +152,7 @@
     <ClCompile Include="Calc.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Pokemon.c" />
+    <ClCompile Include="Trainer.c" />
     <ClCompile Include="Types.c" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Calc.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="Trainer.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>

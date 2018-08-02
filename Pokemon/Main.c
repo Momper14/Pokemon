@@ -3,38 +3,156 @@
 #include "Attacks.h"
 #include "Pokemon.h"
 #include "Types.h"
+#include "Trainer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+#include <string.h>
+#include <locale.h>
+
+#define CLEAR_IN while((getchar()) != '\n')
+#define HALBIEREN(wert) ((wert) / 2)
+
+#define MAX_IN 100
+
+void leseSpitzname(char *arr);
 
 int main(){
-	char in;
+	srand((uint) time(NULL));
 
+	//SetConsoleCP(CP_UTF8);
+	//SetConsoleOutputCP(CP_UTF8);
 
-	//int x, i;
-	//for(x = 1; x <= 151; x++){
-	//	const struct PokemonBase *pkm = PokemonBaseNatDex[x];
-	//	const struct Learnables *ls = pkm->learnables;
-	//	const struct Learnable *l;
-	//	printf("%s:\n", pkm->name);
-	//	for(i = 0; i < ls->count; i++){
-	//		l = &ls->learnables[i];
-	//		printf("\t%d, %s\n", l->lvl, AttackDex[l->attacke]->name);
-	//	}
-	//	scanf_s("%c", &in, 1);
-	//}
+	struct Trainer *trainer = malloc(sizeof(struct Trainer));
+	char gelesen[MAX_IN];
 
-	//struct PokemonClass pkm = { NULL, 100, 0, &Abra, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 65535, 65535, 65535, 65535, 65535, 65535, NULL, NULL, NULL, NULL, 0 };
-	//clacStats(&pkm);
-	//printf("KP: %d, ATK: %d, DEF: %d, SP. ATK: %d, SP. DEF: %d, SPD: %d\n", pkm.stats[STAT_KP], pkm.stats[STAT_ANGRIFF], pkm.stats[STAT_VERTEIDIGUNG], pkm.stats[STAT_SPEZIALANGRIFF], pkm.stats[STAT_SPEZIALVERTEIDIGUNG], pkm.stats[STAT_INITIATIVE]);
+	setlocale(LC_ALL, "");
 
-	ushort test = USHRT_MAX - 2;
-	if(test + 10 > USHRT_MAX){
-		test = USHRT_MAX;
+	printf("Hallo und willkommen bei Pokemon ***\n");
+
+	do{
+		printf("Wie lautet dein Name?\n");
+		scanf_s("%s", gelesen, MAX_IN);
+		CLEAR_IN;
+
+		{
+			char *name = malloc(sizeof(char) * (strlen(gelesen) + 1));
+			strcpy_s(name, strlen(gelesen) + 1, gelesen);
+			trainer->name = name;
+		}
+		printf("Dein name ist also %s ja? (j/n)\n", trainer->name);
+	} while(getchar() != 'j');
+
+	do{
+		CLEAR_IN;
+		do{
+			printf("Bist du ein Junge oder ein Mädchen?\n");
+			printf("\t(1) Junge\n");
+			printf("\t(2) Mädchen\n");
+			gelesen[0] = getchar();
+			CLEAR_IN;
+			if(gelesen[0] != '1' && gelesen[0] != '2'){
+				printf("Das habe ich leider nicht verstanden\n");
+			}
+		} while(gelesen[0] != '1' && gelesen[0] != '2');
+
+		if(gelesen[0] == '1'){
+			trainer->geschlecht = maenlich;
+			printf("Du bist also ein Junge ja? (j/n)\n");
+		}
+		if(gelesen[0] == '2'){
+			trainer->geschlecht = weiblich;
+			printf("Du bist also ein Mädchen ja? (j/n)\n");
+		}
+
+	} while(getchar() != 'j');
+
+	do{
+		CLEAR_IN;
+		char tmp;
+		do{
+			printf("Welches Pokemon hättest du gerne als Starter?\n");
+			printf("\t(1) Bisasam  (Pflanze)\n");
+			printf("\t(2) Glumanda (Feuer)\n");
+			printf("\t(3) Schiggy  (Wasser)\n");
+			printf("\t(4) Pikachu  (Blitz)\n");
+
+			gelesen[0] = getchar();
+			CLEAR_IN;
+			if(gelesen[0] < '1' && gelesen[0] > '4'){
+				printf("Das habe ich leider nicht verstanden\n");
+			}
+		} while(gelesen[0] < '1' && gelesen[0] > '4');
+		tmp = gelesen[0];
+
+		printf("Du möchtest also");
+		switch(tmp){
+			case '1':
+				printf(" Bisasam");
+				break;
+			case '2':
+				printf(" Glumanda");
+				break;
+			case '3':
+				printf(" Schiggy");
+				break;
+			case '4':
+				printf(" Pikachu");
+				break;
+		}
+		printf(" haben. Ist das richtig? (j/n)\n");
+		gelesen[0] = getchar();
+		if(gelesen[0] == 'j'){
+
+			switch(tmp){
+				case '1':
+					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_BISASAM, 5));
+					break;
+				case '2':
+					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_GLUMANDA, 5));
+					break;
+				case '3':
+					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_SCHIGGY, 5));
+					break;
+				case '4':
+					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_PIKACHU, 5));
+					break;
+			}
+		}
+	} while(gelesen[0] != 'j');
+	CLEAR_IN;
+
+	leseSpitzname(gelesen);
+	if(strlen(gelesen) != 0){
+		char *tmp = malloc(sizeof(char) * (strlen(gelesen) + 1));
+		strcpy_s(tmp, strlen(gelesen) + 1, gelesen);
+		trainer->pokemons[0]->pokemon->spitzname = tmp;
 	}
-	printf("%d\n", test);
 
-	scanf_s("%c", &in, 1);
-
+	getchar();
+	free(trainer);
 	return 0;
+}
+
+void leseSpitzname(char *arr){
+	printf("möchtest du ihm einen Spitznamen geben? (j/n)\n");
+
+	if(getchar() != 'j'){
+		CLEAR_IN;
+		return;
+	}	
+	CLEAR_IN;
+
+	printf("Wie soll es denn heißen?\n");
+	do{
+		scanf_s("%s", arr, MAX_IN);
+		CLEAR_IN;
+
+		if(strlen(arr) == 0){
+			printf("Möchtest du ihm doch kein Spitznamen geben? (j/n)\n");
+		} else{
+			printf("Ist %s richtig? (j/n)\n", arr);
+		}
+	} while(getchar() != 'j');
 }

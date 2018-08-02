@@ -179,7 +179,7 @@ typedef struct AttackeBasis{
 	const byte typ;
 	const byte DMG;
 	const byte precision;
-	const byte AP;
+	const byte ap;
 	const byte priority;	
 	const byte klasse;
 }AttackeBasis;
