@@ -31,7 +31,7 @@ typedef struct PokemonGroup PokemonGroup;
 
 struct PokemonFight{
 	struct PokemonGroup *pokemon;
-	byte stufen[8];					// Temporäre stufen
+	char stufen[8];					// Temporäre stufen
 	ushort tempStats[8];			// Stats mit Stufen verrechnet
 	byte verwirrung;				// 1 Für verwirrt und 0 für nicht verwirrt
 };

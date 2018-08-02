@@ -21,9 +21,6 @@
     <ClInclude Include="Types.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Pokemon.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Attacks.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -33,12 +30,12 @@
     <ClInclude Include="Calc.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pokemon.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Calc.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Base.c">
@@ -51,6 +48,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Main.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Calc.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
