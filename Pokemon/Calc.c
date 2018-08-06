@@ -36,7 +36,7 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 	uint damage;
 	byte power = AttackDex[attackID]->DMG;
 	uint A, D;
-	AttackeBasis *attacke; // @todo attecke in variable speichern und diese nutzen um zugriffe zu verringern
+//	AttackeBasis *attacke; // @todo attecke in variable speichern und diese nutzen um zugriffe zu verringern
 
 						   // Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
 
@@ -232,7 +232,7 @@ void buffStat(PokemonFight *pokemon, byte stat, char stufen) { // @done typen vo
 		zahl << 1 / zahl << 1 + zahl = 2/3 
 	Es sieht nach genauso viel Spass aus wie es war ^^		
 		*/
-	PokemonClass *pokemonC; // @todo pokemonClass in variable speichern um zugriffe zu vereinfachen
+//	PokemonClass *pokemonC; // @todo pokemonClass in variable speichern um zugriffe zu vereinfachen
 	switch (pokemon->stufen[stat]) {
 	case 6:
 		pokemon->tempStats[stat] = pokemon->pokemon->pokemon->stats[stat] << 4; // 4 Fach

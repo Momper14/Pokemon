@@ -150,6 +150,7 @@
     <ClCompile Include="Attacks.c" />
     <ClCompile Include="Base.c" />
     <ClCompile Include="Calc.c" />
+    <ClCompile Include="Fight.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Pokemon.c" />
     <ClCompile Include="Trainer.c" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Attacks.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Calc.h" />
+    <ClInclude Include="Fight.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="Trainer.h" />
     <ClInclude Include="Types.h" />

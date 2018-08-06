@@ -33,6 +33,12 @@
     <ClInclude Include="Trainer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Fight.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pokemon.c">
@@ -51,6 +57,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Trainer.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Calc.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Fight.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

@@ -174,7 +174,7 @@
 #define ATTACKE_VERZWEIFLER   165
 
 
-typedef struct AttackeBasis{
+struct AttackeBasis{
 	const char *name;
 	const byte typ;
 	const byte DMG;
@@ -182,10 +182,11 @@ typedef struct AttackeBasis{
 	const byte ap;
 	const byte priority;	
 	const byte klasse;
-}AttackeBasis;
+};
+typedef struct AttackeBasis AttackeBasis;
 
 struct Attacke{
-	byte attacke;
+	byte attackeBasis;
 	byte ap;
 	byte apMax;
 	byte apPlus;
