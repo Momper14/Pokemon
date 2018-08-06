@@ -1,5 +1,6 @@
 #include "Fight.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 	
@@ -45,7 +46,7 @@ void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 
 		printf("Was soll %s tun ?\n",pokemonPlayer->pokemon->pokemon->spitzname);
 		// AttackDex Index abspeichern 
-		tmp1 = pokemonPlayer->pokemon->pokemon->moves[0];
+		tmp1 = pokemonPlayer->pokemon->pokemon->moves[0]; // @Phil schau dir nochmal den Datentyp von moves an. Es handelt sich nicht um den Index der attacken ;)
 		tmp2 = pokemonPlayer->pokemon->pokemon->moves[1];
 		tmp3 = pokemonPlayer->pokemon->pokemon->moves[2];
 		tmp4 = pokemonPlayer->pokemon->pokemon->moves[3];
