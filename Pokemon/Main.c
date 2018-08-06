@@ -21,7 +21,7 @@
 void leseSpitzname(char *arr);
 void prints(const char * format, ...);
 
-int delay = 50;
+byte delay = 50;
 
 int main(){
 	srand((uint) time(NULL));
