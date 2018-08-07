@@ -35,6 +35,7 @@ struct PokemonGroup{
 	struct PokemonClass *pokemon;	// Verweis auf das Pokemon des Trainers
 	byte status;					// SLF / PAR / GIF / BRN / FRZ / Schwere Vergiftug / KO
 	ushort aktKP;					// KP im Kampf und bis zur nächsten Heilung
+	byte sleepCounter;				// Zähler bis das Pokemon aufwacht (Allgemein Random generiert, ausser bei Erholung)
 	bool teilgenommen;				// ob das Pokemon am aktuellen Kampf teilgenommen hat
 };
 typedef struct PokemonGroup PokemonGroup;
@@ -44,7 +45,7 @@ struct PokemonFight{
 	char stufen[8];					// Temporäre stufen // @done von byte in char geändert (vorzeichenbehaftet)
 	ushort tempStats[8];			// Stats mit Stufen verrechnet
 	bool verwirrung;				// 1 Für verwirrt und 0 für nicht verwirrt
-	byte sleepCounter;				// Zähler bis das Pokemon aufwacht (Allgemein Random generiert, ausser bei Erholung)
+	
 };
 typedef struct PokemonFight PokemonFight;
 

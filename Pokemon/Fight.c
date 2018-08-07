@@ -27,9 +27,9 @@ struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 	// Sleep
 	if (pkm->status == STATUS_SCHLAF) {
 		//Gen I Sleep lasts 1-7
-		pokemonTemp->sleepCounter = (rand()%7)+1;
+		pokemonTemp->pokemon->sleepCounter = (rand()%7)+1;
 	}else {
-		pokemonTemp->sleepCounter = 0;
+		pokemonTemp->pokemon->sleepCounter = 0;
 	}
 
 	return pokemonTemp;
@@ -137,9 +137,9 @@ void attackExecute(PokemonFight *angreifer, PokemonFight *verteidiger, byte atta
 
 	if (angreifer->pokemon->status == STATUS_SCHLAF) {
 		// Wird jede Runde um 1 reduziert
-		angreifer->sleepCounter--;
+		angreifer->pokemon->sleepCounter;
 
-		if (angreifer->sleepCounter == 0) {
+		if (angreifer->pokemon->sleepCounter == 0) {
 			printf("%s ist aufgewacht!\n", angreifer->pokemon->pokemon->spitzname);
 			angreifer->pokemon->status = STATUS_NORMAL;
 			return;
