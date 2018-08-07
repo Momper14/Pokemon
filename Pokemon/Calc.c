@@ -36,9 +36,9 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 	uint damage;
 	byte power = AttackDex[attackID]->DMG;
 	uint A, D;
-//	AttackeBasis *attacke; // @todo attecke in variable speichern und diese nutzen um zugriffe zu verringern
+	//	AttackeBasis *attacke; // @todo attecke in variable speichern und diese nutzen um zugriffe zu verringern
 
-						   // Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
+							   // Ermitteln ob wir mit Normal oder Spez Stats arbeiten müssen und A und D zuweisen
 
 	if (AttackDex[attackID]->typ == SPEZIAL) {
 		A = angreifer->tempStats[STAT_ANGRIFF];
@@ -71,7 +71,7 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 
 	// Crit ermitteln
 	uint critRange = rand() % 256;
-	uint critChance = angreifer->pokemon->pokemon->base->stats[STAT_INITIATIVE] >> 1;
+	uint critChance = PokemonBaseNatDex[angreifer->pokemon->pokemon->base]->stats[STAT_INITIATIVE] >> 1;
 	if (critRange > critChance) {
 		critical = 1;
 	}
@@ -81,7 +81,7 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 	//modifier = critical * random
 	modifier *= critical;
 	// STAB ermitteln
-	if (angreifer->pokemon->pokemon->base->typ1 == AttackDex[attackID]->typ || angreifer->pokemon->pokemon->base->typ2 == AttackDex[attackID]->typ) {
+	if (PokemonBaseNatDex[angreifer->pokemon->pokemon->base]->typ1 == AttackDex[attackID]->typ || PokemonBaseNatDex[angreifer->pokemon->pokemon->base]->typ2 == AttackDex[attackID]->typ) {
 		stab = 15;
 	}
 	else {
@@ -92,7 +92,7 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 
 	//type ermittlen mit Funtkion aus Types.c
 	// modifier = critical * random * stab * type
-	getMultiplikator(AttackDex[attackID]->typ, verteidiger->pokemon->pokemon->base->typ1, verteidiger->pokemon->pokemon->base->typ2, &modifier);
+	getMultiplikator(AttackDex[attackID]->typ, PokemonBaseNatDex[verteidiger->pokemon->pokemon->base]->typ1, PokemonBaseNatDex[verteidiger->pokemon->pokemon->base]->typ2, &modifier);
 
 	// Durch 100000 teilen damit wir wieder in den 1-Byte bereich zurückkehren
 
@@ -143,19 +143,19 @@ void statusChange(PokemonFight *pokemon, byte status, byte chance) {
 	}
 	// Pokemon von Typ GIFT oder STAHL können nicht vergiftet werden
 	if (status = STATUS_GIFT) {
-		if (pokemon->pokemon->pokemon->base->typ1 == STAHL || pokemon->pokemon->pokemon->base->typ2 == STAHL || pokemon->pokemon->pokemon->base->typ1 == GIFT || pokemon->pokemon->pokemon->base->typ2 == GIFT) {
+		if (PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == STAHL || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == STAHL || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == GIFT || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == GIFT) {
 			return;
 		}
 	}
 	// Pokemon vom Typ FEUER können nicht verbrannt werden
 	if (status == STATUS_BRENN) {
-		if (pokemon->pokemon->pokemon->base->typ1 == FEUER || pokemon->pokemon->pokemon->base->typ2 == FEUER) {
+		if (PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == FEUER || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == FEUER) {
 			return;
 		}
 	}
 	// Eis Pokemon können nicht FRZ werden
 	if (status == STATUS_FREEZE) {
-		if (pokemon->pokemon->pokemon->base->typ1 == EIS || pokemon->pokemon->pokemon->base->typ2 == EIS) {
+		if (PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == EIS || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == EIS) {
 			return;
 		}
 	}
