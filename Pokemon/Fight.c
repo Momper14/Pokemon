@@ -29,7 +29,9 @@ struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 }
 
 char chooseAttackPlayer(PokemonFight *pkm1) {
+
 	char *read[MAX_SIZE];
+
 	do {
 		// Falls Schleife wiederholt werden muss
 		if (read[0] != NULL) {
@@ -87,7 +89,7 @@ void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 	char *read[MAX_SIZE];
 
 	char choice1,choice2;
-	choice1 = choice2 - 0;
+	choice1 = choice2 = 0;
 
 	////////////////
 	// Main Fight //
