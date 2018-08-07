@@ -153,6 +153,7 @@
     <ClCompile Include="Fight.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Pokemon.c" />
+    <ClCompile Include="Selialisieren.c" />
     <ClCompile Include="Trainer.c" />
     <ClCompile Include="Types.c" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="Calc.h" />
     <ClInclude Include="Fight.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="Serialisieren.h" />
     <ClInclude Include="Trainer.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Util.h" />

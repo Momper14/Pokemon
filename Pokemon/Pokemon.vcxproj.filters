@@ -39,6 +39,9 @@
     <ClInclude Include="Fight.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Serialisieren.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pokemon.c">
@@ -63,6 +66,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Fight.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Selialisieren.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
