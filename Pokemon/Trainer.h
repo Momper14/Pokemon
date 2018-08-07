@@ -2,10 +2,12 @@
 
 #include "Pokemon.h"
 
+#define NAME_SIZE 11
+
 enum Geschlecht{maenlich, weiblich};
 
 struct Trainer{
-	const char *name;
+	char name[NAME_SIZE];
 	enum Geschlecht geschlecht;
 	struct PokemonGroup *gruppe[6];
 };

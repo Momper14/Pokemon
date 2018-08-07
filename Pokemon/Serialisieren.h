@@ -7,11 +7,6 @@
 
 #define NICHT_VORHANDEN 0
 
-struct SaveStrings{
-	const char *trainername;
-	const char *spitzname[6];
-};
-
 // für Bank; AP niht relevant
 struct SaveAttacke{
 	byte attackeBasis;
@@ -25,7 +20,7 @@ struct SaveAttackeG{
 };
 
 struct SavePokemonClass{
-	size_t spitznameLaenge;
+	char spitzname[SPITZNAME_SIZE];
 	byte level;
 	uint expAct;
 	uint expNext;
@@ -42,7 +37,7 @@ struct SavePokemonGroup{
 };
 
 struct Save{
-	size_t nameLaenge;
+	char name[NAME_SIZE];
 	enum Geschlecht geschlecht;
 	struct SavePokemonGroup gruppe[6];
 };

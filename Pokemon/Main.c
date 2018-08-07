@@ -40,14 +40,12 @@ int main(){
 	prints("Hallo und willkommen bei Pokemon ***\n");
 
 	do{
-		prints("Wie lautet dein Name?\n");
-		scanf_s("%s", gelesen, MAX_IN);
+		prints("Wie lautet dein Name? (max %d zeichen)\n", NAME_SIZE);
+		scanf_s("%s", gelesen, NAME_SIZE);
 		CLEAR_IN;
 
 		{
-			char *name = malloc(sizeof(char) * (strlen(gelesen) + 1));
-			strcpy_s(name, strlen(gelesen) + 1, gelesen);
-			trainer->name = name;
+			strcpy_s(trainer->name, NAME_SIZE, gelesen);
 		}
 		prints("Dein name ist also %s ja? (j/n)\n", trainer->name);
 	} while(getchar() != 'j');
@@ -134,9 +132,7 @@ int main(){
 	leseSpitzname(gelesen);
 	CLEAR_IN;
 	if(strlen(gelesen) != 0){
-		char *tmp = malloc(sizeof(char) * (strlen(gelesen) + 1));
-		strcpy_s(tmp, strlen(gelesen) + 1, gelesen);
-		trainer->gruppe[0]->pokemon->spitzname = tmp;
+		strcpy_s(trainer->gruppe[0]->pokemon->spitzname, SPITZNAME_SIZE, gelesen);
 	}
 	speichern(trainer);
 	getchar();
@@ -155,8 +151,8 @@ void leseSpitzname(char *arr){
 	CLEAR_IN;
 
 	do{
-		prints("Wie soll es denn heiﬂen?\n");
-		scanf_s("%s", arr, MAX_IN);
+		prints("Wie soll es denn heiﬂen? (Max %d Zeichen)\n", SPITZNAME_SIZE);
+		scanf_s("%s", arr, SPITZNAME_SIZE);
 		CLEAR_IN;
 
 		if(strlen(arr) == 0){

@@ -16,8 +16,10 @@
 #define STATUS_SCHWERGIFT 6
 #define STATUS_KO         7
 
+#define SPITZNAME_SIZE 11
+
 struct PokemonClass{
-	const char *spitzname;
+	char spitzname[SPITZNAME_SIZE];
 	byte level;
 	uint expAct;
 	uint expNext;

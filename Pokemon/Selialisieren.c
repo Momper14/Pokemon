@@ -5,14 +5,8 @@
 void speichern(struct Trainer *trainer){
 	int i, x;
 	struct Save save;
-	struct SaveStrings strings;
 
-	for(i = 0; i < 6; i++){
-		strings.spitzname[i] = NULL;
-	}
-
-	save.nameLaenge = strlen(trainer->name);
-	strings.trainername = trainer->name;
+	strcpy_s(save.name, NAME_SIZE, trainer->name);
 	save.geschlecht = trainer->geschlecht;
 	for(i = 0; i < 6; i++){
 		if(trainer->gruppe[i] != NULL && trainer->gruppe[i]->pokemon != NULL){
@@ -22,8 +16,7 @@ void speichern(struct Trainer *trainer){
 			struct PokemonGroup *pkm = trainer->gruppe[i];
 			struct PokemonClass *clPkm = pkm->pokemon;
 
-			sClPkm->spitznameLaenge = strlen(clPkm->spitzname);
-			strings.spitzname[i] = clPkm->spitzname;
+			strcpy_s(sClPkm->spitzname, NAME_SIZE, clPkm->spitzname);
 			sClPkm->level = clPkm->level;
 			sClPkm->expAct = clPkm->expAct;
 			sClPkm->expNext = clPkm->expNext;
@@ -56,12 +49,6 @@ void speichern(struct Trainer *trainer){
 	errno_t err = fopen_s(&file, "save.sav", "wb");
 	if(err == 0){
 		fwrite(&save, sizeof(struct Save), 1, file);
-		fwrite(strings.trainername, sizeof(char) * strlen(strings.trainername), 1, file);
-		for(i = 0; i < 6; i++){
-			if(strings.spitzname[i] != NULL){
-				fwrite(strings.spitzname[i], sizeof(char) * strlen(strings.spitzname[i]), 1, file);
-			}
-		}
 	}
 	fclose(file);
 }
