@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define CLEAR_CHOICE read[0] = NULL
+
 struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 	
 	PokemonFight *pokemonTemp = malloc(sizeof(struct PokemonFight));
@@ -26,6 +28,51 @@ struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 
 }
 
+char chooseAttackPlayer(PokemonFight *pkm1) {
+	char *read[MAX_SIZE];
+	do {
+		// Falls Schleife wiederholt werden muss
+		if (read[0] != NULL) {
+			printf("Fehlerhafte Eingabe\n");
+		}
+
+		printf("Was soll %s tun ?\n", pkm1->pokemon->pokemon->spitzname);
+		// Name der Attacke in AttackDex aufrufen
+		printf("1 %s\n", AttackDex[pkm1->pokemon->pokemon->moves[0]->attackeBasis]->name);
+		printf("2 %s\n", AttackDex[pkm1->pokemon->pokemon->moves[1]->attackeBasis]->name);
+		printf("3 %s\n", AttackDex[pkm1->pokemon->pokemon->moves[2]->attackeBasis]->name);
+		printf("4 %s\n", AttackDex[pkm1->pokemon->pokemon->moves[3]->attackeBasis]->name);
+
+		read[0] = getchar();
+
+	} while (read[0] != 1 || read[0] != 2 || read[0] != 3 || read[0] != 4);
+
+	return read[0];
+}
+
+char chooseAttackWild(PokemonFight *pkm) {
+
+	char wahl;
+
+	if (pkm->pokemon->pokemon->moves[3] == NULL) {
+		wahl = 3;
+		if (pkm->pokemon->pokemon->moves[2] == NULL) {
+			wahl = 2;
+			if (pkm->pokemon->pokemon->moves[1] == NULL) {
+				wahl = 1;
+				if (pkm->pokemon->pokemon->moves[0] == NULL) {
+					printf("Na, was du denn da angestellt ?\n");
+					return NULL;
+				}
+			}
+		}
+	}else { 
+		wahl = 4; 
+	}
+
+	return rand()%wahl;
+}
+
 
 void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 
@@ -37,28 +84,29 @@ void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 
 	int tmp1, tmp2, tmp3, tmp4;
 	tmp1 = tmp2 = tmp3 = tmp4 = 0;
+	char *read[MAX_SIZE];
+
+	char choice1,choice2;
+	choice1 = choice2 - 0;
 
 	////////////////
 	// Main Fight //
 	////////////////
 
 	do {
+		// Player wählt seine Attacke aus
+		// In Do-While Schleife um übrige AP zu berücksichtigen
+		do {
+			if (pokemonPlayer->pokemon->pokemon->moves[choice1]->ap == 0) {
+				printf("Nicht genügend AP vorhanden um die Attacke durchzuführen");
+			}
+			choice1 = chooseAttackPlayer(pokemonPlayer);
+		} while (pokemonPlayer->pokemon->pokemon->moves[choice1]->ap == 0);
+		// Auswahl der Attacke des Gegners 
+		do {
+			choice2 = chooseAttackWild(pokemonAI);
+		} while (pokemonAI->pokemon->pokemon->moves[choice2]->ap  == 0);
 
-		printf("Was soll %s tun ?\n",pokemonPlayer->pokemon->pokemon->spitzname);
-		// AttackDex Index abspeichern 
-		tmp1 = pokemonPlayer->pokemon->pokemon->moves[0]; // @Phil schau dir nochmal den Datentyp von moves an. Es handelt sich nicht um den Index der attacken ;)
-		tmp2 = pokemonPlayer->pokemon->pokemon->moves[1];
-		tmp3 = pokemonPlayer->pokemon->pokemon->moves[2];
-		tmp4 = pokemonPlayer->pokemon->pokemon->moves[3];
-		// Und in attackDex aufrufen
-		printf("1 %s\n", AttackDex[tmp1]->name);
-		printf("2 %s\n", AttackDex[tmp2]->name);
-		printf("3 %s\n", AttackDex[tmp3]->name);
-		printf("4 %s\n", AttackDex[tmp4]->name);
-	
-	
-	
-	
 	
 	} while (pokemonAI->pokemon->aktKP != 0 || pokemonPlayer->pokemon->aktKP != 0);
 }

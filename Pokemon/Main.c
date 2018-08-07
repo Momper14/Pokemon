@@ -132,7 +132,6 @@ int main(){
 		strcpy_s(tmp, strlen(gelesen) + 1, gelesen);
 		trainer->pokemons[0]->pokemon->spitzname = tmp;
 	}
-
 	getchar();
 	free(trainer);
 	return 0;
