@@ -21,7 +21,7 @@ struct PokemonClass{
 	byte level;
 	uint expAct;
 	uint expNext;
-	const struct PokemonBase *base;
+	byte base;
 	ushort stats[6];
 	byte iv[6];
 	ushort ev[6];
