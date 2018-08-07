@@ -4,6 +4,7 @@
 #include "Pokemon.h"
 #include "Types.h"
 #include "Trainer.h"
+#include "Serialisieren.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -28,8 +29,13 @@ int main(){
 
 	struct Trainer *trainer = malloc(sizeof(struct Trainer));
 	char gelesen[MAX_IN];
+	int i;
 
 	setlocale(LC_ALL, "");
+
+	for(i = 0; i < 6; i++){
+		trainer->gruppe[i] = NULL;
+	}
 
 	prints("Hallo und willkommen bei Pokemon ***\n");
 
@@ -109,16 +115,16 @@ int main(){
 
 			switch(tmp){
 				case '1':
-					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_BISASAM, 5));
+					trainer->gruppe[0] = newPokemonGroup(generatePokemon(POKEMON_BISASAM, 5));
 					break;
 				case '2':
-					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_GLUMANDA, 5));
+					trainer->gruppe[0] = newPokemonGroup(generatePokemon(POKEMON_GLUMANDA, 5));
 					break;
 				case '3':
-					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_SCHIGGY, 5));
+					trainer->gruppe[0] = newPokemonGroup(generatePokemon(POKEMON_SCHIGGY, 5));
 					break;
 				case '4':
-					trainer->pokemons[0] = newPokemonGroup(generatePokemon(POKEMON_PIKACHU, 5));
+					trainer->gruppe[0] = newPokemonGroup(generatePokemon(POKEMON_PIKACHU, 5));
 					break;
 			}
 		}
@@ -130,8 +136,9 @@ int main(){
 	if(strlen(gelesen) != 0){
 		char *tmp = malloc(sizeof(char) * (strlen(gelesen) + 1));
 		strcpy_s(tmp, strlen(gelesen) + 1, gelesen);
-		trainer->pokemons[0]->pokemon->spitzname = tmp;
+		trainer->gruppe[0]->pokemon->spitzname = tmp;
 	}
+	speichern(trainer);
 	getchar();
 	free(trainer);
 	return 0;
@@ -139,15 +146,16 @@ int main(){
 
 void leseSpitzname(char *arr){
 	prints("möchtest du ihm einen Spitznamen geben? (j/n)\n");
+	arr[0] = '\0';
 
 	if(getchar() != 'j'){
 		CLEAR_IN;
 		return;
-	}	
+	}
 	CLEAR_IN;
 
-	prints("Wie soll es denn heißen?\n");
 	do{
+		prints("Wie soll es denn heißen?\n");
 		scanf_s("%s", arr, MAX_IN);
 		CLEAR_IN;
 

@@ -17,7 +17,7 @@
 #define STATUS_KO         7
 
 struct PokemonClass{
-	char *spitzname;
+	const char *spitzname;
 	byte level;
 	uint expAct;
 	uint expNext;
@@ -26,7 +26,6 @@ struct PokemonClass{
 	byte iv[6];
 	ushort ev[6];
 	struct Attacke *moves[4];
-	byte item;
 };
 typedef struct PokemonClass PokemonClass;
 
