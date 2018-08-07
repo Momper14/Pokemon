@@ -44,6 +44,7 @@ struct PokemonFight{
 	char stufen[8];					// Temporäre stufen // @done von byte in char geändert (vorzeichenbehaftet)
 	ushort tempStats[8];			// Stats mit Stufen verrechnet
 	bool verwirrung;				// 1 Für verwirrt und 0 für nicht verwirrt
+	byte sleepCounter;				// Zähler bis das Pokemon aufwacht (Allgemein Random generiert, ausser bei Erholung)
 };
 typedef struct PokemonFight PokemonFight;
 
