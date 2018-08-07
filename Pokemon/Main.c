@@ -40,7 +40,7 @@ int main(){
 	prints("Hallo und willkommen bei Pokemon ***\n");
 
 	do{
-		prints("Wie lautet dein Name? (max %d zeichen)\n", NAME_SIZE);
+		prints("Wie lautet dein Name? (max %d zeichen)\n", NAME_SIZE - 1);
 		scanf_s("%s", gelesen, NAME_SIZE);
 		CLEAR_IN;
 
@@ -151,7 +151,7 @@ void leseSpitzname(char *arr){
 	CLEAR_IN;
 
 	do{
-		prints("Wie soll es denn heiﬂen? (Max %d Zeichen)\n", SPITZNAME_SIZE);
+		prints("Wie soll es denn heiﬂen? (Max %d Zeichen)\n", SPITZNAME_SIZE - 1);
 		scanf_s("%s", arr, SPITZNAME_SIZE);
 		CLEAR_IN;
 
