@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define CLEAR_CHOICE read[0] = NULL
+#define CLEAR_CHOICE read[0] = 0
 
 struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 	
@@ -24,20 +24,56 @@ struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 
 	pokemonTemp->verwirrung = false;
 
+	// Sleep
+	if (pkm->status == STATUS_SCHLAF) {
+		//Gen I Sleep lasts 1-7
+		pokemonTemp->pokemon->sleepCounter = (rand()%7)+1;
+	}else {
+		pokemonTemp->pokemon->sleepCounter = 0;
+	}
+
 	return pokemonTemp;
 
 }
 
-char chooseAttackPlayer(PokemonFight *pkm1) {
+bool APCheck(PokemonFight *pkm) {
 
-	char *read[MAX_SIZE];
+	char attackZahl = 0;
+	char APLeft = 0;
+	int i = 0;
+	for (i = 0; pkm->pokemon->pokemon->moves[i]->ap != 0; i++) {
+		attackZahl = i + 1;
+	}
+	// KB auf eventuelle Fehler wegen zugriff auf NULL deswegen zuerst der Counter
+	for (i = 0; i > attackZahl; i++) {
+		if (pkm->pokemon->pokemon->moves[i]->ap > 0) {
+			APLeft++;
+		}
+	}
+	// Falls APLeft dann true 
+	if (APLeft > 0) {
+		return true;
+	} // Sonst false
+	else {
+		return false;
+	}
+
+
+}
+
+byte chooseAttackPlayer(PokemonFight *pkm1) {
+
+	char read[MAX_SIZE];
 
 	do {
 		// Falls Schleife wiederholt werden muss
-		if (read[0] != NULL) {
+		if (read[0] != 0) {
 			printf("Fehlerhafte Eingabe\n");
+			CLEAR_CHOICE;
 		}
-
+		if (!(APCheck(pkm1))) {
+			return ATTACKE_VERZWEIFLER;
+		}
 		printf("Was soll %s tun ?\n", pkm1->pokemon->pokemon->spitzname);
 		// Name der Attacke in AttackDex aufrufen
 		printf("1 %s\n", AttackDex[pkm1->pokemon->pokemon->moves[0]->attackeBasis]->name);
@@ -49,12 +85,18 @@ char chooseAttackPlayer(PokemonFight *pkm1) {
 
 	} while (read[0] != 1 || read[0] != 2 || read[0] != 3 || read[0] != 4);
 
-	return read[0];
+	return pkm1->pokemon->pokemon->moves[read[0]]->attackeBasis;
 }
 
 char chooseAttackWild(PokemonFight *pkm) {
 
 	char wahl;
+
+	if (!(APCheck(pkm))) {
+		printf("%s hat keine AP mehr übrig\n",PokemonBaseNatDex[pkm->pokemon->pokemon->base]->name);
+		return ATTACKE_VERZWEIFLER;
+	}
+
 
 	if (pkm->pokemon->pokemon->moves[3] == NULL) {
 		wahl = 3;
@@ -64,7 +106,7 @@ char chooseAttackWild(PokemonFight *pkm) {
 				wahl = 1;
 				if (pkm->pokemon->pokemon->moves[0] == NULL) {
 					printf("Na, was du denn da angestellt ?\n");
-					return NULL;
+					return 0;
 				}
 			}
 		}
@@ -72,9 +114,55 @@ char chooseAttackWild(PokemonFight *pkm) {
 		wahl = 4; 
 	}
 
-	return rand()%wahl;
+	return pkm->pokemon->pokemon->moves[rand()%wahl]->attackeBasis;
 }
 
+void attackExecute(PokemonFight *angreifer, PokemonFight *verteidiger, byte attack) {
+
+	// Zuerst Status überprüfen ob FRZ,SLP, Verwirrt oder Paralysiert
+
+	if (angreifer->pokemon->status == STATUS_FREEZE) {
+		// In Gen I kann ein Pokemon ohne Hilfe nicht auftauen
+		printf("%s ist erfroren und kann sich nicht bewegen!\n", angreifer->pokemon->pokemon->spitzname);
+		return;
+	}
+
+	if (angreifer->pokemon->status == STATUS_PARALYSE) {
+		printf("%s ist paralysiert!\n",angreifer->pokemon->pokemon->spitzname);
+		if (rand()%100 < 25) {
+			printf("Es kann sich nicht bewegen!\n");
+			return;
+		}
+	}
+
+	if (angreifer->pokemon->status == STATUS_SCHLAF) {
+		// Wird jede Runde um 1 reduziert
+		angreifer->pokemon->sleepCounter;
+
+		if (angreifer->pokemon->sleepCounter == 0) {
+			printf("%s ist aufgewacht!\n", angreifer->pokemon->pokemon->spitzname);
+			angreifer->pokemon->status = STATUS_NORMAL;
+			return;
+		} else {
+			printf("%s schläft tief und fest!\n", angreifer->pokemon->pokemon->spitzname);
+			return;
+		}
+	}
+
+	if (angreifer->verwirrung) {
+		printf("%s ist verwirrt!\n",angreifer->pokemon->pokemon->spitzname);
+		if (rand()%100 < 50) { // 50% Chance Gen I - VI
+			printf("Es hat sich vor Verwirrung selbst verletzt\n");
+			// apply 40-power typeless physical attack (without the possibility of a critical hit) to itself
+			return;
+		}
+	}
+
+	// Jetzt kommen wir zur Ausführung der Attacke (Die jetzt immernoch daneben gehen kann)
+
+
+
+}
 
 void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 
@@ -84,12 +172,14 @@ void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 	struct PokemonFight *pokemonPlayer = generatePokemonFight(pkm1);
 	struct PokemonFight *pokemonAI     = generatePokemonFight(pkm2);
 
-	int tmp1, tmp2, tmp3, tmp4;
-	tmp1 = tmp2 = tmp3 = tmp4 = 0;
-	char *read[MAX_SIZE];
+	struct PokemonFight *attackFirst  = malloc(sizeof(struct PokemonFight));
+	struct PokemonFight *attackSecond = malloc(sizeof(struct PokemonFight));
 
-	char choice1,choice2;
-	choice1 = choice2 = 0;
+	byte attack1, attack2;
+	attack1 = attack2 = 0;
+
+	char choicePlayer,choiceAI;
+	choicePlayer = choiceAI = 0;
 
 	////////////////
 	// Main Fight //
@@ -99,15 +189,47 @@ void mainFight(PokemonGroup *pkm1, PokemonGroup *pkm2) {
 		// Player wählt seine Attacke aus
 		// In Do-While Schleife um übrige AP zu berücksichtigen
 		do {
-			if (pokemonPlayer->pokemon->pokemon->moves[choice1]->ap == 0) {
+			if (pokemonPlayer->pokemon->pokemon->moves[choicePlayer]->ap == 0) {
 				printf("Nicht genügend AP vorhanden um die Attacke durchzuführen");
 			}
-			choice1 = chooseAttackPlayer(pokemonPlayer);
-		} while (pokemonPlayer->pokemon->pokemon->moves[choice1]->ap == 0);
+			choicePlayer = chooseAttackPlayer(pokemonPlayer);
+
+
+		} while (pokemonPlayer->pokemon->pokemon->moves[choicePlayer]->ap == 0);
 		// Auswahl der Attacke des Gegners 
 		do {
-			choice2 = chooseAttackWild(pokemonAI);
-		} while (pokemonAI->pokemon->pokemon->moves[choice2]->ap  == 0);
+
+			if (!(APCheck(pokemonPlayer))) {
+				// Use Verzweifler
+			}
+
+			choiceAI = chooseAttackWild(pokemonAI);
+		} while (pokemonAI->pokemon->pokemon->moves[choiceAI]->ap  == 0);
+
+		// Attacken sind nun ausgewählt. Ermitteln wer zuerst dran ist
+
+		// Zuerst priorität der Attacke überprüfen
+		if (AttackDex[choicePlayer]->priority > AttackDex[choiceAI]->priority)  {
+			// z.B. Ruckzuckhieb > Konter
+			// Fun Fact Paralyse verringert die Initiative um 75 % und sorgt damit nicht dafür dass das paralysierte PKM garantiert zuletzt angreift
+			// https://bulbapedia.bulbagarden.net/wiki/Paralysis_(status_condition)
+			attackFirst  = pokemonPlayer;
+			attackSecond = pokemonAI;
+		}
+		else if (AttackDex[choicePlayer]->priority < AttackDex[choiceAI]->priority) {
+			attackFirst  = pokemonAI;
+			attackSecond = pokemonPlayer;
+		} else {
+			// Wenn keine der Attacke eine höhere Priotität hat geht es natürlich nach Initiative
+			if (pokemonPlayer->tempStats[STAT_INITIATIVE] > pokemonAI->tempStats[STAT_INITIATIVE]) {
+				attackFirst = pokemonPlayer;
+				attackSecond = pokemonAI;
+			}else {
+				attackFirst = pokemonAI;
+				attackSecond = pokemonPlayer;			
+			}
+		}
+
 
 	
 	} while (pokemonAI->pokemon->aktKP != 0 || pokemonPlayer->pokemon->aktKP != 0);
