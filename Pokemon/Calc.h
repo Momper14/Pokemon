@@ -4,4 +4,4 @@
 #include "Util.h"
 #include "Attacks.h"
 
-void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger,int attackID);
+void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger,byte attackID);

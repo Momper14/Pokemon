@@ -182,7 +182,7 @@ const AttackeBasis Triplette     = { "Triplette"    ,NORMAL , 80,100,10, 0,SPEZI
 // Spezial
 const AttackeBasis Delegator     = { "Delegator"    ,NORMAL ,  0,100,10, 0,STATUS   };
 const AttackeBasis Drachenwut    = { "Drachenwut"   ,DRACHE ,  0,100,10, 0,SPEZIAL  };
-const AttackeBasis Fusskick      = { "Fusskick"     ,KAMPF  ,  0, 90,20, 0,PHYSISCH };
+const AttackeBasis Fusskick      = { "Fusskick"     ,KAMPF  , 50, 90,20, 0,PHYSISCH }; // Added 50 DMG to Fusskick
 const AttackeBasis Geowurf       = { "Geowurf"      ,KAMPF  ,  0,100,20, 0,PHYSISCH };
 const AttackeBasis Konter        = { "Konter"       ,KAMPF  ,  0,100,20,-5,PHYSISCH };
 const AttackeBasis Metronom      = { "Metronom"     ,NORMAL ,  0,  0,10, 0,STATUS   };

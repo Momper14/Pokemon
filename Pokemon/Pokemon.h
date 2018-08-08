@@ -45,6 +45,8 @@ struct PokemonFight{
 	char stufen[8];					// Temporäre stufen // @done von byte in char geändert (vorzeichenbehaftet)
 	ushort tempStats[8];			// Stats mit Stufen verrechnet
 	bool verwirrung;				// 1 Für verwirrt und 0 für nicht verwirrt
+	byte typ1;						// Nur für Umwandlung
+	byte typ2;
 	
 };
 typedef struct PokemonFight PokemonFight;

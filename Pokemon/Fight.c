@@ -3,7 +3,10 @@
 #include <stdio.h>
 
 #define CLEAR_CHOICE read[0] = 0
-
+/*
+	todo
+	Counter einführen der das Neu Wählen von Attacken verhindert (HYperstrahl, KLingensturm, Fuchtler usw.)
+*/
 struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 	
 	PokemonFight *pokemonTemp = malloc(sizeof(struct PokemonFight));
@@ -31,6 +34,11 @@ struct PokemonFight* generatePokemonFight(struct PokemonGroup *pkm) {
 	}else {
 		pokemonTemp->pokemon->sleepCounter = 0;
 	}
+
+	// Typen übernehmen
+	pokemonTemp->typ1 = PokemonBaseNatDex[pkm->pokemon->base]->typ1;
+	pokemonTemp->typ2 = PokemonBaseNatDex[pkm->pokemon->base]->typ2;
+
 
 	return pokemonTemp;
 
@@ -120,13 +128,13 @@ char chooseAttackWild(PokemonFight *pkm) {
 void attackExecute(PokemonFight *angreifer, PokemonFight *verteidiger, byte attack) {
 
 	// Zuerst Status überprüfen ob FRZ,SLP, Verwirrt oder Paralysiert
-
+	// FRZ
 	if (angreifer->pokemon->status == STATUS_FREEZE) {
 		// In Gen I kann ein Pokemon ohne Hilfe nicht auftauen
 		printf("%s ist erfroren und kann sich nicht bewegen!\n", angreifer->pokemon->pokemon->spitzname);
 		return;
 	}
-
+	// Para
 	if (angreifer->pokemon->status == STATUS_PARALYSE) {
 		printf("%s ist paralysiert!\n",angreifer->pokemon->pokemon->spitzname);
 		if (rand()%100 < 25) {
@@ -134,7 +142,7 @@ void attackExecute(PokemonFight *angreifer, PokemonFight *verteidiger, byte atta
 			return;
 		}
 	}
-
+	// SLP
 	if (angreifer->pokemon->status == STATUS_SCHLAF) {
 		// Wird jede Runde um 1 reduziert
 		angreifer->pokemon->sleepCounter;
@@ -148,7 +156,7 @@ void attackExecute(PokemonFight *angreifer, PokemonFight *verteidiger, byte atta
 			return;
 		}
 	}
-
+	// Verwirrung
 	if (angreifer->verwirrung) {
 		printf("%s ist verwirrt!\n",angreifer->pokemon->pokemon->spitzname);
 		if (rand()%100 < 50) { // 50% Chance Gen I - VI
@@ -159,7 +167,14 @@ void attackExecute(PokemonFight *angreifer, PokemonFight *verteidiger, byte atta
 	}
 
 	// Jetzt kommen wir zur Ausführung der Attacke (Die jetzt immernoch daneben gehen kann)
-
+	// Berechnen ob Attacke trifft
+	if (rand()%100 < AttackDex[attack]->precision && rand()%100 < angreifer->tempStats[STAT_GENAUIGKEIT] && rand()%100 < verteidiger->tempStats[STAT_FLUCHTWERT]) {
+		mainAttack(angreifer, verteidiger, attack);
+		return;
+	}	else {
+		printf("Attacke ging daneben!\n");
+		return;
+	}
 
 
 }

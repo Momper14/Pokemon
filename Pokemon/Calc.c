@@ -2,11 +2,11 @@
 #include "Calc.h"
 #include "stdlib.h"
 
-uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
-uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
+void applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID);
+void statusChangeGuaranteed(PokemonFight *pokemon, byte status);
 void statusChange(PokemonFight *pokemon, byte status, byte chance);
 void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID,byte status,byte chance);
-void applyKOAttack(PokemonFight *verteidiger,byte chance);
+void applyKOAttack(PokemonFight *verteidiger);
 void buffStat(PokemonFight *pokemon, byte stat, char stufen);
 
 /*
@@ -17,21 +17,8 @@ To-Do
 -Genauigkeit und Fluchtwert in DMG Kalkulation berücksichtigen
 */
 
-uint applyDMG(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
-	// berechnen ob es zu einem Treffer kommt
-	byte hit = rand()%100; // @done %101 auf %100, %101 ergibt 101 werte; datentyp in byte geändert
-	if (hit > AttackDex[attackID]->precision) {
-		return 0;
-	}
-
-	uint damage = applyDMGGuaranteed(angreifer, verteidiger, attackID);
-
-	return damage;
-
-}
-
-uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
+void applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
 	uint damage;
 	byte power = AttackDex[attackID]->DMG;
@@ -107,7 +94,9 @@ uint applyDMGGuaranteed(PokemonFight *angreifer, PokemonFight *verteidiger, byte
 		damage = verteidiger->pokemon->aktKP;
 	}
 
-	return damage;
+	verteidiger->pokemon->aktKP -= damage;
+
+	return;
 }
 
 // @todo schleifen abbrechen, falls pokemon KO; Genauigkeitsberechnung anpassen https://www.pokewiki.de/Mehrmals_angreifende_Attacken#Serien-Attacken
@@ -115,24 +104,43 @@ void applyDMGRecursive(PokemonFight *angreifer, PokemonFight *verteidiger, byte 
 	// Für Attacken wie Doppelkick, die nur 2 mal, aber dafür garantiert treffen
 	if (counter == 2) {
 		for (counter; counter > 0; counter--) {
-			verteidiger->pokemon->aktKP -= applyDMGGuaranteed(angreifer, verteidiger, attackID);
+			applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		}
 		// Für alle anderen wiederholte Attacken, 2 Treffer garantiert, danach können sie daneben gehen
 	}
 	else if (counter == 5) {
-		for (counter; counter > 3; counter--) {
-			verteidiger->pokemon->aktKP -= applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		
+		
+	}
+
+}
+
+void statusChangeGuaranteed(PokemonFight *pokemon, byte status) {
+	// Keine Statusänderung zulassen, solange einer bereits vorliegt
+	if (pokemon->pokemon->status != STATUS_NORMAL) {
+		return;
+	}
+	// Pokemon von Typ GIFT oder STAHL können nicht vergiftet werden
+	if (status = STATUS_GIFT) {
+		if (PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == STAHL || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == STAHL || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == GIFT || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == GIFT) {
+			return;
 		}
-		int tempDMG = 0;
-		for (counter; counter > 3; counter--) {
-			tempDMG = applyDMGGuaranteed(angreifer, verteidiger, attackID);
-			if (tempDMG == 0) {
-				counter = 0;
-			}
-			verteidiger->pokemon->aktKP -= tempDMG;
+	}
+	// Pokemon vom Typ FEUER können nicht verbrannt werden
+	if (status == STATUS_BRENN) {
+		if (PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == FEUER || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == FEUER) {
+			return;
+		}
+	}
+	// Eis Pokemon können nicht FRZ werden
+	if (status == STATUS_FREEZE) {
+		if (PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ1 == EIS || PokemonBaseNatDex[pokemon->pokemon->pokemon->base]->typ2 == EIS) {
+			return;
 		}
 	}
 
+	pokemon->pokemon->status = status;
+	return;
 }
 
 void statusChange(PokemonFight *pokemon, byte status, byte chance) {
@@ -171,21 +179,18 @@ void statusChange(PokemonFight *pokemon, byte status, byte chance) {
 
 void applyDmgAndStatus(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID, byte status, byte chance) {
 
-	ushort temp = applyDMG(angreifer, verteidiger, attackID);
-	verteidiger->pokemon->aktKP -= temp;
+	applyDMGGuaranteed(angreifer, verteidiger, attackID);
 	// Ob Statusveränderung stattfinden kann hängt ob es überhaupt einen Treffer gab und ob das Pokemon nicht KO ist
-	if (temp > 0 && verteidiger->pokemon->status != STATUS_KO) {
+	if (verteidiger->pokemon->aktKP > 0 && verteidiger->pokemon->status != STATUS_KO) {
 		statusChange(verteidiger, status, chance);
 	}
 
 }
 
-void applyKOAttack(PokemonFight *verteidiger, byte chance) {
+void applyKOAttack(PokemonFight *verteidiger) {
 
-	if (rand()%100 < chance) {  // @done %101 auf %100, %101 ergibt 101 werte´; <= in < geändet. <= sind 31 werte
-		verteidiger->pokemon->aktKP = 0;
-		return;
-	}
+	verteidiger->pokemon->aktKP = 0;
+
 	return;
 }
 
@@ -281,18 +286,18 @@ void buffStat(PokemonFight *pokemon, byte stat, char stufen) { // @done typen vo
 }
 
 
-void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID) {
+void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, byte attackID) {
 
 	ushort temp = 0;
 
 	switch (attackID) {
 
 	case ATTACKE_PFUND:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_KARATESCHLAG:
 		// Vorerst keine extra Crit-Rate
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_DUPLEXHIEB:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
@@ -301,7 +306,7 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_ZAHLTAG:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Geld berechnen, falls es implementiert wird
 		break;
 	case ATTACKE_FEUERSCHLAG:
@@ -314,73 +319,102 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_PARALYSE, 10);
 		break;
 	case ATTACKE_KRATZER:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_KLAMMER:
+
+		break;
 	case ATTACKE_GUILLOTINE:
-		applyKOAttack(verteidiger, AttackDex[attackID]->precision);
+		applyKOAttack(verteidiger);
 		break;
 	case ATTACKE_KLINGENSTURM:
+
+		break;
 	case ATTACKE_SCHWERTTANZ:
 		buffStat(angreifer, STAT_ANGRIFF, 2);
 		break;
 	case ATTACKE_ZERSCHNEIDER:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_WINDSTOSS:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_FLUEGELSCHLAG:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_WIRBELWIND:
+
+		break;
 	case ATTACKE_FLIEGEN:
+
+		break;
 	case ATTACKE_KLAMMERGRIFF:
+
+		break;
 	case ATTACKE_SLAM:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_RANKENHIEB:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_STAMPFER:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// zurückschrecken berechnen
 		break;
 	case ATTACKE_DOPPELKICK:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 2);
 		break;
 	case ATTACKE_MEGAKICK:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_SPRUNGKICK:
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		break;
 	case ATTACKE_FEGEKICK:
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		break;
 	case ATTACKE_SANDWIRBEL:
-		//geplant buffstat(verteidiger,stat_genauigkeit,-1);
-		//genauigkeit und ausweichen muss noch eingeführt werden
+		buffStat(verteidiger, STAT_GENAUIGKEIT, -1);
 		break;
 	case ATTACKE_KOPFNUSS:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Zurückschrecken berechnen
 		break;
 	case ATTACKE_HORNATTACKE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_FURIENSCHLAG:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_HORNBOHRER:
-		applyKOAttack(verteidiger, AttackDex[attackID]->precision);
+		applyKOAttack(verteidiger);
 		break;
 	case ATTACKE_TACKLE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_BODYSLAM:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_PARALYSE, 30);
 		break;
 	case ATTACKE_WICKEL:
+		
+		break;
 	case ATTACKE_BODYCHECK:
+		temp = verteidiger->pokemon->aktKP;
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		temp -= verteidiger->pokemon->aktKP;
+		angreifer->pokemon->aktKP -= (temp >> 2);
+		// Deal DMG to Itself
+		break;
 	case ATTACKE_FUCHTLER:
+
+		break;
 	case ATTACKE_RISIKOTACKLE:
+		temp = verteidiger->pokemon->aktKP;
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		temp -= verteidiger->pokemon->aktKP;
+		angreifer->pokemon->aktKP -= (temp >> 2);
+		// Deal DMG to Itself
+		break;
 	case ATTACKE_RUTENSCHLAG:
 		buffStat(verteidiger, STAT_VERTEIDIGUNG, -1);
 		break;
@@ -395,35 +429,38 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 	case ATTACKE_SILBERBLICK:
 		buffStat(verteidiger, STAT_VERTEIDIGUNG, -1);
 	case ATTACKE_BISS:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// zurückschrecken berechnen
 		break;
 	case ATTACKE_HEULER:
 		buffStat(verteidiger, STAT_ANGRIFF, -1);
 		break;
 	case ATTACKE_BRUELLER:
+
+		break;
 	case ATTACKE_GESANG:
 		statusChange(verteidiger, STATUS_SCHLAF, AttackDex[attackID]->precision);
 		break;
 	case ATTACKE_SUPERSCHALL:
+		verteidiger->verwirrung = true;
 		break;
 	case ATTACKE_ULTRASCHALL:
 		// 20 HP abziehen
+		if (verteidiger->pokemon->aktKP <= 20) {
+			verteidiger->pokemon->aktKP = 0;
+		}	else {
+			verteidiger->pokemon->aktKP -= 20;
+		}
 		break;
 	case ATTACKE_AUSSETZER:
+
+		break;
 	case ATTACKE_SAEURE:
-		temp = applyDMG(angreifer, verteidiger, attackID);
-		if (verteidiger->pokemon->aktKP < temp) {
-			verteidiger->pokemon->aktKP = 0;
-		}
-		else {
-			verteidiger->pokemon->aktKP -= temp;
-		}
-		// temp > 0 ansonsten gab es keinen treffer, verteidiger kp = 0 = KO -> Keine statveränderung, random 10% chance auf senkung
-		if (temp > 0 && verteidiger->pokemon->aktKP != 0 && rand() % 101 < 10) {
-			buffStat(verteidiger, STAT_VERTEIDIGUNG, -1);
-		}
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Falls das Pokemon nicht KO geht, besteht 10% Chance dass Vert des Verteidigenden Pokemons um 1 Stufe sinkt
+		if (verteidiger->pokemon->aktKP > 0) {
+			buffStat(verteidiger,STAT_VERTEIDIGUNG,-1);
+		}		
 		break;
 	case ATTACKE_GLUT:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_BRENN, 10);
@@ -436,13 +473,13 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		// werden wieder auf normal zustand gesetzt
 		break;
 	case ATTACKE_AQUAKNARRE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_HYDROPUMPE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_SURFER:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_EISSTRAHL:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_FREEZE, 10);
@@ -451,65 +488,118 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_FREEZE, 10);
 		break;
 	case ATTACKE_PSYSTRAHL:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Verwirrung berechnen
 		break;
 	case ATTACKE_BLUBBSTRAHL:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_AURORASTRAHL:
-		temp = applyDMG(angreifer, verteidiger, attackID);
-		if (temp > verteidiger->pokemon->aktKP) {
-			verteidiger->pokemon->aktKP = 0;
-		}
-		else {
-			verteidiger->pokemon->aktKP -= temp;
-		}
-		if (temp > 0 && verteidiger->pokemon->aktKP != 0 && rand() % 101 > 10) {
-			buffStat(verteidiger, STAT_ANGRIFF, -1);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		if (verteidiger->pokemon->aktKP > 0) {
+			if (rand()%100 < 10) {
+				buffStat(verteidiger, STAT_ANGRIFF, -1);
+			}
 		}
 		break;
 	case ATTACKE_HYPERSTRAHL:
 		// 2-Phasen Zuerst Angreifen dann Aufladen
 		break;
 	case ATTACKE_SCHNABEL:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_BOHRSCHNABEL:
-		applyKOAttack(verteidiger, 10);
+		applyKOAttack(verteidiger);
 		break;
 	case ATTACKE_UEBERROLLER:
+		temp = verteidiger->pokemon->aktKP;
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		temp -= verteidiger->pokemon->aktKP;
+		angreifer->pokemon->aktKP -= (temp >> 2);
+		// Deal DMG to Itself
+		break;
 	case ATTACKE_FUSSKICK:
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		// 30% Chance zurückzuschrecken
+		break;
 	case ATTACKE_KONTER:
+		// Keine Ahnung wie ich das machen soll
+		break;
 	case ATTACKE_GEOWURF:
+		if (verteidiger->pokemon->aktKP <= angreifer->pokemon->pokemon->level) {		
+			verteidiger->pokemon->aktKP = 0;
+		}	else {
+			verteidiger->pokemon->aktKP -= angreifer->pokemon->pokemon->level;
+		}
+		break;
 	case ATTACKE_STAERKE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_ABSORBER:
+		temp = verteidiger->pokemon->aktKP;
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		// Kp ermitteln die der Verteidiger verloren hat
+		temp -= verteidiger->pokemon->aktKP;
+		// Halbieren und dem Angreifer hinzufügen (Darauf achten dass es nicht die maxKP überschreitet)
+		temp = temp >> 1;
+		if (angreifer->pokemon->pokemon->stats[STAT_KP]<(angreifer->pokemon->aktKP + temp)) {
+			angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
+		}	else {
+			angreifer->pokemon->aktKP += temp;
+		}
+		break;
 	case ATTACKE_MEGASAUGER:
+		temp = verteidiger->pokemon->aktKP;
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		// Kp ermitteln die der Verteidiger verloren hat
+		temp -= verteidiger->pokemon->aktKP;
+		if (angreifer->pokemon->pokemon->stats[STAT_KP]<(angreifer->pokemon->aktKP + temp)) {
+			angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
+		}
+		else {
+			angreifer->pokemon->aktKP += temp;
+		}
+		break;
 	case ATTACKE_EGELSAMEN:
+		// T__T
+		break;
 	case ATTACKE_WACHSTUM:
+		buffStat(angreifer,STAT_ANGRIFF,+1);
+		buffStat(angreifer, STAT_SPEZIALANGRIFF, +1);
+		break;
 	case ATTACKE_RASIERBLATT:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_SOLARSTRAHL:
+
+		break;
 	case ATTACKE_GIFTPUDER:
-		statusChange(verteidiger, STATUS_GIFT, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_GIFT);
 		break;
 	case ATTACKE_STACHELSPORE:
-		statusChange(verteidiger, STATUS_PARALYSE, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_PARALYSE);
 		break;
 	case ATTACKE_SCHLAFPUDER:
-		statusChange(verteidiger, STATUS_SCHLAF, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_SCHLAF);
 		break;
 	case ATTACKE_BLAETTERTANZ:
+
+		break;
 	case ATTACKE_FADENSCHUSS:
 		buffStat(verteidiger, STAT_INITIATIVE, -1);
 		break;
 	case ATTACKE_DRACHENWUT:
-		// 40 KP abziehen
+		// 40 HP abziehen
+		if (verteidiger->pokemon->aktKP <= 40) {
+			verteidiger->pokemon->aktKP = 0;
+		}
+		else {
+			verteidiger->pokemon->aktKP -= 40;
+		}
 		break;
 	case ATTACKE_FEUERWIRBEL:
+
+		break;
 	case ATTACKE_DONNERSCHOCK:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_PARALYSE, 10);
 		break;
@@ -523,28 +613,41 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_PARALYSE, 10);
 		break;
 	case ATTACKE_STEINWURF:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_ERDBEBEN:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_GEOFISSUR:
-		applyKOAttack(verteidiger, AttackDex[attackID]->precision);
+		applyKOAttack(verteidiger);
 		break;
 	case ATTACKE_SCHAUFLER:
+
+		break;
 	case ATTACKE_TOXIN:
 		statusChange(verteidiger, STATUS_SCHWERGIFT, AttackDex[attackID]->precision);
 		break;
 	case ATTACKE_KONFUSION:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Verwirrung berechnen
+		if (verteidiger->pokemon->aktKP > 0) {
+			if (rand()%100 < 10) {
+				verteidiger->verwirrung = true;
+			}
+		}
 		break;
 	case ATTACKE_PSYCHOKINESE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		if (verteidiger->pokemon->aktKP > 0) {
+			if (rand() % 100 < 30) {
+				buffStat(verteidiger, STAT_SPEZIALVERTEIDIGUNG, -1);
+			}
+		}
+
 		// Verwirrung berechnen
 		break;
 	case ATTACKE_HYPNOSE:
-		statusChange(verteidiger, STATUS_SCHLAF, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_SCHLAF);
 		break;
 	case ATTACKE_MEDITATION:
 		buffStat(angreifer, STAT_ANGRIFF, 1);
@@ -553,16 +656,31 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		buffStat(angreifer, STAT_INITIATIVE, 2);
 		break;
 	case ATTACKE_RUCKZUCKHIEB:
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		break;
 	case ATTACKE_RASEREI:
+
+		break;
 	case ATTACKE_TELEPORT:
+
+		break;
 	case ATTACKE_NACHTNEBEL:
 		// Schaden = Level des Angreifers
+		if (verteidiger->pokemon->aktKP <= angreifer->pokemon->pokemon->level) {
+			verteidiger->pokemon->aktKP = 0;
+		}	else{
+			verteidiger->pokemon->aktKP -= angreifer->pokemon->pokemon->level;
+		}		
 		break;
 	case ATTACKE_MIMIKRY:
+
+		break;
 	case ATTACKE_KREIDESCHREI:
 		buffStat(verteidiger, STAT_VERTEIDIGUNG, -2);
 		break;
 	case ATTACKE_DOPPELTEAM:
+		// Evade erhöhen
+		break;
 	case ATTACKE_GENESUNG:
 		// Hälfte der Max KP
 		temp = angreifer->pokemon->pokemon->stats[STAT_KP] >> 1;
@@ -582,8 +700,12 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		// Evade erhöhen
 	case ATTACKE_RAUCHWOLKE:
 		// Genauigkeit des verteidigers senken
+		buffStat(verteidiger, STAT_GENAUIGKEIT, -1);
+		break;
 	case ATTACKE_KONFUSTRAHL:
 		// Verwirren
+		verteidiger->verwirrung = true;
+		break;
 	case ATTACKE_PANZERSCHUTZ:
 		buffStat(angreifer, STAT_VERTEIDIGUNG, 1);
 		break;
@@ -611,17 +733,28 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_REFLEKTOR:
 		//Gegnerische physische Attacken richten 5 Runden lang nur halben Schaden an, wirkt auch nach Pokémon-Wechsel.
+		break;
 	case ATTACKE_ENERGIEFOKUS:
+
+		break;
 	case ATTACKE_GEDULD:
+
+		break;
 	case ATTACKE_METRONOM:
 		// Führt eine zufällige Attacke aus
 		mainAttack(angreifer, verteidiger, (rand() % 166) + 1);
 		break;
 	case ATTACKE_SPIEGELTRICK:
+
+		break;
 	case ATTACKE_FINALE:
 		// Das hier wird lustig
+		// ToDo auch bei Miss HP auf 0 setzen
+		angreifer->pokemon->aktKP = 0;
+		applyDMGGuaranteed(angreifer,verteidiger,attackID);
+		break;
 	case ATTACKE_EIERBOMBE:
-		applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 	case ATTACKE_SCHLECKER:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_PARALYSE, 30);
 		break;
@@ -632,29 +765,37 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_GIFT, 30);
 		break;
 	case ATTACKE_KNOCHENKEULE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Zurückschrecken berechnen
 		break;
 	case ATTACKE_FEUERSTURM:
 		applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_BRENN, 10);
 		break;
 	case ATTACKE_KASKADE:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer,verteidiger,attackID);
+		break;
 	case ATTACKE_SCHNAPPER:
-
+		// Wie Feuerwirbel
+		break;
 	case ATTACKE_STERNSCHAUER:
 		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_SCHAEDELWUMME:
+		// Muss zuerst 1 Runde aufladen
+		break;
 	case ATTACKE_DORNKANONE:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_UMKLAMMERUNG:
+
+		break;
 	case ATTACKE_AMNESIE:
 		buffStat(angreifer, STAT_SPEZIALVERTEIDIGUNG, 2);
 		break;
 	case ATTACKE_PSYKRAFT:
 		//Senkt die Genauigkeit des Gegners um eine Stufe.
+		buffStat(verteidiger, STAT_GENAUIGKEIT, -1);
+		break;
 	case ATTACKE_WEICHEI:
 		// Hälfte der Max KP
 		temp = angreifer->pokemon->pokemon->stats[STAT_KP] >> 1;
@@ -666,39 +807,63 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		else {
 			angreifer->pokemon->aktKP += temp;
 		}
-
 		// Ausserhalb des Kampfes Anwendbar
 		break;
 	case ATTACKE_TURMKICK:
+		applyDMGGuaranteed(angreifer,verteidiger,attackID);
+		break;
 	case ATTACKE_GIFTBLICK:
-		statusChange(verteidiger, STATUS_PARALYSE, 75); // Bis einschl. 4. Generation TQ = 75 %
+		statusChangeGuaranteed(verteidiger, STATUS_PARALYSE); // Bis einschl. 4. Generation TQ = 75 %
 		break;
 	case ATTACKE_TRAUMFRESSER:
 		if (verteidiger->pokemon->status == STATUS_SCHLAF) {
-			applyDMG(angreifer, verteidiger, attackID);
+			applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		}
 		break;
 	case ATTACKE_GIFTWOLKE:
-		statusChange(verteidiger, STATUS_GIFT, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_GIFT);
 		break;
 	case ATTACKE_STAKKATO:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
 		break;
 	case ATTACKE_BLUTSAUGER:
+		temp = verteidiger->pokemon->aktKP;
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
+		// Kp ermitteln die der Verteidiger verloren hat
+		temp -= verteidiger->pokemon->aktKP;
+		// tmp halbieren
+		temp = temp >> 1;
+		if (angreifer->pokemon->pokemon->stats[STAT_KP]<(angreifer->pokemon->aktKP + temp)) {
+			angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
+		}
+		else {
+			angreifer->pokemon->aktKP += temp;
+		}
+		break;
 	case ATTACKE_TODESKUSS:
-		statusChange(verteidiger, STATUS_SCHLAF, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_SCHLAF);
 	case ATTACKE_HIMMELSFEGER:
+
+		break;
 	case ATTACKE_WANDLER:
 		// Das wird auch lustig
 	case ATTACKE_BLUBBER:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_IRRSCHLAG:
+		applyDMGGuaranteed(angreifer,verteidiger,attackID);
+		if (verteidiger->pokemon->aktKP > 0) {
+			if (rand()%100 < 20) {
+				verteidiger->verwirrung = true;
+			}
+		}
 		// Verwirrung berechnen
 	case ATTACKE_PILZSPORE:
-		statusChange(verteidiger, STATUS_SCHLAF, AttackDex[attackID]->precision);
+		statusChangeGuaranteed(verteidiger, STATUS_SCHLAF);
 		break;
 	case ATTACKE_BLITZ:
+		buffStat(verteidiger, STAT_GENAUIGKEIT, -1);
+		break;
 	case ATTACKE_PSYWELLE:
 		/*
 		Diese Attacke richtet Schaden an und die Höhe des Schadens wird per Zufall bestimmt.
@@ -716,12 +881,12 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_KRABBHAMMER:
 		// Erhöte Crit-Chance
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_EXPLOSION:
 		// Killt sich selbst, aber Chance besteht dass die Attacke misst
 		angreifer->pokemon->aktKP = 0;
-		applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		break;
 	case ATTACKE_KRATZFURIE:
 		applyDMGRecursive(angreifer, verteidiger, attackID, 5);
@@ -731,21 +896,39 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_ERHOLUNG:
 		angreifer->pokemon->status = STATUS_SCHLAF;
+		angreifer->pokemon->sleepCounter = 2;
 		angreifer->pokemon->aktKP = angreifer->pokemon->pokemon->stats[STAT_KP];
 		break;
 		// ez
 	case ATTACKE_STEINHAGEL:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Zurückschrecken programmieren || erst ab der 2en Generation chance auf zurückschrecken
 		break;
 	case ATTACKE_HYPERZAHN:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// zurückschrecken berechnen
 		break;
 	case ATTACKE_SCHAERFER:
 		buffStat(angreifer, STAT_ANGRIFF, 1);
 		break;
 	case ATTACKE_UMWANDLUNG:
+		// Ändert den eigenen Pokémon Typ in einen seiner Attacken.
+		// Da nur Prygon diese Attacke erlernen kann und es nur vom Typ Psycho ist beziehe ich es hier auf Typ 1
+		if (angreifer->pokemon->pokemon->moves[3] == 0) {
+			temp = 3;
+			if (angreifer->pokemon->pokemon->moves[2] == 0) {
+				temp = 2;
+				if (angreifer->pokemon->pokemon->moves[1] == 0) {
+					temp = 1;
+					if (angreifer->pokemon->pokemon->moves[0] == 0) {
+						// Wie hast du das denn geschafft ?
+					}
+				}
+			}
+		}
+		// Typ1 des Angreifers gleich Typ der Attacke rand()%temp
+		angreifer->typ1 = AttackDex[angreifer->pokemon->pokemon->moves[rand() % temp]->attackeBasis]->typ;
+		break;
 	case ATTACKE_TRIPLETTE:
 		switch (rand() % 3) {
 		case 0: applyDmgAndStatus(angreifer, verteidiger, attackID, STATUS_BRENN, 20); break;
@@ -755,29 +938,37 @@ void mainAttack(PokemonFight *angreifer, PokemonFight *verteidiger, int attackID
 		break;
 	case ATTACKE_SUPERZAHN:
 		//Die gegnerischen vorhandenen KP werden halbiert.
-		if (rand() % 101 < AttackDex[attackID]->precision) {
+		if (rand() % 100 < AttackDex[attackID]->precision) {
 			verteidiger->pokemon->aktKP = verteidiger->pokemon->aktKP >> 1;
 		}
 		break;
 	case ATTACKE_SCHLITZER:
-		verteidiger->pokemon->aktKP -= applyDMG(angreifer, verteidiger, attackID);
+		applyDMGGuaranteed(angreifer, verteidiger, attackID);
 		// Hohe Critrate berechnen
 		break;
 	case ATTACKE_DELEGATOR:
+
+		break;
 	case ATTACKE_VERZWEIFLER:
-
-
+		applyDMGGuaranteed(angreifer,verteidiger,attackID);
+		temp = (angreifer->pokemon->pokemon->stats[STAT_KP] >> 2);
+		if (angreifer->pokemon->aktKP <= temp) {
+			angreifer->pokemon->aktKP = 0;		
+		}	else {
+			angreifer->pokemon->aktKP -= temp;
+		}
+		break;
 	default:
 		break;
 
 
 	}
-	// Falls Finale oder Explosion ausgeführt wurde
+	// Falls Finale oder Explosion ausgeführt wurde oder durch Selfhurt Attacke KO
 	if (angreifer->pokemon->aktKP == 0)
 		angreifer->pokemon->status = STATUS_KO;
 	// Falls Verteidigendes Pokemon besiegt wurde
 	if (verteidiger->pokemon->aktKP == 0)
 		verteidiger->pokemon->status = STATUS_KO;
 
-
+	return;
 }
