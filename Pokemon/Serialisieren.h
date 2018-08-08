@@ -7,15 +7,11 @@
 
 #define NICHT_VORHANDEN 0
 
-// für Bank; AP niht relevant
+enum SaveState{ok, leer, defekt};
+
 struct SaveAttacke{
 	byte attackeBasis;
 	byte apPlus;
-};
-
-// für Gruppe; AP relevant
-struct SaveAttackeG{
-	struct SaveAttacke atk;
 	byte ap;
 };
 
@@ -27,7 +23,7 @@ struct SavePokemonClass{
 	byte base;
 	byte iv[6];
 	ushort ev[6];
-	struct SaveAttackeG moves[4];
+	struct SaveAttacke moves[4];
 };
 
 struct SavePokemonGroup{
@@ -43,4 +39,4 @@ struct Save{
 };
 
 void speichern(struct Trainer *trainer);
-bool laden(struct Trainer *trainer);
+enum SaveState laden(struct Trainer *trainer);

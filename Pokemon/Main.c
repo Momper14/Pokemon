@@ -21,17 +21,99 @@
 
 void leseSpitzname(char *arr);
 void prints(const char * format, ...);
+void neuesSpiel(struct Trainer *trainer);
 
 byte delay = 50;
+char gelesen[MAX_IN];
 
 int main(){
 	srand((uint) time(NULL));
 
 	struct Trainer *trainer = malloc(sizeof(struct Trainer));
-	char gelesen[MAX_IN];
-	int i;
 
 	setlocale(LC_ALL, "");
+	
+	switch(laden(trainer)){
+		case ok:
+			while(true){
+				do{
+					prints("Hauptmenu:\n");
+					printf("\t(1) Spielstand laden\n");
+					printf("\t(2) Neues Spiel\n");
+
+					gelesen[0] = getchar();
+					CLEAR_IN;
+					if(gelesen[0] != '1' && gelesen[0] != '2'){
+						prints("Das habe ich leider nicht verstanden\n");
+					}
+				} while(gelesen[0] != '1' && gelesen[0] != '2');
+				if(gelesen[0] == '1'){
+					break;
+				}
+				if(gelesen[0] == '2'){
+					prints("Dein gesammter Vortschritt wird dabei gelöscht. Bist du dir sicher? (j/n)\n");
+					if(getchar() == 'j'){
+						CLEAR_IN;
+						neuesSpiel(trainer);
+						break;
+					}
+					CLEAR_IN;
+				}
+			}
+			break;
+		case defekt:
+			prints("Der Speicherstand ist Defekt. Es wir ein neues Spiel gestartet...\n");
+		case leer:
+			neuesSpiel(trainer);
+			break;
+		default:
+			neuesSpiel(trainer);
+	}
+
+	getchar();
+	speichern(trainer);
+	free(trainer);
+	return 0;
+}
+
+void leseSpitzname(char *arr){
+	prints("möchtest du ihm einen Spitznamen geben? (j/n)\n");
+	arr[0] = '\0';
+
+	if(getchar() != 'j'){
+		CLEAR_IN;
+		return;
+	}
+	CLEAR_IN;
+
+	do{
+		prints("Wie soll es denn heißen? (Max %d Zeichen)\n", SPITZNAME_SIZE - 1);
+		scanf_s("%s", arr, SPITZNAME_SIZE);
+		CLEAR_IN;
+
+		if(strlen(arr) == 0){
+			prints("Möchtest du ihm doch kein Spitznamen geben? (j/n)\n");
+		} else{
+			prints("Ist %s richtig? (j/n)\n", arr);
+		}
+	} while(getchar() != 'j');
+}
+
+void prints(const char * format, ...){
+	va_list args;
+	va_start(args, format);
+	char str[200];
+	vsprintf_s(str, 200, format, args);
+	va_end(args);
+	int i;
+	for(i = 0; str[i] != '\0'; i++){
+		fprintf_s(stderr, "%c", str[i]);
+		Sleep(delay);
+	}
+}
+
+void neuesSpiel(struct Trainer *trainer){
+	int i;
 
 	for(i = 0; i < 6; i++){
 		trainer->gruppe[i] = NULL;
@@ -134,44 +216,5 @@ int main(){
 	if(strlen(gelesen) != 0){
 		strcpy_s(trainer->gruppe[0]->pokemon->spitzname, SPITZNAME_SIZE, gelesen);
 	}
-	speichern(trainer);
-	getchar();
-	free(trainer);
-	return 0;
-}
 
-void leseSpitzname(char *arr){
-	prints("möchtest du ihm einen Spitznamen geben? (j/n)\n");
-	arr[0] = '\0';
-
-	if(getchar() != 'j'){
-		CLEAR_IN;
-		return;
-	}
-	CLEAR_IN;
-
-	do{
-		prints("Wie soll es denn heißen? (Max %d Zeichen)\n", SPITZNAME_SIZE - 1);
-		scanf_s("%s", arr, SPITZNAME_SIZE);
-		CLEAR_IN;
-
-		if(strlen(arr) == 0){
-			prints("Möchtest du ihm doch kein Spitznamen geben? (j/n)\n");
-		} else{
-			prints("Ist %s richtig? (j/n)\n", arr);
-		}
-	} while(getchar() != 'j');
-}
-
-void prints(const char * format, ...){
-	va_list args;
-	va_start(args, format);
-	char str[200];
-	vsprintf_s(str, 200, format, args);
-	va_end(args);
-	int i;
-	for(i = 0; str[i] != '\0'; i++){
-		fprintf_s(stderr, "%c", str[i]);
-		Sleep(delay);
-	}
 }
