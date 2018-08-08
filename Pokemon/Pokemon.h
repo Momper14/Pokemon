@@ -34,8 +34,8 @@ typedef struct PokemonClass PokemonClass;
 struct PokemonGroup{
 	struct PokemonClass *pokemon;	// Verweis auf das Pokemon des Trainers
 	byte status;					// SLF / PAR / GIF / BRN / FRZ / Schwere Vergiftug / KO
-	ushort aktKP;					// KP im Kampf und bis zur nächsten Heilung
 	byte sleepCounter;				// Zähler bis das Pokemon aufwacht (Allgemein Random generiert, ausser bei Erholung)
+	ushort aktKP;					// KP im Kampf und bis zur nächsten Heilung
 	bool teilgenommen;				// ob das Pokemon am aktuellen Kampf teilgenommen hat
 };
 typedef struct PokemonGroup PokemonGroup;

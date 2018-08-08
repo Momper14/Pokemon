@@ -29,6 +29,7 @@ struct SavePokemonClass{
 struct SavePokemonGroup{
 	struct SavePokemonClass pokemon;
 	byte status;
+	byte sleepCounter;
 	ushort aktKP;
 };
 

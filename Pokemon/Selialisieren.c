@@ -41,6 +41,7 @@ void speichern(struct Trainer *trainer){
 				}
 			}
 			sPkm->status = pkm->status;
+			sPkm->sleepCounter = pkm->sleepCounter;
 			sPkm->aktKP = pkm->aktKP;
 		} else{
 			save.gruppe[i].pokemon.base = NICHT_VORHANDEN;
@@ -70,6 +71,7 @@ enum SaveState laden(struct Trainer *trainer){
 		fclose(file);
 		return defekt;
 	}
+	fclose(file);
 
 	int i, x;
 
@@ -86,6 +88,7 @@ enum SaveState laden(struct Trainer *trainer){
 
 			grPkm->pokemon = clPkm;
 			grPkm->status = sGrPkm->status;
+			grPkm->sleepCounter = sGrPkm->sleepCounter;
 			grPkm->aktKP = sGrPkm->aktKP;
 			grPkm->teilgenommen = false;
 
@@ -111,7 +114,7 @@ enum SaveState laden(struct Trainer *trainer){
 					atk->attackeBasis = sAtk->attackeBasis;
 					atk->ap = sAtk->ap;
 					atk->apPlus = sAtk->apPlus;
-					atk->apMax = (byte) ((AttackDex[atk->attackeBasis]->ap * atk->apPlus) * 0.2);
+					atk->apMax = (byte) (AttackDex[atk->attackeBasis]->ap * (1 + (atk->apPlus * 0.2)));
 				} else{
 					clPkm->moves[x] = NULL;
 				}
